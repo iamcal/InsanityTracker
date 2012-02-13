@@ -71,10 +71,23 @@
 			);
 		}
 
-		return array(
+
+	
+		#
+		# there was a problem...
+		#
+
+		$out = array(
 			'ok'	=> 0,
 			'req'	=> $ret,
 		);
+
+		if ($ret['headers']['content-type'] == 'application/json;charset=utf-8'){
+
+			$out['data'] = json_decode($ret['body'], true);
+		}
+
+		return $out;
 	}
 
 	#########################################################
