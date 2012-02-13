@@ -1,6 +1,7 @@
 <?
 	include('init.php');
 
+	ini_set('memory_limit', '128M');
 
 	# we need to realm mappings
 	$realm_map = array();
@@ -19,9 +20,26 @@
 	}
 
 
+	#
 	# only reload guild rosters once per week
+	#
+
+	echo "finding unsynced guilds... ";
+
 	$limit = time() - (60 * 60 * 24 * 7);
-	$ret = db_fetch("SELECT * FROM guilds WHERE last_fetched<$limit ORDER BY world_rank ASC");
+	$ret = db_write("UPDATE guilds SET needs_fetch=1 WHERE last_fetched<$limit AND last_failed<$limit");
+
+	echo "ok ($ret[affected_rows])\n";
+	flush();
+
+
+	#
+	# fetch some guilds to update
+	#
+
+	$row_limit = 50000;
+
+	$ret = db_fetch("SELECT * FROM guilds WHERE needs_fetch=1 ORDER BY world_rank ASC LIMIT $row_limit");
 
 	$failures = array();
 
@@ -39,6 +57,15 @@
 			echo '.';
 		}else{
 			$failures[$row['region'].'-'.$row['realm']]++;
+
+			$realm_enc = AddSlashes($row['realm']);
+			$guild_enc = AddSlashes($row['name']);
+
+			db_update("guilds", array(
+				'last_failed' => time(),
+				'needs_fetch' => 0,
+			), "region='$row[region]' AND realm='$realm_enc' AND name='$guild_enc'");
+
 		}
 	}
 
@@ -66,15 +93,16 @@
 				$row = $row['character'];
 
 				#if ($row['achievementPoint'] < 1000) continue;
-				if ($row['level'] < 70) continue;
+				if ($row['level'] < 85) continue;
 
 				db_insert_dupe('characters', array(
 					'region'	=> AddSlashes($region),
 					'realm'		=> AddSlashes($realm), # stub
 					'name'		=> AddSlashes($row['name']),
+					'guild_rank'	=> $g_row['world_rank'],
 					'last_fetched'	=> 0,
 				), array(
-					'region'	=> AddSlashes($region), # null change
+					'guild_rank'	=> $g_row['world_rank'],
 				));
 
 				$num++;
@@ -90,7 +118,8 @@
 			}else{
 
 				print_r($ret);
-				exit;
+				#exit;
+				return;
 			}
 		}
 
@@ -98,7 +127,8 @@
 		$guild_enc = AddSlashes($g_row['name']);
 
 		db_update("guilds", array(
-			'last_fetched' => time(),
+			'last_fetched'	=> time(),
+			'needs_fetch' => 0,
 		), "region='$region' AND realm='$realm_enc' AND name='$guild_enc'");
 
 #exit;
