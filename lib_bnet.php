@@ -27,7 +27,10 @@
 
 		$date = gmdate("D, d M Y H:i:s").' GMT';
 
-		$hash = pack("H*", hash_hmac("sha1", "GET\n$date\n$path\n", $GLOBALS['cfg']['bnet_key_private']));
+		$base = "GET\n$date\n$path\n";
+		$base = str_replace('%26', '&', $base);
+		$base = str_replace('%3D', '=', $base);
+		$hash = pack("H*", hash_hmac("sha1", $base, $GLOBALS['cfg']['bnet_key_private']));
 
 		if ($GLOBALS['cfg']['bnet_key_public']){
 
