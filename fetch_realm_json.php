@@ -48,14 +48,19 @@ if (strlen($region) != 2){
 	exit;
 }
 
-			$update = array( 'world_rank' => intval($grow['world_rank']) );
+			$max_rank = 999999999;
+
+			$rank = intval($grow['world_rank']);
+			if (!$rank) $rank = $max_rank;
+
+			$update = array( 'world_rank' => $rank );
 			if (!$use_rank) $update = array( 'name' => AddSlashes($grow['name']) );
 
 			db_insert_dupe('guilds', array(
 				'region'	=> AddSlashes($region),
 				'realm'		=> AddSlashes($realm),
 				'name'		=> AddSlashes($grow['name']),
-				'world_rank'	=> $use_rank ? intval($grow['world_rank']) : 0,
+				'world_rank'	=> $use_rank ? $rank : $max_rank,
 				'last_fetched'	=> 0,
 			), $update);
 
