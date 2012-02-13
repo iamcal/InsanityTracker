@@ -1,0 +1,12 @@
+<?
+	$GLOBALS['cfg'] = array();
+
+	$GLOBALS['cfg']['db_main'] = array(
+		'host'	=> 'HOST',
+		'user'	=> 'USER',
+		'pass'	=> 'PASS',
+		'name'	=> 'DB-NAME',
+	);
+
+	$GLOBALS['cfg']['bnet_key_public'] = 'PUBLIC-KEY-GOES-HERE';
+	$GLOBALS['cfg']['bnet_key_private'] = 'PRIVATE-KEY-GOES-HERE';
