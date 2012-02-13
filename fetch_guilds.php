@@ -1,6 +1,8 @@
 <?
 	include('init.php');
 
+	mb_internal_encoding("UTF-8");
+
 	ini_set('memory_limit', '128M');
 
 	# we need to realm mappings
@@ -19,6 +21,13 @@
 		$realm_map[mb_StrToLower(str_replace(' ', '-', $row['name']))] = $row['slug'];
 	}
 
+	$map = array();
+	foreach ($realm_map as $k => $v){
+		$map[urlencode($k)] = urlencode($v);
+	}
+	#print_r($map);
+	#exit;
+
 
 	#
 	# only reload guild rosters once per week
@@ -27,7 +36,7 @@
 	echo "finding unsynced guilds... ";
 
 	$limit = time() - (60 * 60 * 24 * 7);
-	$ret = db_write("UPDATE guilds SET needs_fetch=1 WHERE last_fetched<$limit AND last_failed<$limit");
+	$ret = db_write("UPDATE guilds SET needs_fetch=1 WHERE last_fetched<$limit"); #  AND last_failed<$limit");
 
 	echo "ok ($ret[affected_rows])\n";
 	flush();
@@ -56,6 +65,10 @@
 
 			echo '.';
 		}else{
+			echo "realm: ".urlencode($row['realm'])."\n";
+			print_r($row);
+			exit;
+
 			$failures[$row['region'].'-'.$row['realm']]++;
 
 			$realm_enc = AddSlashes($row['realm']);
@@ -66,6 +79,7 @@
 				'needs_fetch' => 0,
 			), "region='$row[region]' AND realm='$realm_enc' AND name='$guild_enc'");
 
+			echo 'x';
 		}
 	}
 
@@ -80,7 +94,9 @@
 		$guild = $g_row['name'];
 
 		$guild_url = str_replace("%27", "'", rawurlencode($guild));
-		$ret = bnet_make_request($region, "/guild/$realm/$guild_url?fields=members");
+		$realm_url = str_replace("%27", "'", rawurlencode($realm));
+
+		$ret = bnet_make_request($region, "/guild/$realm_url/$guild_url?fields=members");
 
 		#echo "\n/guild/$realm/$guild_url?fields=members ";
 
@@ -114,11 +130,18 @@
 			# guilds go missing pretty often
 			if ($ret['req']['status'] == 404){
 
-				echo "(missing)";
+				echo "(-)";
+
+			}elseif ($ret['req']['status'] == 500 &&
+				$ret['data']['status'] == 'nok' && 
+				$ret['data']['reason'] == 'Internal server error.'){
+
+				echo "(ISE)";
+				return;
 			}else{
 
 				print_r($ret);
-				#exit;
+				exit;
 				return;
 			}
 		}
