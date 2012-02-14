@@ -11,3 +11,9 @@
 		echo "ERROR: $msg\n";
 		exit;
 	}
+
+	function dumper($foo){
+		echo "<pre style=\"text-align: left;\">";
+		echo HtmlSpecialChars(var_export($foo, 1));
+		echo "</pre>\n";
+	}
