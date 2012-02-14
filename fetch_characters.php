@@ -62,6 +62,7 @@ if (0){
 				'process_state'	=> 2,
 			), $where);
 		}
+		if (!count($ret['rows'])) break;
 
 
 		#
@@ -72,8 +73,6 @@ if (0){
 		foreach ($ret['rows'] as $row){
 			process_character($row);
 		}
-
-		if (!count($ret['rows'])) break;
 	}
 
 	echo "\ndone\n";
