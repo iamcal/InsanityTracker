@@ -44,7 +44,7 @@ if (0){
 		# create a new batch
 		#
 
-		$batch_size = 10;
+		$batch_size = 50;
 		$batch = rand(0, 999999999);
 		$t = time();
 
@@ -72,6 +72,8 @@ if (0){
 		foreach ($ret['rows'] as $row){
 			process_character($row);
 		}
+
+		if (!count($ret['rows'])) break;
 	}
 
 	echo "\ndone\n";
@@ -88,12 +90,13 @@ if (0){
 		$where = "region='$row[region]' AND realm='$realm_enc' AND name='$name_enc'";
 
 		#echo "making bnet request...";
-		$ret = bnet_make_request($row['region'], "/character/$realm_url/$name_url?fields=achievements");
+		$ret = bnet_make_request($row['region'], "/character/$realm_url/$name_url?fields=achievements,guild");
 		#echo "ok\n"; flush();
 
 		if ($ret['ok']){
 
 			$hash = array(
+				'guild'		=> AddSlashes($ret['data']['guild']['name']),
 				'last_fetched'	=> time(),
 				'fetch_count'	=> $row['fetch_count']+1,
 				'process_state'	=> 0,
