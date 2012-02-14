@@ -20,12 +20,58 @@ if (0){
 }
 
 
+	#
+	# loop in batches, processing some rows.
+	# the batching allows multiple versions of this script to run at once.
+	#
+
 	while (1){
-		$ret = db_fetch("SELECT * FROM characters WHERE process_state=1 AND realm='hyjal' ORDER BY guild_rank ASC LIMIT 10");
+
+		#
+		# clear batches over 10m old
+		#
+
+		$limit = time() -(60 * 10);
+		$ret = db_write("UPDATE characters USE INDEX(process_state_4) SET process_state=1 WHERE process_state=2 AND claimed_time<$limit");
+		if ($ret['affected_rows']){
+			echo '|'.$ret['affected_rows'].'|';
+		}else{
+			echo '|';
+		}
+
+
+		#
+		# create a new batch
+		#
+
+		$batch_size = 10;
+		$batch = rand(0, 999999999);
+		$t = time();
+
+		$ret = db_fetch("SELECT * FROM characters USE INDEX(process_state_5) WHERE process_state=1 AND region='us' ORDER BY guild_rank ASC LIMIT $batch_size");
+		foreach ($ret['rows'] as $row){
+
+			$realm_enc = AddSlashes($row['realm']);
+			$name_enc = AddSlashes($row['name']);
+
+			$where = "process_state=1 AND region='$row[region]' AND realm='$realm_enc' AND name='$name_enc'";
+
+			db_update('characters', array(
+				'claimed_group' => $batch,
+				'claimed_time'	=> $t,
+				'process_state'	=> 2,
+			), $where);
+		}
+
+
+		#
+		# process it
+		#
+
+		$ret = db_fetch("SELECT * FROM characters USE INDEX(process_state_3) WHERE process_state=2 AND claimed_group=$batch");
 		foreach ($ret['rows'] as $row){
 			process_character($row);
 		}
-		break;
 	}
 
 	echo "\ndone\n";
@@ -41,7 +87,9 @@ if (0){
 		$name_enc = AddSlashes($row['name']);
 		$where = "region='$row[region]' AND realm='$realm_enc' AND name='$name_enc'";
 
+		#echo "making bnet request...";
 		$ret = bnet_make_request($row['region'], "/character/$realm_url/$name_url?fields=achievements");
+		#echo "ok\n"; flush();
 
 		if ($ret['ok']){
 
