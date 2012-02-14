@@ -41,7 +41,7 @@
 	fetch_regions('us', array('en_US', 'es_MX'));
 	fetch_regions('eu', array('en_GB', 'es_ES', 'fr_FR', 'ru_RU', 'de_DE'));
 	fetch_regions('kr', array('ko_KR'));
-	fetch_regions('tw', array('zh_TW'));
+	fetch_regions('tw', array('zh_TW', 'en_US'));
 	#fetch_regions('cn', array('zh_CN'));
 
 
