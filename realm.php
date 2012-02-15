@@ -1,15 +1,10 @@
 <?php
 	include('init.php');
 
-	check_realm('/insanity/REGION/REALM/');
+	$realm = check_realm('/insanity/REGION/REALM/');
 
 	$region_enc = AddSlashes($_GET['region']);
 	$realm_enc = AddSlashes($_GET['realm']);
-
-	$realm = db_single(db_fetch("SELECT * FROM realms WHERE region='$region_enc' AND slug='$realm_enc'"));
-	if (!$realm['region']){
-		die('realm not found');
-	}
 
 	$ret = db_fetch("SELECT * FROM characters WHERE region='$region_enc' AND realm='$realm_enc' AND got_it=1 ORDER BY date_got ASC");
 
@@ -189,6 +184,9 @@
 
 	$profile = "http://$host/wow/en/character/{$realm['slug']}/{$name_url}/";
 	$guild = "http://$host/wow/en/guild/{$realm['slug']}/{$guild_url}/?character={$name_url}";
+
+	$profile = "/insanity/character/{$realm['region']}/{$realm['slug']}/{$name_url}/";
+	$guild = "/insanity/guild/{$realm['region']}/{$realm['slug']}/{$guild_url}/"
 ?>
 	<tr>
 		<td><a href="<?=$profile?>"><?=HtmlSpecialChars($row['name'])?></a></td>

@@ -1,6 +1,7 @@
 <?php
-
 	include('init.php');
+
+	$realm = check_realm("/insanity/guild/REGION/REALM/$_GET[name]/");
 
 	$region_enc = AddSlashes($_GET['region']);
 	$realm_enc = AddSlashes($_GET['realm']);
@@ -10,6 +11,8 @@
 	if (!count($ret['rows'])){
 		die('guild not found');
 	}
+	$chars = $ret['rows'];
+	$name = $chars[0]['guild'];
 
 	include('head.txt');
 ?>
@@ -17,11 +20,14 @@
 <h1>
 	<a href="/insanity/">Insanity</a>
 	/
-	<?=StrToUpper($character['region'])?>-<?=HtmlSpecialChars($character['realm'])?>
-	<?=HtmlSpecialChars($character['name'])?>
+	<a href="/insanity/<?=$realm['region']?>/"><?=StrToUpper($realm['region'])?></a>
+	/
+	<a href="/insanity/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a>
+	/
+	<?=HtmlSpecialChars($name)?>
 </h1>
 
-<? dumper($ret['rows']); ?>
+<? dumper($chars); ?>
 
 <?
 	include('foot.txt');

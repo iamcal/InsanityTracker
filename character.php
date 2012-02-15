@@ -2,6 +2,8 @@
 
 	include('init.php');
 
+	$realm = check_realm("/insanity/character/REGION/REALM/$_GET[name]/");
+
 	$region_enc = AddSlashes($_GET['region']);
 	$realm_enc = AddSlashes($_GET['realm']);
 	$name_enc = AddSlashes($_GET['name']);
@@ -17,7 +19,10 @@
 <h1>
 	<a href="/insanity/">Insanity</a>
 	/
-	<?=StrToUpper($character['region'])?>-<?=HtmlSpecialChars($character['realm'])?>
+	<a href="/insanity/<?=$realm['region']?>/"><?=StrToUpper($realm['region'])?></a>
+	/
+	<a href="/insanity/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a>
+	/
 	<?=HtmlSpecialChars($character['name'])?>
 </h1>
 
