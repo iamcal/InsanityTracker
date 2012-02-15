@@ -5,7 +5,7 @@
 
 
 	$GLOBALS['cfg']['bnet_region_hosts'] = array(
-		'cn'	=> 'www.battlenet.com.cn',
+	#	'cn'	=> 'www.battlenet.com.cn',
 		'eu'	=> 'eu.battle.net',
 		'kr'	=> 'kr.battle.net',
 		'tw'	=> 'tw.battle.net',
