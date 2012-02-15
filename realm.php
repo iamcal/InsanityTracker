@@ -70,7 +70,7 @@
 	/
 	<a href="/insanity/<?=$_GET['region']?>/"><?=StrToUpper($_GET['region'])?></a>
 	/
-	<?=HtmlSpecialChars($realm['name'])?>
+	<?=HtmlSpecialChars(realm_name($realm))?>
 </h1>
 
 <style>

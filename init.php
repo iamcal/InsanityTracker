@@ -20,14 +20,23 @@
 
 	function realm_name($row){
 
-		$names = array($row['name'] => 1);
-
 		$more = unserialize($row['locales']);
 		if (is_array($more)){
+			$names = array();
+			$names[$row['name']] = 1;
 			foreach ($more as $row2){
-				$names[$row2['name']] ++;
+				$names[$row2['name']]++;
+			}
+			$names = array_keys($names);
+			if (count($names) > 1){
+
+				$us = array_shift($names);
+				$primary = array_shift($names);
+				array_unshift($names, $us);
+
+				return $primary." (".implode(' / ', $names).")";
 			}
 		}
 
-		return implode(' / ', array_keys($names));
+		return $row['name'];
 	}
