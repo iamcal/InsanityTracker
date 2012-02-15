@@ -1,5 +1,4 @@
 <?php
-
 	include('init.php');
 
 
@@ -22,7 +21,7 @@
 <table>
 <? foreach ($ret['rows'] as $row){ ?>
 	<tr>
-		<td><a href="/insanity/<?=$row['region']?>/<?=urlencode($row['slug'])?>/"><?=HtmlSpecialChars($row['name'])?></a></td>
+		<td><a href="/insanity/<?=$row['region']?>/<?=urlencode($row['slug'])?>/"><?=HtmlSpecialChars(realm_name($row))?></a></td>
 		<td><?=$row['total_insane']?></td>
 	</tr>
 <? } ?>

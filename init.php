@@ -17,3 +17,17 @@
 		echo HtmlSpecialChars(var_export($foo, 1));
 		echo "</pre>\n";
 	}
+
+	function realm_name($row){
+
+		$names = array($row['name'] => 1);
+
+		$more = unserialize($row['locales']);
+		if (is_array($more)){
+			foreach ($more as $row2){
+				$names[$row2['name']] ++;
+			}
+		}
+
+		return implode(' / ', array_keys($names));
+	}
