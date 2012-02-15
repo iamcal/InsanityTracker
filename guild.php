@@ -7,7 +7,7 @@
 	$realm_enc = AddSlashes($_GET['realm']);
 	$name_enc = AddSlashes($_GET['name']);
 
-	$ret = db_fetch("SELECT * FROM characters WHERE region='$region_enc' AND realm='$realm_enc' AND guild='$name_enc' AND got_it=1");
+	$ret = db_fetch("SELECT * FROM characters WHERE region='$region_enc' AND realm='$realm_enc' AND guild='$name_enc' AND got_it=1 ORDER BY date_got ASC");
 	if (!count($ret['rows'])){
 		die('guild not found');
 	}
