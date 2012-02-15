@@ -5,13 +5,16 @@
 	ini_set('memory_limit', '128M');
 
 
-
 	#
 	# loop over each realm, gathering some stats
 	#
 
+	$region = $_SERVER['argv'][1];
+
 	$ret = db_fetch("SELECT * FROM realms");
 	foreach ($ret['rows'] as $row){
+
+		if ($region && $row['region'] != $region) continue;
 
 		update_realm($row);
 		echo '.';
