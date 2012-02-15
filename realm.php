@@ -49,7 +49,7 @@
 	$width = 180 * $num / max($totals['classes']);
 ?>
 	<tr>
-		<td><img src="http://us.media.blizzard.com/wow/icons/18/class_<?=$id?>.jpg" /></td>
+		<td><img src="http://us.media.blizzard.com/wow/icons/18/class_<?=$id?>.jpg" alt="<?=$class[0]?>" title="<?=$class[0]?>" /></td>
 		<td align="right"><?=$num?></td>
 		<td><div class="meter" style="width: <?=$width?>px"></div>
 	</tr>
@@ -64,7 +64,7 @@
 	$width = 180 * $num / max($totals['races']);
 ?>
 	<tr>
-		<td><img src="http://us.media.blizzard.com/wow/icons/18/race_<?=$id?>_1.jpg" /></td>
+		<td><img src="http://us.media.blizzard.com/wow/icons/18/race_<?=$id?>_1.jpg" alt="<?=$race[0]?>" title="<?=$race[0]?>" /></td>
 		<td align="right"><?=$num?></td>
 		<td><div class="meter" style="width: <?=$width?>px"></div>
 	</tr>
@@ -79,7 +79,7 @@
 	$width = 180 * $num / max($totals['factions']);
 ?>
 	<tr>
-		<td><img src="<?=$faction[1]?>" /></td>
+		<td><img src="<?=$faction[1]?>" alt="<?=$faction[0]?>" title="<?=$faction[0]?>" /></td>
 		<td align="right"><?=$num?></td>
 		<td><div class="meter" style="width: <?=$width?>px"></div>
 	</tr>
