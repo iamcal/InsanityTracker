@@ -40,3 +40,41 @@
 
 		return $row['name'];
 	}
+
+	function check_realm($url){
+
+		$region_enc = AddSlashes($_GET['region']);
+		$realm_enc = AddSlashes($_GET['realm']);
+
+
+		#
+		# simple case - we have a correct realm
+		#
+
+		$realm = db_single(db_fetch("SELECT * FROM realms WHERE region='$region_enc' AND slug='$realm_enc'"));
+		if ($realm['region']) return $realm;
+
+
+		#
+		# complex case - this is a locale slug
+		#
+
+		$ret = db_fetch("SELECT * FROM realms WHERE region='$region_enc'");
+		foreach ($ret['rows']as $row){
+			$more = unserialize($row['locales']);
+			if (!is_array($more)) continue;
+
+			foreach ($more as $loc){
+				if ($loc['slug'] == $_GET['realm']){
+
+					$url = str_replace('REGION', $row['region'], $url);
+					$url = str_replace('REALM', $row['slug'], $url);
+
+					header("location: $url");
+					exit;
+				}
+			}
+		}
+
+		die("realm not found");
+	}

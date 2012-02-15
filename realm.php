@@ -1,6 +1,7 @@
 <?php
-
 	include('init.php');
+
+	check_realm('/insanity/REGION/REALM/');
 
 	$region_enc = AddSlashes($_GET['region']);
 	$realm_enc = AddSlashes($_GET['realm']);
