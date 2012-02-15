@@ -27,6 +27,14 @@
 
 </td><td>
 
+	<div style="padding: 1em; background-color: #eee">
+
+		This site tracks players who gain the achievement <a href="http://www.wowhead.com/achievement=2336">Insane in the Membrane</a>,
+		arguably the hardest task in World of Warcraft. Earning the prestigious 'Insane' title takes months of dedicated play, for
+		essentially no reward.
+
+	</div>
+
 	<h2>Realms by region</h2>
 
 	<ul>
