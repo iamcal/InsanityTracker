@@ -7,12 +7,16 @@
 	$realm_enc = AddSlashes($_GET['realm']);
 	$name_enc = AddSlashes($_GET['name']);
 
-	$ret = db_fetch("SELECT * FROM characters WHERE region='$region_enc' AND realm='$realm_enc' AND guild='$name_enc'");
+	$ret = db_fetch("SELECT * FROM characters WHERE region='$region_enc' AND realm='$realm_enc' AND guild='$name_enc' AND got_it=1");
 	if (!count($ret['rows'])){
 		die('guild not found');
 	}
 	$chars = $ret['rows'];
 	$name = $chars[0]['guild'];
+
+	foreach ($chars as $k => $v){
+		assign_patch($chars[$k]);
+	}
 
 	include('head.txt');
 ?>
@@ -27,7 +31,10 @@
 	<?=HtmlSpecialChars($name)?>
 </h1>
 
-<? dumper($chars); ?>
+<?
+	$characters = $chars;
+	include('inc_list.php')
+?>
 
 <?
 	include('foot.txt');

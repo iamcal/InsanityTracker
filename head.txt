@@ -66,6 +66,28 @@ h1 {
 	text-decoration: underline;
 }
 
+.meter {
+	height: 16px;
+	background-color: green;
+}
+.listing th {
+	padding: 4px;
+	border-bottom: 3px solid #000;
+	margin-bottom: 4px;
+	text-align: left;
+	font-size: 120%;
+}
+.listing td {
+	padding: 4px;
+}
+.listing td.ap {
+	padding-right: 10px;
+	text-align: right;
+}
+.listing td.date {
+	xtext-align: center;
+}
+
 </style>
 </head>
 <body>

@@ -41,6 +41,11 @@
 		return $row['name'];
 	}
 
+	function assign_patch(&$row){
+		$row['patch'] = 4;
+		if ($row['date_got'] < mktime(0,0,0,11,23,2010)) $row['patch'] = 3;
+	}
+
 	function check_realm($url){
 
 		$region_enc = AddSlashes($_GET['region']);
@@ -78,3 +83,42 @@
 
 		die("realm not found");
 	}
+
+	$classes = array(
+		1 => array('Warrior'),
+		2 => array('Paladin'),
+		3 => array('Hunter'),
+		4 => array('Rogue'),
+		5 => array('Priest'),
+		6 => array('Death Knight'),
+		7 => array('Shaman'),
+		8 => array('Mage'),
+		9 => array('Warlock'),
+		11 => array('Druid'),
+	);
+
+	$races = array(
+		1 => array('Human', 1),
+		2 => array('Orc', 2),
+		3 => array('Dwarf', 1),
+		4 => array('Night Elf', 1),
+		5 => array('Undead', 2),
+		6 => array('Tauren', 2),
+		7 => array('Gnome', 1),
+		8 => array('Troll', 2),
+		9 => array('Goblin', 2),
+		10 => array('Blood Elf', 2),
+		11 => array('Draenei', 1),
+		22 => array('Worgen', 1),
+	);
+
+	$factions = array(
+		1 => array('Alliance', 'http://wowimg.zamimg.com/images/icons/alliance.gif'),
+		2 => array('Horde', 'http://wowimg.zamimg.com/images/icons/horde.gif'),
+	);
+
+	$patches = array(
+		3 => array('WotLK'),
+		4 => array('Cata'),
+	);
+
