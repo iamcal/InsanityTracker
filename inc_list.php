@@ -32,8 +32,12 @@
 		<td><?=$races[$row['race_id']][0]?></td>
 		<td class="ap"><?=number_format($row['achievement_points'])?></td>
 		<td class="date">
+<? if ($row['date_got'] > 10){ ?>
 			<?=date('Y-m-d', $row['date_got'])?>
 			(<?=$patches[$row['patch']][0]?>)
+<? }else{ ?>
+			(Unknown)
+<? } ?>
 		</td>
 	</tr>
 <? } ?>
