@@ -147,7 +147,10 @@
 		$GLOBALS['timings']['db_queries_count']++;
 		$GLOBALS['timings']['db_queries_time'] += $end-$start;
 
-	#	log_notice('db', "DB-$cluster_key: $sql ($trace)", $end-$start);
+		if ($_GET['debugsql']){
+			$ms = $end-$start;
+			echo HtmlSpecialChars("DB-$cluster_key: $sql ($trace) $ms ms")."<br>\n";
+		}
 
 
 		#
