@@ -97,6 +97,11 @@
 }
 </style>
 
+<?
+	# **************************** THIS REALM HAS PLAYERS  ****************************
+	if (count($ret['rows'])){
+?>
+
 <p>
 	On this realm, <?=count($ret['rows'])?> players have earned <a href="http://www.wowhead.com/achievement=2336">Insane in the Membrane</a>.
 </p>
@@ -203,6 +208,17 @@
 	</tr>
 <? } ?>
 </table>
+
+<?
+	# **************************** THIS REALM HAS NO PLAYERS  ****************************
+	}else{
+?>
+
+<p>Oops, looks like nobody on this realm has earned <a href="http://www.wowhead.com/achievement=2336">Insane in the Membrane</a> yet.</p>
+
+<?
+	}
+?>
 
 <?
 	include('foot.txt');
