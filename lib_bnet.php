@@ -65,9 +65,20 @@
 
 		if ($ret['status'] == 200){
 
+			$obj = json_decode($ret['body'], true);
+
+			if (!is_array($obj)){
+				return array(
+					'ok'		=> 0,
+					'malformed'	=> 1,
+					'req'		=> $ret,
+				);
+			}
+
 			return array(
 				'ok'	=> 1,
 				'data'	=> json_decode($ret['body'], true),
+				'req'	=> $ret,
 			);
 		}
 
