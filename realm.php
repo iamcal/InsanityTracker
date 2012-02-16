@@ -122,5 +122,6 @@
 ?>
 
 <?
+	include('add.txt');
 	include('foot.txt');
 ?>
