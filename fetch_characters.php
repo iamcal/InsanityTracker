@@ -22,16 +22,28 @@
 
 	#
 	# this is the re-processor, for when i find i screwed something up
-	# (like guild name encoding)
+	# (like guild name encoding, locales, whatever)
 	#
 
 	if (0){
-		$ret = db_fetch("SELECT * FROM characters WHERE region='us' AND got_it=1");
+		$ret = db_fetch("SELECT * FROM characters WHERE process_state=0 AND guild='' AND last_fetched<=1329255420");
+		echo "Processing ".count($ret['rows'])." characters ";
 		foreach ($ret['rows'] as $row){
 			process_character($row);
 		}
+		echo "\ndone\n";
 		exit;
 	}
+
+
+	#
+	# pick region
+	#
+
+	$region = $_SERVER['argv'][1];
+	$r = $region ? $region : 'us';
+
+	echo "$r: ";
 
 
 	#
@@ -62,7 +74,7 @@
 		$batch = rand(0, 999999999);
 		$t = time();
 
-		$ret = db_fetch("SELECT * FROM characters USE INDEX(process_state_5) WHERE process_state=1 AND region='kr' ORDER BY guild_rank ASC LIMIT $batch_size");
+		$ret = db_fetch("SELECT * FROM characters USE INDEX(process_state_5) WHERE process_state=1 AND region='$r' ORDER BY guild_rank ASC LIMIT $batch_size");
 		foreach ($ret['rows'] as $row){
 
 			$realm_enc = AddSlashes($row['realm']);
@@ -125,6 +137,11 @@
 				'last_found'	=> time(),
 			);
 
+			if (!is_array($ret['data']['achievements']['achievementsCompleted'])){
+				print_r($ret);
+				exit;
+			}
+
 			foreach ($ret['data']['achievements']['achievementsCompleted'] as $k => $v){
 
 				if ($v == 2336){
@@ -143,6 +160,10 @@
 			}else{
 				echo '.';
 			}
+
+		}else if ($ret['malformed']){
+
+			echo "(BAD)";			
 
 		}else if ($ret['req']['status'] == 404){
 
