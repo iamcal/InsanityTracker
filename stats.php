@@ -11,7 +11,14 @@
 	function realm($n){
 		$row = $GLOBALS['realms'][$n];
 		$realm = urlencode($row['slug']);
-		return "<a href=\"/insanity/$row[region]/$realm/\">".realm_name($row)."</a>";
+		return "<a href=\"/insanity/guilds/$row[region]/$realm/\">".realm_name($row)."</a>";
+	}
+
+	function guild($r, $g){
+		$row = $GLOBALS['realms'][$r];
+		$realm = urlencode($row['slug']);
+		$guild = urlencode($g);
+		return "<a href=\"/insanity/guilds/$row[region]/$realm/$guild/\">".HtmlSpecialChars($g)."</a>";
 	}
 ?>
 
@@ -105,6 +112,78 @@
 		<td>294</td>
 		<td><?=realm('kr-durotan')?></td>
 		<td>13,520</td>
+	</tr>
+</table>
+
+
+<h2>Biggest guilds (by active 85s)</h2>
+
+<table border="1">
+	<tr>
+		<th>Region</th>
+		<th>Realm</th>
+		<th>Guild</th>
+		<th>Players</th>
+	</tr>
+	<tr>
+		<td>US</td>
+		<td><?=realm('us-nemesis')?></td>
+		<td><?=guild('us-nemesis', "\xc3\x90ream \xc3\x90ivinity")?></td>
+		<td>916</td>
+	</tr>
+	<tr>
+		<td>Europe</td>
+		<td><?=realm('eu-shattered-hand')?></td>
+		<td><?=guild('eu-shattered-hand', 'D A W N')?></td>
+		<td>941</td>
+	</tr>
+	<tr>
+		<td>Taiwan</td>
+		<td><?=realm('tw-silverwing-hold')?></td>
+		<td><?=guild('tw-silverwing-hold', "\xe5\x81\xbd\xe5\xa8\x98\xe9\xbb\x91\xe6\xbe\x80\xe6\x9c\x83")?></td>
+		<td>912</td>
+	</tr>
+	<tr>
+		<td>Korea</td>
+		<td><?=realm('kr-azshara')?></td>
+		<td><?=guild('kr-azshara', "\xeb\xb6\x88\xec\x96\x91")?></td>
+		<td>727</td>
+	</tr>	
+</table>
+
+
+<h2>Most insane guilds</h2>
+
+<table border="1">
+	<tr>
+		<th>Region</th>
+		<th>Realm</th>
+		<th>Guild</th>
+		<th>Insanes/th>
+	</tr>
+	<tr>
+		<td>US</td>
+		<td><?=realm('us-frostmane')?></td>
+		<td><?=guild('us-frostmane', "War Front")?></td>
+		<td>16</td>
+	</tr>
+	<tr>
+		<td>Europe</td>
+		<td><?=realm('eu-howling-fjord')?></td>
+		<td><?=guild('eu-howling-fjord', "\xd0\xa1\xd0\xb8\xd0\xbd\xd0\xb5\xd1\x81\xd1\x82\xd0\xb5\xd0\xb7\xd0\xb8\xd1\x8f")?></td>
+		<td>22</td>
+	</tr>
+	<tr>
+		<td>Taiwan</td>
+		<td><?=realm('tw-wrathbringer')?></td>
+		<td><?=guild('tw-wrathbringer', "\xe7\xa5\x9e\xe6\xa8\xa3")?></td>
+		<td>14</td>
+	</tr>
+	<tr>
+		<td>Korea</td>
+		<td><?=realm('kr-ragnaros')?></td>
+		<td><?=guild('kr-ragnaros', "La Invictus")?></td>
+		<td>6</td>
 	</tr>
 </table>
 
