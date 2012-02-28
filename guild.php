@@ -22,8 +22,15 @@
 	$chars = $ret['rows'];
 	$name = $chars[0]['guild'];
 
+	$guild = db_single(db_fetch("SELECT * FROM guilds WHERE region='$region_enc' AND realm='$realm_enc' AND name='$name_enc'"));
+
 	foreach ($chars as $k => $v){
 		assign_patch($chars[$k]);
+	}
+
+	function format_rank($i){
+		if ($i == 0) return '<i>unranked</i>';
+		return $i;
 	}
 
 	include('head.txt');
@@ -38,6 +45,12 @@
 	/
 	<?=HtmlSpecialChars($name)?>
 </h1>
+
+<p>
+	Realm rank:				<?=format_rank($guild['rank_realm'])?><br />
+	<?=StrToUpper($realm['region'])?> rank:	<?=format_rank($guild['rank_region'])?><br />
+	World rank:				<?=format_rank($guild['rank_world'])?><br />
+</p>
 
 <?
 	$characters = $chars;
