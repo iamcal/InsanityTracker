@@ -165,6 +165,12 @@
 
 			echo "(BAD)";			
 
+		}elseif ($ret['req']['status'] == 500 &&
+			$ret['data']['status'] == 'nok' && 
+			$ret['data']['reason'] == 'Character unavailable'){
+
+			echo '(un)';
+
 		}else if ($ret['req']['status'] == 404){
 
 			db_update('characters', array(
