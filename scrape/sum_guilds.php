@@ -4,7 +4,7 @@
 	ini_set('memory_limit', '256M');
 
 
-	#update_region('tw');
+	update_region('tw');
 	update_region('kr');
 	update_region('eu');
 	update_region('us');
@@ -14,7 +14,7 @@
 		echo "$region: "; flush();
 		echo "fetching characters ... "; flush();
 
-		$ret = _db_query("SELECT realm, guild, got_it, last_fetched FROM characters WHERE region='$region'", 'main');
+		$ret = _db_query("SELECT realm, guild, got_it, last_found FROM characters WHERE region='$region'", 'main');
 		$num = mysql_num_rows($ret['result']);
 
 		echo "$num players ... "; flush();
@@ -25,7 +25,7 @@
 			if (!$row['guild']) continue;
 			$key = $row['realm'].'|'.$row['guild'];
 			$sums[$key]['total']++;
-			if ($row['last_fetched']) $sums[$key]['found']++;
+			if ($row['last_found']) $sums[$key]['found']++;
 			if ($row['got_it']) $sums[$key]['got']++;
 		}
 
