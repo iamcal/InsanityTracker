@@ -20,6 +20,10 @@
 	<?=HtmlSpecialChars(realm_name($realm))?>
 </h1>
 
+<p class="tabbar">
+	Viewing: <a href="/insanity/<?=$_GET['region']?>/<?=HtmlSpecialChars($_GET['realm'])?>/">Players</a> | <b>Guilds</b>
+</p>
+
 <?
 	# **************************** THIS REALM HAS GUILDS ****************************
 	if (count($guilds)){

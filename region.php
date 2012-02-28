@@ -18,6 +18,10 @@
 	<?=StrToUpper($_GET['region'])?>
 </h1>
 
+<p class="tabbar">
+	Viewing: <b>Players</b> | <a href="/insanity/guilds/<?=$_GET['region']?>/">Guilds</a>
+</p>
+
 <table>
 <? foreach ($ret['rows'] as $row){ ?>
 	<tr>
