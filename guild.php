@@ -39,9 +39,9 @@
 <h1>
 	<a href="/insanity/">Insanity</a>
 	/
-	<a href="/insanity/<?=$realm['region']?>/"><?=StrToUpper($realm['region'])?></a>
+	<a href="/insanity/guilds/<?=$realm['region']?>/"><?=StrToUpper($realm['region'])?></a>
 	/
-	<a href="/insanity/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a>
+	<a href="/insanity/guilds/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a>
 	/
 	<?=HtmlSpecialChars($name)?>
 </h1>
