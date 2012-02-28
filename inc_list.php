@@ -16,8 +16,8 @@
 	$profile = "http://$host/wow/en/character/{$realm['slug']}/{$name_url}/";
 	$guild = "http://$host/wow/en/guild/{$realm['slug']}/{$guild_url}/?character={$name_url}";
 
-	$profile = "/insanity/character/{$realm['region']}/{$realm['slug']}/{$name_url}/";
-	$guild = "/insanity/guild/{$realm['region']}/{$realm['slug']}/{$guild_url}/"
+	$profile = "/insanity/{$realm['region']}/{$realm['slug']}/{$name_url}/";
+	$guild = "/insanity/guilds/{$realm['region']}/{$realm['slug']}/{$guild_url}/"
 ?>
 	<tr>
 		<td><a href="<?=$profile?>"><?=HtmlSpecialChars($row['name'])?></a></td>

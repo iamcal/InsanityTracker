@@ -1,6 +1,9 @@
 RewriteEngine on
-RewriteRule ^(us|eu|tw|kr|cn)/([^/]+)/$	/insanity/realm.php?region=$1&realm=$2	[L,QSA]
-RewriteRule ^(us|eu|tw|kr|cn)/$		/insanity/region.php?region=$1	[L,QSA]
-RewriteRule ^character/([^/]+)/([^/]+)/([^/]+)/$	/insanity/character.php?region=$1&realm=$2&name=$3	[L,QSA]
-RewriteRule ^guild/([^/]+)/([^/]+)/([^/]+)/$		/insanity/guild.php?region=$1&realm=$2&name=$3		[L,QSA]
+RewriteRule ^(us|eu|tw|kr|cn)/$				/insanity/region.php?region=$1	[L,QSA]
+RewriteRule ^(us|eu|tw|kr|cn)/([^/]+)/$			/insanity/realm.php?region=$1&realm=$2	[L,QSA]
+RewriteRule ^(us|eu|tw|kr|cn)/([^/]+)/([^/]+)/$		/insanity/character.php?region=$1&realm=$2&name=$3	[L,QSA]
+
+RewriteRule ^guilds/(us|eu|tw|kr|cn)/([^/]+)/$		/insanity/realm_guilds.php?region=$1&realm=$2	[L,QSA]
+RewriteRule ^guilds/(us|eu|tw|kr|cn)/([^/]+)/([^/]+)/$	/insanity/guild.php?region=$1&realm=$2&name=$3	[L,QSA]
+
 RewriteRule ^stats/$ /insanity/stats.php [L]
