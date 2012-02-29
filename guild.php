@@ -24,6 +24,12 @@
 
 	$guild = db_single(db_fetch("SELECT * FROM guilds WHERE region='$region_enc' AND realm='$realm_enc' AND name='$name_enc'"));
 
+
+	$host = $GLOBALS['cfg']['bnet_region_hosts'][$guild['region']];
+	$realm_url = rawurlencode($guild['realm']);
+	$guild_url = rawurlencode($guild['name']);
+	$armory = "http://$host/wow/en/guild/{$realm_url}/{$guild_url}/";
+
 	foreach ($chars as $k => $v){
 		assign_patch($chars[$k]);
 	}
@@ -60,6 +66,7 @@
 <p>
 	Total active:	<?=$guild['total_found']?><br />
 	Insane members:	<?=$guild['total_got']?><br />
+	<a href="<?=$armory?>">View on Armory</a>
 </p>
 
 </td></tr></table>
