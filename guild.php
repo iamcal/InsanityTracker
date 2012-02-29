@@ -46,11 +46,24 @@
 	<?=HtmlSpecialChars($name)?>
 </h1>
 
+<div style="background-color: #eee; padding: 10px; margin-bottom: 2em">
+<table width="100%"><tr valign="top"><td width="50%">
+
 <p>
 	Realm rank:				<?=format_rank($guild['rank_realm'])?><br />
 	<?=StrToUpper($realm['region'])?> rank:	<?=format_rank($guild['rank_region'])?><br />
 	World rank:				<?=format_rank($guild['rank_world'])?><br />
 </p>
+
+</td><td>
+
+<p>
+	Total active:	<?=$guild['total_found']?><br />
+	Insane members:	<?=$guild['total_got']?><br />
+</p>
+
+</td></tr></table>
+</div>
 
 <?
 	$characters = $chars;
