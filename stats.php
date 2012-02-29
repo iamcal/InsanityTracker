@@ -20,6 +20,79 @@
 		$guild = urlencode($g);
 		return "<a href=\"/insanity/guilds/$row[region]/$realm/$guild/\">".HtmlSpecialChars($g)."</a>";
 	}
+
+
+
+	#
+	# data series
+	#
+
+	$series = array (
+		'2009-04' => 140,
+		'2009-05' => 159,
+		'2009-06' => 294,
+		'2009-07' => 304,
+		'2009-08' => 270,
+		'2009-09' => 358,
+		'2009-10' => 402,
+		'2009-11' => 376,
+		'2009-12' => 509,
+		'2010-01' => 561,
+		'2010-02' => 371,
+		'2010-03' => 336,
+		'2010-04' => 571,
+		'2010-05' => 569,
+		'2010-06' => 681,
+		'2010-07' => 685,
+		'2010-08' => 617,
+		'2010-09' => 977,
+		'2010-10' => 1563,
+		'2010-11' => 1399,
+		'2010-12' => 1075,
+		'2011-01' => 360,
+		'2011-02' => 505,
+		'2011-03' => 498,
+		'2011-04' => 597,
+		'2011-05' => 424,
+		'2011-06' => 776,
+		'2011-07' => 464,
+		'2011-08' => 586,
+		'2011-09' => 598,
+		'2011-10' => 697,
+		'2011-11' => 771,
+		'2011-12' => 758,
+		'2012-01' => 1190,
+		'2012-02' => 1856,
+	);
+
+	$max = max($series);
+	$chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	$data = '';
+	foreach ($series as $val){
+		$v = floor(61 * $val / $max);
+		$data .= substr($chars, $v, 1);
+	}
+
+
+	#
+	# google chart url
+	#
+
+	$spark_w = 740;
+	$spark_h = 40;
+
+	$params = array(
+		'chs'	=> "{$spark_w}x{$spark_h}",
+		'cht'	=> 'lc:nda',
+		'chco'	=> '113B92',
+		'chd'	=> 's:'.$data,
+		'chm'	=> 'B,113B92,0,0,0',
+	);
+
+	$pairs = array();
+	foreach ($params as $k => $v) $pairs[] = "$k=$v";
+	$spark_url = 'http://chart.apis.google.com/chart?'.implode('&', $pairs);
 ?>
 
 <h1>Stats</h1>
@@ -159,7 +232,7 @@
 		<th>Region</th>
 		<th>Realm</th>
 		<th>Guild</th>
-		<th>Insanes/th>
+		<th>Insanes</th>
 	</tr>
 	<tr>
 		<td>US</td>
@@ -186,6 +259,30 @@
 		<td>6</td>
 	</tr>
 </table>
+
+
+<h2>Date of achievement</h2>
+
+<table border="1">
+	<tr>
+		<th>Patch</th>
+		<th>Achievers</th>
+	</tr>
+	<tr>
+		<td>Before it was added</td>
+		<td>107</td>
+	</tr>
+	<tr>
+		<td>Wrath of the Lich King</td>
+		<td>10,930</td>
+	</tr>
+	<tr>
+		<td>Cataclysm</td>
+		<td>11,377</td>
+	</tr>
+</table>
+
+<img src="<?=$spark_url?>" width="<?=$spark_w?>" width="<?=$spark_h?>" alt="Weblogs added over time" />
 
 <?
 	include('foot.txt');
