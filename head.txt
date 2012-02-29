@@ -88,6 +88,12 @@ h1 {
 	xtext-align: center;
 }
 
+.statbox {
+	background-color: #eee;
+	padding: 10px;
+	margin-bottom: 2em;
+}
+
 </style>
 </head>
 <body>
