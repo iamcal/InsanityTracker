@@ -19,6 +19,11 @@
 	foreach ($ret['rows'] as $row){
 		$slug = AddSlashes($row['realm']);
 		$row['realm'] = db_single(db_fetch("SELECT * FROM realms WHERE region='$row[region]' AND slug='$slug'"));
+
+		$realm_url = urlencode($row['realm']['slug']);
+		$guild_url = urlencode($row['name']);
+		$row['url'] = "/insanity/guilds/$row[region]/$realm_url/$guild_url/";
+
 		$guilds[] = $row;
 	}
 
@@ -49,8 +54,7 @@
 <? foreach ($guilds as $row){ ?>
 		<tr>
 			<td><?=StrToUpper($row['region'])?></td>
-			<td><a href="/insanity/<?=$row['region']?>/<?=urlencode($row['realm']['slug'])?>/"><?=HtmlSpecialChars(realm_name($row['realm']))?></a></td>
-			<td><?=HtmlSpecialChars($row['name'])?></td>
+			<td><a href="<?=$row['url']?>"><?=HtmlSpecialChars($row['name'])?></a></td>
 			<td><?=$row['total_got']?></td>
 		</tr>
 <? } ?>
