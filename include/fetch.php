@@ -147,5 +147,23 @@
 
 	function fetch_update_guild($region, $realm, $name){
 
+		$hash = array(
+			'region'	=> AddSlashes($region),
+			'realm'		=> AddSlashes($realm),
+			'name'		=> AddSlashes($name),
+			'total_roster'	=> 0,
+			'total_found'	=> 0,
+			'total_got'	=> 0,
+		);
+
+		$ret = db_fetch("SELECT * FROM characters WHERE region='$hash[region]' AND realm='$hash[realm]' AND guild='$hash[name]'");
+		foreach ($ret['rows'] as $row){
+
+			$hash['total_roster']++;
+			if ($row['last_found']) $hash['total_found']++;
+			if ($row['got_it']) $hash['total_got']++;
+		}
+
+		db_insert_dupe('guilds', $hash, $hash);
 	}
 

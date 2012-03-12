@@ -14,7 +14,7 @@
 		list($region, $realm) = explode('-', $_POST['r'], 2);
 		$name = $_POST['n'];
 
-		$ret = fetch_character($region, $realm, $name);
+		$ret = fetch_character($region, $realm, $name, 1);
 
 		if ($ret['ok']){
 
