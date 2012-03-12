@@ -1,7 +1,7 @@
 <?
 
 
-	function fetch_character($region, $realm, $name){
+	function fetch_character($region, $realm, $name, $update_guild=0){
 
 		$realm_url = str_replace("%27", "'", rawurlencode($realm));
 		$name_url = str_replace("%27", "'", rawurlencode($name));
@@ -24,6 +24,7 @@
 				'last_fetched'		=> time(),
 				'fetch_count'		=> $row['fetch_count']+1,
 				'process_state'		=> 0,
+				'level'			=> intval($ret['data']['level']),
 				'class_id'		=> intval($ret['data']['class']),
 				'race_id'		=> intval($ret['data']['race']),
 				'gender_id'		=> intval($ret['data']['gender']),
@@ -54,6 +55,10 @@
 
 			db_insert_dupe('characters', $hash, $hash);
 
+			if ($update_guild && $ret['data']['guild']['name']){
+
+				fetch_update_guild($region, $realm, $ret['data']['guild']['name']);
+			}
 
 			return array(
 				'ok'		=> 1,
@@ -138,3 +143,9 @@
 			'bnet'	=> $ret,
 		);
 	}
+
+
+	function fetch_update_guild($region, $realm, $name){
+
+	}
+

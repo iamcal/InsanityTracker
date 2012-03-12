@@ -128,6 +128,7 @@
 				'last_fetched'	=> time(),
 				'fetch_count'	=> $row['fetch_count']+1,
 				'process_state'	=> 0,
+				'level'		=> intval($ret['data']['level']),
 				'class_id'	=> intval($ret['data']['class']),
 				'race_id'	=> intval($ret['data']['race']),
 				'gender_id'	=> intval($ret['data']['gender']),

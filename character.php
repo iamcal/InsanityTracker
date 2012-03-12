@@ -42,7 +42,21 @@
 	<?=HtmlSpecialChars($character['name'])?>
 </h1>
 
+<? if ($_GET['added']){ ?>
+
+<div style="background-color: #efe; border: 2px solid green; padding: 1em; margin-bottom: 1em">
+
+	This character has been updated from the armory.
+</div>
+
+<? } ?>
+
+
 <table border="1">
+	<tr>
+		<td>Level</td>
+		<td><?=$character['level']?></td>
+	</tr>
 	<tr>
 		<td>Class</td>
 		<td><?=$character['class_id']?></td>
