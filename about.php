@@ -1,6 +1,7 @@
 <?
 	include('init.php');
 
+	$current = 'about';
 	include('head.txt');
 ?>
 

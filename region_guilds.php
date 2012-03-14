@@ -29,11 +29,15 @@
 	<?=StrToUpper($_GET['region'])?>
 </h1>
 
-<p class="tabbar">
-	Viewing: <a href="/insanity/<?=$_GET['region']?>/">Players</a> | <b>Guilds</b>
-</p>
+<ul class="nav nav-tabs">
+	<li><a href="/insanity/<?=$_GET['region']?>/">Players</a></li>
+	<li class="active"><a href="#">Guilds</a></li>
+</ul>
 
-<table>
+<div class="row">
+<div class="span8">
+
+<table class="table table-striped table-condensed">
 	<tr>
 		<th>Realm</th>
 		<th>Guild</th>
@@ -58,6 +62,16 @@
 	</tr>
 <? } ?>
 </table>
+
+</div>
+<div class="span4">
+
+	<div class="well">
+		Well well well
+	</div>
+
+</div>
+</div>
 
 <?
 	include('foot.txt');

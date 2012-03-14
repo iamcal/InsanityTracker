@@ -1,4 +1,6 @@
 </div>
 
+<script src="/insanity/js/bootstrap.min.js"></script>
+
 </body>
 </html>

@@ -1,7 +1,6 @@
 <?
 	include('init.php');
 
-	include('head.txt');
 
 
 	$realms = array();
@@ -93,13 +92,21 @@
 	$pairs = array();
 	foreach ($params as $k => $v) $pairs[] = "$k=$v";
 	$spark_url = 'http://chart.apis.google.com/chart?'.implode('&', $pairs);
+
+	$current = 'stats';
+	include('head.txt');
 ?>
 
 <h1>Stats</h1>
 
+<div class="row">
+<div class="span6">
+
 <h2>Total scanned characters</h2>
 
-<table border="1">
+<p>The scanning method is <a href="/insanity/about/">explained here</a>.</p>
+
+<table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th>Region</th>
 		<th>Realms</th>
@@ -132,9 +139,14 @@
 	</tr>
 </table>
 
-<h2>Biggest &amp; smallest realms (by scanned players)</h2>
+</div>
+<div class="span6">
 
-<table border="1">
+<h2>Biggest &amp; smallest realms</h2>
+
+<p>By the number of scanned players.</p>
+
+<table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th>Region</th>
 		<th colspan="2">Smallest</th>
@@ -170,10 +182,15 @@
 	</tr>
 </table>
 
+</div>
+</div>
+
+<div class="row">
+<div class="span6">
 
 <h2>Biggest guilds (by active 85s)</h2>
 
-<table border="1">
+<table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th>Region</th>
 		<th>Realm</th>
@@ -206,10 +223,12 @@
 	</tr>	
 </table>
 
+</div>
+<div class="span6">
 
 <h2>Most insane guilds</h2>
 
-<table border="1">
+<table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th>Region</th>
 		<th>Realm</th>
@@ -242,10 +261,13 @@
 	</tr>
 </table>
 
+</div>
+</div>
+
 
 <h2>Date of achievement</h2>
 
-<table border="1">
+<table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th>Patch</th>
 		<th>Achievers</th>

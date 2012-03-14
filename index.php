@@ -27,18 +27,21 @@
 		$guilds[] = $row;
 	}
 
+	$current = 'home';
 	include('head.txt');
 ?>
 
-<h1>
-	Insanity
-</h1>
+<header class="jumbotron subhead">
+	<h1>Insanity</h1>
+	<p class="lead">Mumble mumble</p>
+</header>
 
-<table width="100%"><tr valign="top"><td width="50%">
+<div class="row">
+<div class="span6">
 
 	<h2>Top Realms</h2>
 
-	<table>
+	<table class="table table-striped">
 <? foreach ($top as $row){ ?>
 		<tr>
 			<td><?=StrToUpper($row['region'])?></td>
@@ -50,7 +53,7 @@
 
 	<h2>Top Guilds</h2>
 
-	<table>
+	<table class="table table-striped">
 <? foreach ($guilds as $row){ ?>
 		<tr>
 			<td><?=StrToUpper($row['region'])?></td>
@@ -61,10 +64,11 @@
 	</table>
 
 
-</td><td>
+</div>
+<div class="span6">
 
-
-	<div style="padding: 1em; background-color: #eee">
+	<!-- div style="padding: 1em; background-color: #eee" -->
+	<div class="well">
 
 		This site tracks players who gain the achievement <a href="http://www.wowhead.com/achievement=2336">Insane in the Membrane</a>,
 		arguably the hardest task in World of Warcraft. Earning the prestigious 'Insane' title takes months of dedicated play, for
@@ -74,13 +78,17 @@
 
 	<h2>Realms by region</h2>
 
-	<ul>
+	<table class="table table-striped">
 <? foreach ($realms as $k => $v){?>
-		<li><a href="/insanity/<?=$k?>/"><?=StrToUpper($k)?></a> - <?=$v?></li>
+		<tr>
+			<td><a href="/insanity/<?=$k?>/"><?=StrToUpper($k)?></a></td>
+			<td><?=$v?></td>
+		</tr>
 <? } ?>
-	</ul>
+	</table>
 
-</td></tr></table>
+</div>
+</div>
 
 <?
 	include('foot.txt');

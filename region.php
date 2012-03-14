@@ -18,11 +18,19 @@
 	<?=StrToUpper($_GET['region'])?>
 </h1>
 
-<p class="tabbar">
-	Viewing: <b>Players</b> | <a href="/insanity/guilds/<?=$_GET['region']?>/">Guilds</a>
-</p>
+<ul class="nav nav-tabs">
+	<li class="active"><a href="#">Players</a></li>
+	<li><a href="/insanity/guilds/<?=$_GET['region']?>/">Guilds</a></li>
+</ul>
 
-<table>
+<div class="row">
+<div class="span8">
+
+<table class="table table-striped table-condensed">
+	<tr>
+		<th>Realm</th>
+		<th>Insanes</th>
+	</tr>
 <? foreach ($ret['rows'] as $row){ ?>
 	<tr>
 		<td><a href="/insanity/<?=$row['region']?>/<?=urlencode($row['slug'])?>/"><?=HtmlSpecialChars(realm_name($row))?></a></td>
@@ -30,6 +38,16 @@
 	</tr>
 <? } ?>
 </table>
+
+</div>
+<div class="span4">
+
+	<div class="well">
+		Bleh
+	</div>
+
+</div>
+</div>
 
 <?
 	include('foot.txt');

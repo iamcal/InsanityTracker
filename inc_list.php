@@ -1,4 +1,4 @@
-<table border="0" width="100%" class="listing">
+<table class="table table-striped table-condensed">
 	<tr>
 		<th>Character</th>
 		<th>Guild</th>

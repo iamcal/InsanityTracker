@@ -20,9 +20,10 @@
 	<?=HtmlSpecialChars(realm_name($realm))?>
 </h1>
 
-<p class="tabbar">
-	Viewing: <a href="/insanity/<?=$_GET['region']?>/<?=HtmlSpecialChars($_GET['realm'])?>/">Players</a> | <b>Guilds</b>
-</p>
+<ul class="nav nav-tabs">
+	<li><a href="/insanity/<?=$_GET['region']?>/<?=HtmlSpecialChars($_GET['realm'])?>/">Players</a></li>
+	<li class="active"><a href="#">Guilds</a></li>
+</ul>
 
 <?
 	# **************************** THIS REALM HAS GUILDS ****************************

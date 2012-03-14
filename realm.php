@@ -31,9 +31,10 @@
 	<?=HtmlSpecialChars(realm_name($realm))?>
 </h1>
 
-<p class="tabbar">
-	Viewing: <b>Players</b> | <a href="/insanity/guilds/<?=$_GET['region']?>/<?=HtmlSpecialChars($_GET['realm'])?>/">Guilds</a>
-</p>
+<ul class="nav nav-tabs">
+	<li class="active"><a href="#">Players</a></li>
+	<li><a href="/insanity/guilds/<?=$_GET['region']?>/<?=HtmlSpecialChars($_GET['realm'])?>/">Guilds</a></li>
+</ul>
 
 <?
 	# **************************** THIS REALM HAS PLAYERS  ****************************
@@ -66,11 +67,12 @@
 <? foreach ($races as $id => $race){
 	$num = intval($totals['races'][$id]);
 	$width = 180 * $num / max($totals['races']);
+	$per = 100 * $num / max($totals['races']);
 ?>
 	<tr>
 		<td><img src="http://us.media.blizzard.com/wow/icons/18/race_<?=$id?>_1.jpg" alt="<?=$race[0]?>" title="<?=$race[0]?>" /></td>
 		<td align="right"><?=$num?></td>
-		<td><div class="meter" style="width: <?=$width?>px"></div>
+		<td><div class="progress" style="width: 180px"><div class="bar" style="width: <?=$per?>%"></div></div></td>
 	</tr>
 <? } ?>
 </table>

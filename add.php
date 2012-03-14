@@ -55,7 +55,8 @@
 <h1>Add a Player</h1>
 
 <? if ($show_error){ ?>
-<div style="background-color: pink; border: 2px solid red; margin-bottom: 1em; padding: 1em;">
+<div class="alert alert-error">
+	<i class="icon-exclamation-sign"></i>
 <? if ($show_error['error'] = 'not_found'){ ?>
 	Character not found - perhaps you typed it wrong?
 <? }else{ ?>
@@ -65,38 +66,41 @@
 <? } ?>
 
 
-<form action="/insanity/add/" method="post">
+<form action="/insanity/add/" method="post" class="form-horizontal">
+<fieldset>
 
+<div class="control-group">
+	<label class="control-label" for="sel-realm">Realm</label>
+	<div class="controls">
+		<select id="sel-region" name="reg" style="display: none" class="input-small">
+			<option value="us">US</option>
+			<option value="eu">Europe</option>
+			<option value="kr">Korea</option>
+			<option value="tw">Taiwan</option>
+		</select>
 
-<table border="1"><tr><td>
-
-<b>Realm:</b><br />
-
-<select id="sel-region" name="reg" style="display: none">
-	<option value="us">US</option>
-	<option value="eu">Europe</option>
-	<option value="kr">Korea</option>
-	<option value="tw">Taiwan</option>
-</select>
-
-<select id="sel-realm" name="r">
+		<select id="sel-realm" name="r">
 <? foreach ($realms as $region => $list){ ?>
 <? foreach ($list as $k => $v){ ?>
-	<option value="<?=$k?>"<? if ($_POST['r'] == $k){ echo " selected"; } ?>><?=HtmlSpecialChars($v)?> (<?=StrToUpper($region)?>)</option>
+			<option value="<?=$k?>"<? if ($_POST['r'] == $k){ echo " selected"; } ?>><?=HtmlSpecialChars($v)?> (<?=StrToUpper($region)?>)</option>
 <? } ?>
 <? } ?>
-</select>
+		</select>
+	</div>
+</div>
 
-</td><td>
+<div class="control-group">
+	<label class="control-label" for="in-name">Character Name</label>
+	<div class="controls">
+		<input type="text" name="n" value="<?=HtmlSpecialChars($_POST['n'])?>" class="span4" />
+	</div>
+</div>
 
-<b>Character Name:</b><br />
+<div class="form-actions">
+	<input type="submit" value="Update Character" class="btn btn-primary" />
+</div>
 
-<input type="text" name="n" style="width: 300px" value="<?=HtmlSpecialChars($_POST['n'])?>" />
-
-</td></tr></table>
-
-
-
+</fieldset>
 </form>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

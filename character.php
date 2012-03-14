@@ -44,8 +44,8 @@
 
 <? if ($_GET['added']){ ?>
 
-<div style="background-color: #efe; border: 2px solid green; padding: 1em; margin-bottom: 1em">
-
+<div class="alert alert-success">
+	<i class="icon-ok"></i>
 	This character has been updated from the armory.
 </div>
 
