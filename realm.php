@@ -72,7 +72,7 @@
 	<tr>
 		<td><img src="http://us.media.blizzard.com/wow/icons/18/race_<?=$id?>_1.jpg" alt="<?=$race[0]?>" title="<?=$race[0]?>" /></td>
 		<td align="right"><?=$num?></td>
-		<td><div class="progress" style="width: 180px"><div class="bar" style="width: <?=$per?>%"></div></div></td>
+		<td><div class="progress" style="width: 180px; margin-bottom:0"><div class="bar" style="width: <?=$per?>%"></div></div></td>
 	</tr>
 <? } ?>
 </table>

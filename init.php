@@ -101,17 +101,18 @@
 
 	$races = array(
 		1 => array('Human', 1),
-		2 => array('Orc', 2),
 		3 => array('Dwarf', 1),
 		4 => array('Night Elf', 1),
-		5 => array('Undead', 2),
-		6 => array('Tauren', 2),
 		7 => array('Gnome', 1),
-		8 => array('Troll', 2),
-		9 => array('Goblin', 2),
-		10 => array('Blood Elf', 2),
 		11 => array('Draenei', 1),
 		22 => array('Worgen', 1),
+
+		2 => array('Orc', 2),
+		5 => array('Undead', 2),
+		6 => array('Tauren', 2),
+		8 => array('Troll', 2),
+		10 => array('Blood Elf', 2),
+		9 => array('Goblin', 2),
 	);
 
 	$factions = array(
