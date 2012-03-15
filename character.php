@@ -10,7 +10,9 @@
 
 	$character = db_single(db_fetch("SELECT * FROM characters WHERE region='$region_enc' AND realm='$realm_enc' AND name='$name_enc'"));
 	if (!$character['region']){
-		die('character not found');
+
+		$error = "That character could not be found - <a href=\"/insanity/add/\">add them</a>?";
+		include('notfound.php');
 	}
 
 	$guild_enc = AddSlashes($character['guild']);
@@ -78,7 +80,7 @@ $(function(){
 			if (data.thumbnail){
 				$('#thumbnail').attr('src', '<?=$url_base?>' + data.thumbnail);
 				var achieves = parse_achieves(data);
-				console.log(achieves);
+				//console.log(achieves);
 
 				update_criteria(achieves.criteria[8818], 'bsb', 9000);
 				update_criteria(achieves.criteria[8819], 'evr', 42000);
