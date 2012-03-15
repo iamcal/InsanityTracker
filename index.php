@@ -81,7 +81,7 @@
 	<table class="table table-striped">
 <? foreach ($realms as $k => $v){?>
 		<tr>
-			<td><a href="/insanity/<?=$k?>/"><?=StrToUpper($k)?></a></td>
+			<td><a href="/insanity/<?=$k?>/"><?=format_region($k)?></a></td>
 			<td><?=$v?></td>
 		</tr>
 <? } ?>
