@@ -147,7 +147,7 @@ function update_criteria(criteria, name, needed){
 
 
 <div class="row">
-<div class="span6">
+<div class="span7">
 <div class="well">
 
 <? if ($character['got_it']){ ?>
@@ -250,7 +250,7 @@ function update_criteria(criteria, name, needed){
 <p>Progress is pulled in real-time from the battle.net API, but can be a bit buggy.</p>
 
 </div>
-<div class="span6">
+<div class="span5">
 
 <div class="well">
 
