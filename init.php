@@ -88,7 +88,8 @@
 			}
 		}
 
-		die("realm not found");
+		$error = "The realm you requested could not be found.";
+		include('notfound.php');
 	}
 
 	function format_region($r){
