@@ -7,7 +7,6 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title><? if ($title){ echo "$title | "; } ?>Insanity</title>
 <link href="/insanity/css/bootstrap.min.css" rel="stylesheet">
-<link href="/insanity/css/bootstrap-responsive.min.css" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -18,19 +17,6 @@ body {
 	padding-top: 90px;
 	padding-bottom: 90px;
 	background-color: #fff;
-	xfont-family: Helvetica, Arial, sans-serif;
-}
-
-@media (max-width: 480px) {
-	body { padding-top: 70px; }
-}
-
-@media (max-width: 768px) {
-	body { padding: 0; }
-}
-
-@media (min-width: 768px) and (max-width: 980px) {
-	body { padding: 0; }
 }
 
 .ar,
@@ -42,29 +28,6 @@ th.ar {
 .meter {
 	height: 16px;
 	background-color: green;
-}
-.listing th {
-	padding: 4px;
-	border-bottom: 3px solid #000;
-	margin-bottom: 4px;
-	text-align: left;
-	font-size: 120%;
-}
-.listing td {
-	padding: 4px;
-}
-.listing td.ap {
-	padding-right: 10px;
-	text-align: right;
-}
-.listing td.date {
-	xtext-align: center;
-}
-
-.statbox {
-	background-color: #eee;
-	padding: 10px;
-	margin-bottom: 2em;
 }
 
 .jumbotron h1 {
