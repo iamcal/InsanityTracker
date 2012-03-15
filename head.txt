@@ -31,6 +31,12 @@ body {
 	body { padding: 0; }
 }
 
+.ar,
+td.ar,
+th.ar {
+	text-align: right;
+}
+
 .meter {
 	height: 16px;
 	background-color: green;

@@ -115,27 +115,27 @@
 	</tr>
 	<tr>
 		<td>US</td>
-		<td>246</td>
-		<td>61,448</td>
-		<td>3,293,058</td>
+		<td class="ar">246</td>
+		<td class="ar">61,448</td>
+		<td class="ar">3,293,058</td>
 	</tr>
 	<tr>
 		<td>Europe</td>
-		<td>265</td>
-		<td>63,502</td>
-		<td>3,397,761</td>
+		<td class="ar">265</td>
+		<td class="ar">63,502</td>
+		<td class="ar">3,397,761</td>
 	</tr>
 	<tr>
 		<td>Taiwan</td>
-		<td>46</td>
-		<td>4,816</td>
-		<td>587,624</td>
+		<td class="ar">46</td>
+		<td class="ar">4,816</td>
+		<td class="ar">587,624</td>
 	</tr>
 	<tr>
 		<td>Korea</td>
-		<td>33</td>
-		<td>1,591</td>
-		<td>218,563</td>
+		<td class="ar">33</td>
+		<td class="ar">1,591</td>
+		<td class="ar">218,563</td>
 	</tr>
 </table>
 
@@ -155,30 +155,30 @@
 	<tr>
 		<td>US</td>
 		<td><?=realm('us-tol-barad')?></td>
-		<td>1,514</td>
+		<td class="ar">1,514</td>
 		<td><?=realm('us-illidan')?></td>
-		<td>40,924</td>
+		<td class="ar">40,924</td>
 	</tr>
 	<tr>
 		<td>Europe</td>
 		<td><?=realm('eu-veklor')?></td>
-		<td>2,988</td>
+		<td class="ar">2,988</td>
 		<td><?=realm('eu-ravencrest')?></td>
-		<td>31,202</td>
+		<td class="ar">31,202</td>
 	</tr>
 	<tr>
 		<td>Taiwan</td>
 		<td><?=realm('tw-deathwing')?></td>
-		<td>9,546</td>
+		<td class="ar">9,546</td>
 		<td><?=realm('tw-bleeding-hollow')?></td>
-		<td>28,155</td>
+		<td class="ar">28,155</td>
 	</tr>
 	<tr>
 		<td>Korea</td>
 		<td><?=realm('kr-blackmoore')?></td>
-		<td>294</td>
+		<td class="ar">294</td>
 		<td><?=realm('kr-durotan')?></td>
-		<td>13,520</td>
+		<td class="ar">13,520</td>
 	</tr>
 </table>
 
@@ -201,25 +201,25 @@
 		<td>US</td>
 		<td><?=realm('us-nemesis')?></td>
 		<td><?=guild('us-nemesis', "\xc3\x90ream \xc3\x90ivinity")?></td>
-		<td>916</td>
+		<td class="ar">916</td>
 	</tr>
 	<tr>
 		<td>Europe</td>
 		<td><?=realm('eu-shattered-hand')?></td>
 		<td><?=guild('eu-shattered-hand', 'D A W N')?></td>
-		<td>941</td>
+		<td class="ar">941</td>
 	</tr>
 	<tr>
 		<td>Taiwan</td>
 		<td><?=realm('tw-silverwing-hold')?></td>
 		<td><?=guild('tw-silverwing-hold', "\xe5\x81\xbd\xe5\xa8\x98\xe9\xbb\x91\xe6\xbe\x80\xe6\x9c\x83")?></td>
-		<td>912</td>
+		<td class="ar">912</td>
 	</tr>
 	<tr>
 		<td>Korea</td>
 		<td><?=realm('kr-azshara')?></td>
 		<td><?=guild('kr-azshara', "\xeb\xb6\x88\xec\x96\x91")?></td>
-		<td>727</td>
+		<td class="ar">727</td>
 	</tr>	
 </table>
 
@@ -239,25 +239,25 @@
 		<td>US</td>
 		<td><?=realm('us-frostmane')?></td>
 		<td><?=guild('us-frostmane', "War Front")?></td>
-		<td>16</td>
+		<td class="ar">16</td>
 	</tr>
 	<tr>
 		<td>Europe</td>
 		<td><?=realm('eu-howling-fjord')?></td>
 		<td><?=guild('eu-howling-fjord', "\xd0\xa1\xd0\xb8\xd0\xbd\xd0\xb5\xd1\x81\xd1\x82\xd0\xb5\xd0\xb7\xd0\xb8\xd1\x8f")?></td>
-		<td>22</td>
+		<td class="ar">22</td>
 	</tr>
 	<tr>
 		<td>Taiwan</td>
 		<td><?=realm('tw-wrathbringer')?></td>
 		<td><?=guild('tw-wrathbringer', "\xe7\xa5\x9e\xe6\xa8\xa3")?></td>
-		<td>14</td>
+		<td class="ar">14</td>
 	</tr>
 	<tr>
 		<td>Korea</td>
 		<td><?=realm('kr-ragnaros')?></td>
 		<td><?=guild('kr-ragnaros', "La Invictus")?></td>
-		<td>6</td>
+		<td class="ar">6</td>
 	</tr>
 </table>
 
@@ -274,15 +274,15 @@
 	</tr>
 	<tr>
 		<td>Before it was added</td>
-		<td>107</td>
+		<td class="ar">107</td>
 	</tr>
 	<tr>
 		<td>Wrath of the Lich King</td>
-		<td>10,930</td>
+		<td class="ar">10,930</td>
 	</tr>
 	<tr>
 		<td>Cataclysm</td>
-		<td>11,377</td>
+		<td class="ar">11,377</td>
 	</tr>
 </table>
 

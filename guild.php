@@ -52,14 +52,23 @@
 	<?=HtmlSpecialChars($name)?>
 </h1>
 
-<div style="background-color: #eee; padding: 10px; margin-bottom: 2em">
+<div class="well">
 <table width="100%"><tr valign="top"><td width="50%">
 
-<p>
-	Realm rank:				<?=format_rank($guild['rank_realm'])?><br />
-	<?=StrToUpper($realm['region'])?> rank:	<?=format_rank($guild['rank_region'])?><br />
-	World rank:				<?=format_rank($guild['rank_world'])?><br />
-</p>
+	<table>
+		<tr>
+			<td>Realm rank:</td>
+			<td class="ar"><a href="/insanity/guilds/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=format_rank($guild['rank_realm'])?></a></td>
+		</tr>
+		<tr>
+			<td><?=StrToUpper($realm['region'])?> rank:</td>
+			<td class="ar"><a href="/insanity/guilds/<?=$realm['region']?>/"><?=format_rank($guild['rank_region'])?></a></td>
+		</tr>
+		<tr>
+			<td>World rank:</td>
+			<td class="ar"><?=format_rank($guild['rank_world'])?></td>
+		</tr>
+	</table>
 
 </td><td>
 
@@ -74,6 +83,7 @@
 
 <?
 	$characters = $chars;
+	$hide_guild = 1;
 	include('inc_list.php')
 ?>
 
