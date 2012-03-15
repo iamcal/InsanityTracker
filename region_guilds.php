@@ -23,11 +23,10 @@
 	include('head.txt');
 ?>
 
-<h1>
-	<a href="/insanity/">Insanity</a>
-	/
-	<?=StrToUpper($_GET['region'])?>
-</h1>
+<header class="contextual">
+	<a href="/insanity/">Insanity</a> /
+	<h1><?=format_region($_GET['region'])?></h1>
+</header>
 
 <ul class="nav nav-tabs">
 	<li><a href="/insanity/<?=$_GET['region']?>/">Players</a></li>

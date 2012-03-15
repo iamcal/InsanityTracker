@@ -42,15 +42,12 @@
 	include('head.txt');
 ?>
 
-<h1>
-	<a href="/insanity/">Insanity</a>
-	/
-	<a href="/insanity/guilds/<?=$realm['region']?>/"><?=StrToUpper($realm['region'])?></a>
-	/
-	<a href="/insanity/guilds/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a>
-	/
-	<?=HtmlSpecialChars($name)?>
-</h1>
+<header class="contextual">
+	<a href="/insanity/">Insanity</a> /
+	<a href="/insanity/guilds/<?=$realm['region']?>/"><?=format_region($realm['region'])?></a> /
+	<a href="/insanity/guilds/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a> /
+	<h1><?=HtmlSpecialChars($name)?></h1>
+</header>
 
 <div class="well">
 <table width="100%"><tr valign="top"><td width="50%">

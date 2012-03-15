@@ -23,13 +23,11 @@
 	include('head.txt');
 ?>
 
-<h1>
-	<a href="/insanity/">Insanity</a>
-	/
-	<a href="/insanity/<?=$_GET['region']?>/"><?=StrToUpper($_GET['region'])?></a>
-	/
-	<?=HtmlSpecialChars(realm_name($realm))?>
-</h1>
+<header class="contextual">
+	<a href="/insanity/">Insanity</a> /
+	<a href="/insanity/<?=$_GET['region']?>/"><?=format_region($_GET['region'])?></a> /
+	<h1><?=HtmlSpecialChars(realm_name($realm))?></h1>
+</header>
 
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#">Players</a></li>

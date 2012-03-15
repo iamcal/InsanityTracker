@@ -52,7 +52,10 @@
 	include('head.txt');
 ?>
 
-<h1>Add a Player</h1>
+<header class="jumbotron subhead">
+	<h1>Add a Player</h1>
+	<p class="lead">Earned the achievement? Known someone else that has? Update them here.</p>
+</header>
 
 <? if ($show_error){ ?>
 <div class="alert alert-error">
@@ -66,7 +69,7 @@
 <? } ?>
 
 
-<form action="/insanity/add/" method="post" class="form-horizontal">
+<form action="/insanity/add/" method="post" class="form-horizontal" style="margin-top: 50px">
 <fieldset>
 
 <div class="control-group">

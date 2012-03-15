@@ -97,7 +97,9 @@
 	include('head.txt');
 ?>
 
-<h1>Stats</h1>
+<header class="jumbotron subhead">
+	<h1>Stats</h1>
+</header>
 
 <div class="row">
 <div class="span6">

@@ -91,6 +91,14 @@
 		die("realm not found");
 	}
 
+	function format_region($r){
+		if ($r == 'us') return 'US';
+		if ($r == 'eu') return 'Europe';
+		if ($r == 'kr') return 'Korea';
+		if ($r == 'tw') return 'Taiwan';
+		return $r;
+	}
+
 	$classes = array(
 		1 => array('Warrior'),
 		2 => array('Paladin'),

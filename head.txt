@@ -15,6 +15,7 @@
 
 body {
 	padding-top: 90px;
+	padding-bottom: 90px;
 	background-color: #fff;
 	xfont-family: Helvetica, Arial, sans-serif;
 }
@@ -63,6 +64,26 @@ th.ar {
 	background-color: #eee;
 	padding: 10px;
 	margin-bottom: 2em;
+}
+
+.jumbotron h1 {
+	margin-bottom: 9px;
+	font-size: 81px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	line-height: 1;
+}
+
+header.contextual {
+	font-size: 20px;
+}
+
+header.contextual h1 {
+	margin-bottom: 40px;
+	font-size: 60px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	line-height: 1;	
 }
 
 </style>

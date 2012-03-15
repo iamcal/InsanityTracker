@@ -5,7 +5,9 @@
 	include('head.txt');
 ?>
 
-<h1>About</h1>
+<header class="jumbotron subhead">
+	<h1>About</h1>
+</header>
 
 <h2>Method</h2>
 

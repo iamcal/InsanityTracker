@@ -32,15 +32,12 @@
 	include('head.txt');
 ?>
 
-<h1>
-	<a href="/insanity/">Insanity</a>
-	/
-	<a href="/insanity/<?=$realm['region']?>/"><?=StrToUpper($realm['region'])?></a>
-	/
-	<a href="/insanity/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a>
-	/
-	<?=HtmlSpecialChars($character['name'])?>
-</h1>
+<header class="contextual">
+	<a href="/insanity/">Insanity</a> /
+	<a href="/insanity/<?=$realm['region']?>/"><?=format_region($realm['region'])?></a> /
+	<a href="/insanity/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a> /
+	<h1><?=HtmlSpecialChars($character['name'])?></h1>
+</header>
 
 <? if ($_GET['added']){ ?>
 
