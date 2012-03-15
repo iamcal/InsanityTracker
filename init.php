@@ -18,6 +18,11 @@
 		echo "</pre>\n";
 	}
 
+	function microtime_ms(){
+		    list($usec, $sec) = explode(" ", microtime());
+		    return intval(1000 * ((float)$usec + (float)$sec));
+	}
+
 	function realm_name($row){
 
 		$more = unserialize($row['locales']);

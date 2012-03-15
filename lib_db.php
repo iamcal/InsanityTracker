@@ -91,7 +91,7 @@
 		# try to connect
 		#
 
-	#	$start = microtime_ms();
+		$start = microtime_ms();
 
 		$GLOBALS['db_conns'][$cluster_key] = @mysql_connect($host, $user, $pass, 1);
 
@@ -101,7 +101,7 @@
 			@mysql_query("SET character_set_results='utf8', character_set_client='utf8', character_set_connection='utf8', character_set_database='utf8', character_set_server='utf8'", $GLOBALS['db_conns'][$cluster_key]);
 		}
 
-	#	$end = microtime_ms();
+		$end = microtime_ms();
 
 
 		#
@@ -140,9 +140,9 @@
 		$trace = _db_callstack();
 		$use_sql = _db_comment_query($sql, $trace);
 
-	#	$start = microtime_ms();
+		$start = microtime_ms();
 		$result = @mysql_query($use_sql, $GLOBALS['db_conns'][$cluster_key]);
-	#	$end = microtime_ms();
+		$end = microtime_ms();
 
 		$GLOBALS['timings']['db_queries_count']++;
 		$GLOBALS['timings']['db_queries_time'] += $end-$start;
@@ -273,15 +273,15 @@
 		$out['rows'] = array();
 		unset($out['result']);
 
-	#	$start = microtime_ms();
+		$start = microtime_ms();
 		$count = 0;
 		while ($row = mysql_fetch_array($ret['result'], MYSQL_ASSOC)){
 			$out['rows'][] = $row;
 			$count++;
 		}
-	#	$end = microtime_ms();
-	#	$GLOBALS['timings']['db_rows_count'] += $count;
-	#	$GLOBALS['timings']['db_rows_time'] += $end-$start;
+		$end = microtime_ms();
+		$GLOBALS['timings']['db_rows_count'] += $count;
+		$GLOBALS['timings']['db_rows_time'] += $end-$start;
 
 		return $out;
 	}
