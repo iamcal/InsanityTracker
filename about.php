@@ -2,6 +2,7 @@
 	include('init.php');
 
 	$current = 'about';
+	$title = 'About';
 	include('head.txt');
 ?>
 

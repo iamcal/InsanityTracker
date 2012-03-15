@@ -17,9 +17,11 @@
 	}
 
 	if (!count($guilds)){
-		die('region not found');
+		$error = "Region not found";
+		include('notfound.php');
 	}
 
+	$title = format_region($_GET['region']);
 	include('head.txt');
 ?>
 

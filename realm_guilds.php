@@ -9,6 +9,7 @@
 	$ret = db_fetch("SELECT * FROM guilds WHERE region='$region_enc' AND realm='$realm_enc' AND total_got>0 ORDER BY rank_world ASC");
 	$guilds = $ret['rows'];
 
+	$title = HtmlSpecialChars(realm_name($realm));
 	include('head.txt');
 ?>
 

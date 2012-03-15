@@ -39,6 +39,7 @@
 		return $i;
 	}
 
+	$title = HtmlSpecialChars($name);
 	include('head.txt');
 ?>
 

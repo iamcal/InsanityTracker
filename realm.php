@@ -20,6 +20,7 @@
 	}
 	unset($row);
 
+	$title = HtmlSpecialChars(realm_name($realm));
 	include('head.txt');
 ?>
 

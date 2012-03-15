@@ -40,6 +40,7 @@
 	$race = $races[$character['race_id']][0];
 	assign_patch($character);
 
+	$title = HtmlSpecialChars($character['name']);
 	include('head.txt');
 ?>
 

@@ -49,6 +49,7 @@
 	}
 
 
+	$title = 'Add a Player';
 	include('head.txt');
 ?>
 

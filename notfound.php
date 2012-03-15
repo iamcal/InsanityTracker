@@ -1,4 +1,5 @@
 <?
+	$title = 'Page not found';
 	include('head.txt');
 ?>
 

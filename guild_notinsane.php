@@ -1,4 +1,5 @@
 <?php
+	$title = HtmlSpecialChars($_GET['name']);
 	include('head.txt');
 ?>
 

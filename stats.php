@@ -94,6 +94,7 @@
 	$spark_url = 'http://chart.apis.google.com/chart?'.implode('&', $pairs);
 
 	$current = 'stats';
+	$title = 'Stats';
 	include('head.txt');
 ?>
 
