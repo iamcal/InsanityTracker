@@ -130,13 +130,13 @@
 	);
 
 	$factions = array(
-		1 => array('Alliance', 'http://wowimg.zamimg.com/images/icons/alliance.gif'),
-		2 => array('Horde', 'http://wowimg.zamimg.com/images/icons/horde.gif'),
+		1 => array('Alliance', 'achievement_pvp_a_16.jpg'),
+		2 => array('Horde', 'achievement_pvp_h_16.jpg'),
 	);
 
 	$patches = array(
-		2 => array('Early'),
-		3 => array('WotLK'),
-		4 => array('Cata'),
+		2 => array('Early', 'bc.gif', 29, 14),
+		3 => array('WotLK', 'wrath.gif', 34, 16),
+		4 => array('Cata', 'cata.gif', 38, 14),
 	);
 
