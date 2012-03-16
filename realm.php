@@ -44,8 +44,9 @@
 	On this realm, <?=count($ret['rows'])?> players have earned <a href="http://www.wowhead.com/achievement=2336">Insane in the Membrane</a>.
 </p>
 
-<div style="background-color: #eee; padding: 10px; margin-bottom: 2em">
-<table border="0"><tr valign="top"><td>
+<div class="well">
+<div class="row-fluid">
+<div class="span4">
 
 <table>
 <? foreach ($classes as $id => $class){
@@ -60,7 +61,8 @@
 <? } ?>
 </table>
 
-</td><td>
+</div>
+<div class="span4">
 
 <table>
 <? foreach ($races as $id => $race){
@@ -76,7 +78,8 @@
 <? } ?>
 </table>
 
-</td><td>
+</div>
+<div class="span4">
 
 <table>
 <? foreach ($factions as $id => $faction){
@@ -106,8 +109,8 @@
 <? } ?>
 </table>
 
-</td></tr></table>
-
+</div>
+</div>
 </div>
 
 <?

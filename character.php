@@ -36,6 +36,11 @@
 	$url_base = "http://{$host}/static-render/{$realm['region']}/";
 
 
+	$add_r = urlencode($_GET['region']).'-'.urlencode($_GET['realm']);
+	$add_n = urlencode($_GET['name']);
+	$refresh_url = "/insanity/add/?r={$add_r}&n={$add_n}";
+
+
 	$class = $classes[$character['class_id']][0];
 	$race = $races[$character['race_id']][0];
 	assign_patch($character);
@@ -254,11 +259,26 @@ function update_criteria(criteria, name, needed){
 
 <div class="well">
 
-	Achievement points:
-		<?=number_format($character['achievement_points'])?><br />
-	<a href="<?=$armory?>">View on Armory</a>
+	Achievement points: <?=number_format($character['achievement_points'])?><br />
+	<br />
+	<a href="<?=$armory?>">View on Armory</a><br />
+</div>
+
+<? if (!$_GET['added']){ ?>
+<div class="well ac">
+	<a href="<?=$refresh_url?>" class="btn" id="refresh">Refresh from Armory</a><br />
+	<span style="color: #999">Last refreshed <?=date('Y-m-d', $character['last_fetched'])?></span>
+
+<script>
+$(function(){
+	$('#refresh').click(function(){
+		$('#refresh').addClass('disabled').text('Refreshing...');
+	});
+});
+</script>
 
 </div>
+<? } ?>
 
 <div class="well">
 

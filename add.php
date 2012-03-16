@@ -9,10 +9,10 @@
 
 	$show_error = 0;
 
-	if ($_POST['r'] && $_POST['n']){
+	if ($_REQUEST['r'] && $_REQUEST['n']){
 
-		list($region, $realm) = explode('-', $_POST['r'], 2);
-		$name = $_POST['n'];
+		list($region, $realm) = explode('-', $_REQUEST['r'], 2);
+		$name = $_REQUEST['n'];
 
 		$ret = fetch_character($region, $realm, $name, 1);
 
@@ -47,6 +47,7 @@
 	foreach ($realms as $region => $junk){
 		asort($realms[$region]);
 	}
+
 
 
 	$title = 'Add a Player';
@@ -96,7 +97,7 @@
 <div class="control-group">
 	<label class="control-label" for="in-name">Character Name</label>
 	<div class="controls">
-		<input type="text" name="n" value="<?=HtmlSpecialChars($_POST['n'])?>" class="span4" />
+		<input type="text" name="n" value="<?=HtmlSpecialChars($_REQUEST['n'])?>" class="span4" />
 	</div>
 </div>
 
@@ -111,7 +112,7 @@
 <script>
 
 var realms = <?=JSON_encode($realms)?>;
-var sel = '<?=HtmlSpecialChars($_POST['r'])?>';
+var sel = '<?=HtmlSpecialChars($_REQUEST['r'])?>';
 
 $(function(){
 	populate_realms();

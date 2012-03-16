@@ -1,1 +1,8 @@
-<p>If you know of a player that is not listed here, <a href="/insanity/add/">add them</a>.</p>
+<?
+	$add_url = "/insanity/add/";
+
+	if ($_GET['region'] && $_GET['realm']){
+		$add_url .= "?r=".urlencode($_GET['region'])."-".urlencode($_GET['realm']);
+	}
+?>
+<p>If you know of a player that is not listed here, <a href="<?=$add_url?>">add them</a>.</p>
