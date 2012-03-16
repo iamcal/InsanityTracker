@@ -1,4 +1,8 @@
 RewriteEngine on
+
+RewriteCond %{HTTP_HOST}	^www\.hunterloot\.com$			[NC]
+RewriteRule ^(.*)$		http://hunterloot.com/insanity/$1	[L,R=permanent]
+
 RewriteRule ^(us|eu|tw|kr|cn)/$				/insanity/region.php?region=$1	[L,QSA]
 RewriteRule ^(us|eu|tw|kr|cn)/([^/]+)/$			/insanity/realm.php?region=$1&realm=$2	[L,QSA]
 RewriteRule ^(us|eu|tw|kr|cn)/([^/]+)/([^/]+)/$		/insanity/character.php?region=$1&realm=$2&name=$3	[L,QSA]
