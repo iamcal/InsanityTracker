@@ -1,6 +1,8 @@
 <?php
 	include('init.php');
 
+	die('disabled');
+
 	$ret = db_fetch("SELECT process_state, COUNT(*) AS num FROM characters USE INDEX(process_state) GROUP BY process_state");
 
 	$map = array();
