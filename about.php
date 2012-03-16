@@ -59,6 +59,14 @@
 	I also recorded the date. I was then able to aggregate the results to figure out the top guilds and realms.
 </p>
 
+<p>
+	This scan found 131,357 guilds, containing 7,497,006 players at level 85.
+	Of those players, only 6,710,829 (89.5%) were active on the armory - the rest had not logged on lately.
+	Of those active players, only 22,414 players (0.33% of actives) have earned the insane achievment - that's about 1 in 300 actives.
+	These numbers are higher than I expectated, though more than half happened since the achievement was simplified.
+	There's more explanation on the <a href="/insanity/stats/">stats page</a>.
+</p>
+
 </div>
 <div class="span4">
 
