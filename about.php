@@ -18,7 +18,7 @@
 <p>
 	When I started this project, I knew that there were over 11 million active World of Warcraft subscribers.
 	To get a good starting pool of data, I knew I'd need to scan a great deal of them.
-	I contacted the Blizzard API team to explain what I had planned and to get a high-volume API key - I wasn;t going to get far on 3000 queries per day.
+	I contacted the Blizzard API team to explain what I had planned and to get a high-volume API key - I wasn't going to get far on 3000 queries per day.
 </p>
 
 <p>
@@ -31,7 +31,7 @@
 <p>
 	I decided to only include players that I could prove had gotten the achievement, so they had to be active on the armory.
 	That means they have to be at least level 10 (I don't <i>think</i> you could get the achievement without hitting level 10,
-	but I guess it's possible) and to have logged in during the last 30 days. This will definately exclude some old players
+	but I guess it's possible) and to have logged in during the last 90 days. This will definately exclude some old players
 	who earned the achievement and then stopped playing, but I can't do much about those.
 </p>
 
@@ -65,6 +65,14 @@
 	Of those active players, only 22,414 players (0.33% of actives) have earned the insane achievment - that's about 1 in 300 actives.
 	These numbers are higher than I expectated, though more than half happened since the achievement was simplified.
 	There's more explanation on the <a href="/insanity/stats/">stats page</a>.
+</p>
+
+<p>
+	The API key I was given allowed me to make 300,000 API requests every 24 hours, in each region. I ran the collection process in parallel
+	for the four regions, so it took 12 days in total (Europe finished last). My server is in the US, so US collection was very fast, Europe was slow and 
+	Korea &amp; Taiwan were very slow.
+	The Chinese API was so slow that I skipped it altogether for now - it would take many years just to perform the initial spidering.
+	The database, inclduing indexes, takes up 3 GB.
 </p>
 
 </div>
