@@ -30,12 +30,12 @@
 <table class="table table-striped table-condensed">
 	<tr>
 		<th>Realm</th>
-		<th>Insanes</th>
+		<th class="ac">Insanes</th>
 	</tr>
 <? foreach ($ret['rows'] as $row){ ?>
 	<tr>
 		<td><a href="/insanity/<?=$row['region']?>/<?=urlencode($row['slug'])?>/"><?=HtmlSpecialChars(realm_name($row))?></a></td>
-		<td><?=$row['total_insane']?></td>
+		<td class="ac"><?=$row['total_insane']?></td>
 	</tr>
 <? } ?>
 </table>
@@ -44,7 +44,9 @@
 <div class="span4">
 
 	<div class="well">
-		Bleh
+		Most realms have at least a few players with The Insane title. You tend to see them quite often, since they're generally very active players.<br />
+		<br />
+		Pick your own realm from this list to find out which of your realm-mates have completed the grind.
 	</div>
 
 </div>

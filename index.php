@@ -33,41 +33,12 @@
 
 <header class="jumbotron subhead">
 	<h1>Insanity</h1>
-	<p class="lead">Mumble mumble</p>
+	<p class="lead">Tracking worldwide insanity levels since 2012</p>
 </header>
 
 <div class="row">
 <div class="span6">
 
-	<h2>Top Realms</h2>
-
-	<table class="table table-striped">
-<? foreach ($top as $row){ ?>
-		<tr>
-			<td><?=StrToUpper($row['region'])?></td>
-			<td><a href="/insanity/<?=$row['region']?>/<?=urlencode($row['slug'])?>/"><?=HtmlSpecialChars(realm_name($row))?></a></td>
-			<td><?=$row['total_insane']?></td>
-		</tr>
-<? } ?>
-	</table>
-
-	<h2>Top Guilds</h2>
-
-	<table class="table table-striped">
-<? foreach ($guilds as $row){ ?>
-		<tr>
-			<td><?=StrToUpper($row['region'])?></td>
-			<td><a href="<?=$row['url']?>"><?=HtmlSpecialChars($row['name'])?></a></td>
-			<td><?=$row['total_got']?></td>
-		</tr>
-<? } ?>
-	</table>
-
-
-</div>
-<div class="span6">
-
-	<!-- div style="padding: 1em; background-color: #eee" -->
 	<div class="well">
 
 		This site tracks players who gain the achievement <a href="http://www.wowhead.com/achievement=2336">Insane in the Membrane</a>,
@@ -76,7 +47,7 @@
 
 	</div>
 
-	<h2>Realms by region</h2>
+	<h2>Browse by Realm</h2>
 
 	<table class="table table-striped">
 <? foreach ($realms as $k => $v){?>
@@ -86,6 +57,34 @@
 		</tr>
 <? } ?>
 	</table>
+
+</div>
+<div class="span6">
+
+	<h3>Top Realms</h3>
+
+	<table class="table table-striped">
+<? foreach ($top as $row){ ?>
+		<tr>
+			<td width="18%"><?=format_region($row['region'])?></td>
+			<td><a href="/insanity/<?=$row['region']?>/<?=urlencode($row['slug'])?>/"><?=HtmlSpecialChars(realm_name($row))?></a></td>
+			<td width="25%"><?=$row['total_insane']?></td>
+		</tr>
+<? } ?>
+	</table>
+
+	<h3>Top Guilds</h3>
+
+	<table class="table table-striped">
+<? foreach ($guilds as $row){ ?>
+		<tr>
+			<td width="18%"><?=format_region($row['region'])?></td>
+			<td><a href="<?=$row['url']?>"><?=HtmlSpecialChars($row['name'])?></a></td>
+			<td width="25%"><?=$row['total_got']?></td>
+		</tr>
+<? } ?>
+	</table>
+
 
 </div>
 </div>

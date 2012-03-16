@@ -51,24 +51,26 @@
 </header>
 
 <div class="well">
-<table width="100%"><tr valign="top"><td width="50%">
+<div class="row-fluid">
+<div class="span6">
 
 	<table>
 		<tr>
 			<td>Realm rank:</td>
-			<td class="ar"><a href="/insanity/guilds/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=format_rank($guild['rank_realm'])?></a></td>
+			<td class="ar" style="padding-left: 20px"><a href="/insanity/guilds/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=format_rank($guild['rank_realm'])?></a></td>
 		</tr>
 		<tr>
 			<td><?=StrToUpper($realm['region'])?> rank:</td>
-			<td class="ar"><a href="/insanity/guilds/<?=$realm['region']?>/"><?=format_rank($guild['rank_region'])?></a></td>
+			<td class="ar" style="padding-left: 20px"><a href="/insanity/guilds/<?=$realm['region']?>/"><?=format_rank($guild['rank_region'])?></a></td>
 		</tr>
 		<tr>
 			<td>World rank:</td>
-			<td class="ar"><?=format_rank($guild['rank_world'])?></td>
+			<td class="ar" style="padding-left: 20px"><?=format_rank($guild['rank_world'])?></td>
 		</tr>
 	</table>
 
-</td><td>
+</div>
+<div class="span6">
 
 <p>
 	Total active:	<?=$guild['total_found']?><br />
@@ -76,7 +78,8 @@
 	<a href="<?=$armory?>">View on Armory</a>
 </p>
 
-</td></tr></table>
+</div>
+</div>
 </div>
 
 <?

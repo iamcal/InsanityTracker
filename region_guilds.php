@@ -36,15 +36,15 @@
 </ul>
 
 <div class="row">
-<div class="span8">
+<div class="span9">
 
 <table class="table table-striped table-condensed">
 	<tr>
 		<th>Realm</th>
 		<th>Guild</th>
-		<th>Inmates</th>
-		<th><?=HtmlSpecialChars(StrToUpper($_GET['region']))?> Rank</th>
-		<th>World Rank</th>
+		<th class="ac">Insanes</th>
+		<th class="ac"><?=HtmlSpecialChars(StrToUpper($_GET['region']))?> Rank</th>
+		<th class="ac">World Rank</th>
 	</tr>
 <? foreach ($guilds as $row){
 	$region_url = $row['region'];
@@ -57,18 +57,20 @@
 	<tr>
 		<td><a href="<?=$realm?>"><?=HtmlSpecialChars(realm_name($row['realm']))?></a></td>
 		<td><a href="<?=$guild?>"><?=HtmlSpecialChars($row['name'])?></a></td>
-		<td><?=$row['total_got']?></td>
-		<td><?=$row['rank_region']?></td>
-		<td><?=$row['rank_world']?></td>
+		<td class="ac"><?=$row['total_got']?></td>
+		<td class="ac"><?=$row['rank_region']?></td>
+		<td class="ac"><?=$row['rank_world']?></td>
 	</tr>
 <? } ?>
 </table>
 
 </div>
-<div class="span4">
+<div class="span3">
 
 	<div class="well">
-		Well well well
+		It's quite common for guildies to do some portions of the grind together - especially Bloodsail rep.<br />
+		<br />
+		Some guilds have a lot of Insanes, although most have only one.
 	</div>
 
 </div>

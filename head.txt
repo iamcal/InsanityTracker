@@ -19,10 +19,12 @@ body {
 	background-color: #fff;
 }
 
-.ar,
-td.ar,
-th.ar {
+.ar, td.ar, th.ar {
 	text-align: right;
+}
+
+.ac, td.ac, th.ac {
+	text-align: center;
 }
 
 .meter {

@@ -29,18 +29,16 @@
 	if (count($guilds)){
 ?>
 
-<p>
-	On this realm, <?=count($guilds)?> guilds have earned <a href="http://www.wowhead.com/achievement=2336">Insane in the Membrane</a>.
-</p>
+<div class="row">
+<div class="span9">
 
-
-<table border="0" width="100%" class="listing">
+<table class="table table-striped table-condensed">
 	<tr>
 		<th>Guild</th>
-		<th>Insanes</th>
-		<th>Realm</th>
-		<th>Region</th>
-		<th>World</th>
+		<th class="ac">Insanes</th>
+		<th class="ac">Realm Rank</th>
+		<th class="ac"><?=StrToUpper($_GET['region'])?> Rank</th>
+		<th class="ac">World Rank</th>
 	</tr>
 <? foreach ($guilds as $row){
 
@@ -52,14 +50,23 @@
 	<tr>
 		<td><a href="<?=$guild?>"><?=HtmlSpecialChars($row['name'])?></a></td>
 
-		<td><?=$row['total_got']?></td>
-		<td><?=$row['rank_realm']?></td>
-		<td><?=$row['rank_region']?></td>
-		<td><?=$row['rank_world']?></td>
+		<td class="ac"><?=$row['total_got']?></td>
+		<td class="ac"><?=$row['rank_realm']?></td>
+		<td class="ac"><?=$row['rank_region']?></td>
+		<td class="ac"><?=$row['rank_world']?></td>
 	</tr>
 <? } ?>
 </table>
 
+</div>
+<div class="span3">
+<div class="well">
+
+	On this realm, <?=count($guilds)?> guilds have earned <a href="http://www.wowhead.com/achievement=2336">Insane in the Membrane</a>.
+
+</div>
+</div>
+</div>
 
 
 <?
