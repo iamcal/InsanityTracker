@@ -78,7 +78,7 @@
 	# google chart url
 	#
 
-	$spark_w = 740;
+	$spark_w = 460;
 	$spark_h = 40;
 
 	$params = array(
@@ -102,7 +102,7 @@
 	<h1>Stats</h1>
 </header>
 
-<div class="row">
+<div class="row" style="margin-top: 30px;">
 <div class="span6">
 
 <h2>Total scanned characters</h2>
@@ -112,9 +112,9 @@
 <table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th>Region</th>
-		<th>Realms</th>
-		<th>Guilds scanned</th>
-		<th>Characters scanned</th>
+		<th class="ar">Realms</th>
+		<th class="ar">Guilds scanned</th>
+		<th class="ar">Characters scanned</th>
 	</tr>
 	<tr>
 		<td>US</td>
@@ -141,6 +141,11 @@
 		<td class="ar">218,563</td>
 	</tr>
 </table>
+
+<p>
+	I was somewhat surprised to see Europe coming out ahead of the US, but the heavily populated Russian realms probably made the difference.
+	This doesn't reflect active subs of course - many subscribers have multiple 85s and many subscribers have none at all.
+</p>
 
 </div>
 <div class="span6">
@@ -185,20 +190,27 @@
 	</tr>
 </table>
 
+<p>
+	The difference between the low and high population servers is pretty extreme - 27 times in the US and 46 times in Korea.
+	This is partially explained by the smaller realms being pretty new.
+</p>
+
 </div>
 </div>
 
-<div class="row">
+<div class="row" style="margin-top: 30px;">
 <div class="span6">
 
-<h2>Biggest guilds (by active 85s)</h2>
+<h2>Biggest guilds</h2>
+
+<p>Based on the number of scanned players (active 85s).</p>
 
 <table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th>Region</th>
 		<th>Realm</th>
 		<th>Guild</th>
-		<th>Players</th>
+		<th class="ar">Players</th>
 	</tr>
 	<tr>
 		<td>US</td>
@@ -226,17 +238,24 @@
 	</tr>	
 </table>
 
+<p>
+	It's hard to imagine what being in a guild of almost a thousand active 85s is like.
+	Probably pretty different. That's 3 times the size of the whole active population on some realms.
+</p>
+
 </div>
 <div class="span6">
 
 <h2>Most insane guilds</h2>
+
+<p>Guilds with the most achievers.</p>
 
 <table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th>Region</th>
 		<th>Realm</th>
 		<th>Guild</th>
-		<th>Insanes</th>
+		<th class="ar">Insanes</th>
 	</tr>
 	<tr>
 		<td>US</td>
@@ -264,16 +283,26 @@
 	</tr>
 </table>
 
+<p>
+	Guildmates often work on the achievement together, so seeing 2 or 3 from the same guild is fairly common.
+	The Russains are pretty hardcore though - 37% more Insane than the number 2 guild.
+</p>
+
 </div>
 </div>
+
+<div class="row" style="margin-top: 30px;">
+<div class="span6">
 
 
 <h2>Date of achievement</h2>
 
+<p>Based on when the achievement was completed.</p>
+
 <table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th>Patch</th>
-		<th>Achievers</th>
+		<th class="ar">Achievers</th>
 	</tr>
 	<tr>
 		<td>Before it was added</td>
@@ -289,7 +318,17 @@
 	</tr>
 </table>
 
-<img src="<?=$spark_url?>" width="<?=$spark_w?>" width="<?=$spark_h?>" alt="Weblogs added over time" />
+<p><img src="<?=$spark_url?>" width="<?=$spark_w?>" width="<?=$spark_h?>" alt="Weblogs added over time" /></p>
+
+<p>
+	You can see a big spike at the end of WotLK, due to an announcement by Blizzard that the achievement would be taken away.
+	Players rushed to finish an epic achievement and earn the title.
+	Cataclysm came out with the achievement still in place, but with relaxed requirements (no more Shen'dralar rep needed) and so the rate of earning
+	stayed high while players who were almost done finished it up.
+	The big spike at the end of the graph (Jan/Feb 2012) was due to patch 4.3.0 making Darkmoon Faire rep much much easier to obtain.
+
+</div>
+</div>
 
 <?
 	include('foot.txt');
