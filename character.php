@@ -293,7 +293,7 @@ $(function(){
 	Scanned members: <?=$guild['total_found']?><br />
 	Insane members: <?=$guild['total_got']?><br />
 <? }elseif ($character['guild']){ ?>
-	This player is a member of <a href="<?=$guild['url']?>"><?=HtmlSpecialChars($character['guild'])?></a>.
+	This player is a member of <a href="<?=$guild['url']?>"><?=HtmlSpecialChars($character['guild'])?></a>.<br />
 	This guild is currently unranked.
 <? }else{ ?>
 	This player is not currently in a guild.
