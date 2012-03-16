@@ -328,7 +328,25 @@
 	The big spike at the end of the graph (Jan/Feb 2012) was due to patch 4.3.0 making Darkmoon Faire rep much much easier to obtain.
 
 </div>
+<div class="span6">
+
+<h2>Realm size vs Insanes</h2>
+
+<p>The relationship between active population and insanity.</p>
+
+<p><a href="https://docs.google.com/spreadsheet/ccc?key=0Avnk4ZitvwNEdFFhQmtyV1FDaWo2NWpmTktYbGdkOFE"><img src="/insanity/img/correlate.png" width="460" height="285" /></a></p>
+
+<p>
+	There's a pretty strong relationship between active realm population and number of insane achievers.
+	There are few outliers, like <?=realm('eu-howling-fjord')?> with 155 out of 15,939 insane (high) or 
+	<?=realm('tw-arygos')?> with 21 out of 21,090 (low).
+	The full data is available in this <a href="https://docs.google.com/spreadsheet/ccc?key=0Avnk4ZitvwNEdFFhQmtyV1FDaWo2NWpmTktYbGdkOFE">google doc</a>.
+</p>
+
 </div>
+</div>
+
+
 
 <?
 	include('foot.txt');
