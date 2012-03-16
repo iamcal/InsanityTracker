@@ -213,12 +213,6 @@ function update_criteria(criteria, name, needed){
 		<th>Required</th>
 		<th>Achieved</th>
 	</tr>
-
-	<tr>
-		<td>Bloodsail Buccaneers</td>
-		<td>Honored</td>
-		<td id="got-bsb">...</td>
-	</tr>
  
 	<tr>
 		<td>Everlook</td>
@@ -231,13 +225,7 @@ function update_criteria(criteria, name, needed){
 		<td>Exalted</td>
 		<td id="got-rat">...</td>
 	</tr>
- 
-	<tr>
-		<td>Ravenholdt</td>
-		<td>Exalted</td>
-		<td id="got-rav">...</td>
-	</tr>
- 
+  
 	<tr>
 		<td>Booty Bay</td>
 		<td>Exalted</td>
@@ -249,6 +237,18 @@ function update_criteria(criteria, name, needed){
 		<td>Exalted</td>
 		<td id="got-gad">...</td>
 	</tr>
+
+	<tr>
+		<td>Ravenholdt</td>
+		<td>Exalted</td>
+		<td id="got-rav">...</td>
+	</tr>
+
+	<tr>
+		<td>Bloodsail Buccaneers</td>
+		<td>Honored</td>
+		<td id="got-bsb">...</td>
+	</tr>
  
 	<tr>
 		<td>Darkmoon Faire</td>
@@ -257,7 +257,10 @@ function update_criteria(criteria, name, needed){
 	</tr>
 </table>
 
-<p>Progress is pulled in real-time from the battle.net API, but can be a bit buggy.</p>
+<p>
+	Progress is pulled in real-time from the battle.net API, but is pretty buggy - it doesn't update correctly.
+	To see current reputations for this character, <a href="<?=$armory?>reputation/">click here</a>.
+</p>
 
 </div>
 <div class="span5">
