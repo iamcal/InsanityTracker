@@ -61,12 +61,20 @@
 
 <? if ($show_error){ ?>
 <div class="alert alert-error">
-	<i class="icon-exclamation-sign"></i>
 <? if ($show_error['error'] = 'not_found' && $_GET['auto']){ ?>
-	Character not found.
+	<i class="icon-exclamation-sign"></i>
+	Character not found.<br />
+	<br />
+	<i class="icon-calendar"></i>
+	Characters must be active on the armory to be imported - that means they must have logged in during the last 90 days.
 <? }elseif ($show_error['error'] = 'not_found'){ ?>
-	Character not found - perhaps you typed it wrong?
+	<i class="icon-exclamation-sign"></i>
+	Character not found - perhaps you typed it wrong?<br />
+	<br />
+	<i class="icon-calendar"></i>
+	Characters must be active on the armory to be imported - that means they must have logged in during the last 90 days.
 <? }else{ ?>
+	<i class="icon-exclamation-sign"></i>
 	Unknown error: <?=$show_error['error']?>
 <? } ?>
 </div>
