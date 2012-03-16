@@ -347,7 +347,8 @@
 </div>
 
 <div class="well" style="margin-top: 2em">
-	If you're interested infurther analysis, you can download the <a href="https://s3.amazonaws.com/iamcal-misc/insanity-dump-2012-03-16.tar.gz">entire MySQL database snapshot</a>.
+	If you're interested in further analysis, you can download the
+	<a href="https://s3.amazonaws.com/iamcal-misc/insanity-dump-2012-03-16.tar.gz">entire MySQL database snapshot</a>.
 	It's a 153 MB .tar.gz file containing a text dump.
 </div>
 
