@@ -36,7 +36,7 @@
 
 	function format_rank($i){
 		if ($i == 0) return '<i>unranked</i>';
-		return $i;
+		return number_format($i);
 	}
 
 	$title = HtmlSpecialChars($name);
