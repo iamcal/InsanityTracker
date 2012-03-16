@@ -94,7 +94,7 @@
 
 <div class="well">
 
-	Interested in how this all works? You take browse the source code on github (link to come shortly).
+	Interested in how this all works? You can <a href="https://github.com/iamcal/Insanity">browse the source code on github</a>.
 </div>
 
 </div>
