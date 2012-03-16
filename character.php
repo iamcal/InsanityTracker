@@ -288,12 +288,12 @@ $(function(){
 <div class="well">
 
 <? if ($character['guild'] && $guild['total_got']){ ?>
-	This player is in the guild <a href="<?=$guild['url']?>"><?=HtmlSpecialChars($character['guild'])?></a>.<br />
+	This player is a member of <a href="<?=$guild['url']?>"><?=HtmlSpecialChars($character['guild'])?></a>.<br />
 	<br />
 	Scanned members: <?=$guild['total_found']?><br />
 	Insane members: <?=$guild['total_got']?><br />
 <? }elseif ($character['guild']){ ?>
-	This player is in the guild <a href="<?=$guild['url']?>"><?=HtmlSpecialChars($character['guild'])?></a>.
+	This player is a member of <a href="<?=$guild['url']?>"><?=HtmlSpecialChars($character['guild'])?></a>.
 	This guild is currently unranked.
 <? }else{ ?>
 	This player is not currently in a guild.
