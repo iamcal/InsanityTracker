@@ -72,11 +72,19 @@
 </div>
 <div class="span6">
 
-<p>
-	Total active:	<?=$guild['total_found']?><br />
-	Insane members:	<?=$guild['total_got']?><br />
-	<a href="<?=$armory?>">View on Armory</a>
-</p>
+	<table>
+		<tr>
+			<td>Scanned members:</td>
+			<td class="ar" style="padding-left: 20px"><?=$guild['total_found']?></td>
+		</tr>
+		<tr>
+			<td>Insane members:</td>
+			<td class="ar" style="padding-left: 20px"><?=$guild['total_got']?></td>
+		</tr>
+		<tr>
+			<td colspan="2"><a href="<?=$armory?>">View on Armory</a></td>
+		</tr>
+	</table>
 
 </div>
 </div>
