@@ -11,8 +11,13 @@
 	$character = db_single(db_fetch("SELECT * FROM characters WHERE region='$region_enc' AND realm='$realm_enc' AND name='$name_enc'"));
 	if (!$character['region']){
 
-		$error = "That character could not be found - <a href=\"/insanity/add/\">add them</a>?";
-		include('notfound.php');
+		$add_url = "/insanity/add/";
+		$add_url .= "?r=".urlencode($_GET['region'])."-".urlencode($_GET['realm']);
+		$add_url .= "&n=".urlencode($_GET['name']);
+		$add_url .= "&auto=1";
+
+		header("location: $add_url");
+		exit;
 	}
 
 	$guild_enc = AddSlashes($character['guild']);
@@ -288,7 +293,8 @@ $(function(){
 	Scanned members: <?=$guild['total_found']?><br />
 	Insane members: <?=$guild['total_got']?><br />
 <? }elseif ($character['guild']){ ?>
-	This player is in the guild <a href="<?=$guild['url']?>"><?=HtmlSpecialChars($character['guild'])?></a>. This guild is currently unranked.
+	This player is in the guild <a href="<?=$guild['url']?>"><?=HtmlSpecialChars($character['guild'])?></a>.
+	This guild is currently unranked.
 <? }else{ ?>
 	This player is not currently in a guild.
 <? } ?>

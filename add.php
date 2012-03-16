@@ -62,7 +62,9 @@
 <? if ($show_error){ ?>
 <div class="alert alert-error">
 	<i class="icon-exclamation-sign"></i>
-<? if ($show_error['error'] = 'not_found'){ ?>
+<? if ($show_error['error'] = 'not_found' && $_GET['auto']){ ?>
+	Character not found.
+<? }elseif ($show_error['error'] = 'not_found'){ ?>
 	Character not found - perhaps you typed it wrong?
 <? }else{ ?>
 	Unknown error: <?=$show_error['error']?>
