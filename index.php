@@ -55,7 +55,7 @@
 <? foreach ($realms as $k => $v){?>
 		<tr>
 			<td><a href="/insanity/<?=$k?>/"><?=format_region($k)?></a></td>
-			<td><?=$v?></td>
+			<td class="ar" style="padding-right: 100px"><?=$v?> realms</td>
 		</tr>
 <? } ?>
 	</table>
