@@ -75,7 +75,8 @@ header.contextual h1 {
 			<a class="brand" href="/insanity/">Insanity</a>
 			<ul class="nav">
 				<li class="<? if ($current=='home' ) echo 'active'; ?>"><a href="/insanity/">Overview</a></li>
-				<li class="<? if ($current=='stats') echo 'active'; ?>"><a href="/insanity/stats/">Stats</a></li>
+				<li class="<? if ($current=='add' ) echo 'active'; ?>"><a href="/insanity/add/">Add Character</a></li>
+				<li class="<? if ($current=='stats') echo 'active'; ?>"><a href="/insanity/stats/">Statistics</a></li>
 				<li class="<? if ($current=='about') echo 'active'; ?>"><a href="/insanity/about/">About</a></li>
 			</ul>
 		</div>

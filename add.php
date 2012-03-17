@@ -50,6 +50,7 @@
 
 
 
+	$current = 'add';
 	$title = 'Add a Character';
 	include('head.txt');
 ?>
