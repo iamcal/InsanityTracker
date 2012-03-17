@@ -50,12 +50,12 @@
 
 
 
-	$title = 'Add a Player';
+	$title = 'Add a Character';
 	include('head.txt');
 ?>
 
 <header class="jumbotron subhead">
-	<h1>Add a Player</h1>
+	<h1>Add a Character</h1>
 	<p class="lead">Earned the achievement? Known someone else that has? Update them here.</p>
 </header>
 
