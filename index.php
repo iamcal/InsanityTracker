@@ -45,11 +45,17 @@
 		arguably the hardest task in World of Warcraft. Earning the prestigious 'Insane' title takes months of dedicated play, for
 		essentially no reward.<br />
 		<br />
-		This website tracks which players have earned it and when.
+		This website tracks which players have earned it and when.<br />
+		<br />
+
+		<div class="ac">
+			<a href="/insanity/add/" class="btn btn-large btn-info">Add your own character</a>
+			<a href="/insanity/stats/" class="btn btn-large btn-info">View the stats</a>
+		</div>
 
 	</div>
 
-	<h2>Browse by Realm</h2>
+	<h3>Browse by Realm</h3>
 
 	<table class="table table-striped">
 <? foreach ($realms as $k => $v){?>
