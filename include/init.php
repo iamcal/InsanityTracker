@@ -48,7 +48,7 @@
 
 	function assign_patch(&$row){
 		$row['patch'] = 4;
-		if ($row['date_got'] < mktime(0,0,0,11,23,2010)) $row['patch'] = 3;
+		if ($row['date_got'] < mktime(0,0,0,11,15,2010)) $row['patch'] = 3;
 		if ($row['date_got'] < mktime(0,0,0,4,14+7,2009)) $row['patch'] = 2; # within the first week
 		if ($row['date_got'] == 1) $row['patch'] = 4; # fucked
 	}
