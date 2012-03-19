@@ -37,7 +37,7 @@
 	$armory = "http://$host/wow/en/character/{$realm_url}/{$name_url}/";
 
 
-	$api_url = "http://$host/api/wow/character/{$realm_url}/{$name_url}?fields=achievements";
+	$api_url = "http://$host/api/wow/character/{$realm_url}/{$name_url}?fields=achievements,reputation";
 	$url_base = "http://{$host}/static-render/{$realm['region']}/";
 
 
@@ -91,15 +91,17 @@ $(function(){
 			if (data.thumbnail){
 				$('#thumbnail').attr('src', '<?=$url_base?>' + data.thumbnail);
 				var achieves = parse_achieves(data);
+				var reps = parse_reps(data);
 				//console.log(achieves);
 
-				update_criteria(achieves.criteria[8818], 'bsb', 9000);
-				update_criteria(achieves.criteria[8819], 'evr', 42000);
-				update_criteria(achieves.criteria[8820], 'rat', 42000);
-				update_criteria(achieves.criteria[8821], 'rav', 42000);
-				update_criteria(achieves.criteria[8822], 'boo', 42000);
-				update_criteria(achieves.criteria[8823], 'gad', 42000);
-				update_criteria(achieves.criteria[8824], 'dmf', 42000);
+				update_criteria(achieves.criteria[8818], reps[87] , 'bsb', 9000);
+				update_criteria(achieves.criteria[8819], reps[577],'evr', 42000);
+				update_criteria(achieves.criteria[8820], reps[470], 'rat', 42000);
+				update_criteria(achieves.criteria[8821], reps[349], 'rav', 42000);
+				update_criteria(achieves.criteria[8822], reps[21] , 'boo', 42000);
+				update_criteria(achieves.criteria[8823], reps[369], 'gad', 42000);
+				update_criteria(achieves.criteria[8824], reps[909], 'dmf', 42000);
+				update_criteria(null, reps[809], 'shn', 42000);
 			}
 		}
 	});
@@ -137,16 +139,44 @@ function parse_achieves(data){
 	return out;
 }
 
-function update_criteria(criteria, name, needed){
+function parse_reps(data){
+	var out = {};
+	for (var i=0; i<data.reputation.length; i++){
+		var r = data.reputation[i];
+		out[r.id] = r;
+	}
+	return out;
+}
 
-	var qty = criteria ? criteria.qty : -1;
+function update_criteria(criteria, rep, name, needed){
+
+	var NO_VAL = -9999999;
+	var qty = criteria ? criteria.qty : NO_VAL;
+
+	if (rep.name){
+		var rv = NO_VAL;
+		if (rep.standing == 7) rv = 42000 + rep.value;
+		if (rep.standing == 6) rv = 21000 + rep.value;
+		if (rep.standing == 5) rv = 9000 + rep.value;
+		if (rep.standing == 4) rv = 3000 + rep.value;
+		if (rep.standing == 3) rv = rep.value;
+		if (rep.standing == 2) rv = rep.value - 3000;
+		if (rep.standing == 1) rv = rep.value - 6000;
+		if (rep.standing == 0) rv = rep.value - 42000;
+
+		if (rv > qty) qty = rv;
+	}
 
 	var label = qty + ' / 3000 neutral';
 	if (qty > 3000 ) label = (qty-3000 ) + ' / 6000 friendly';
 	if (qty > 9000 ) label = (qty-9000 ) + ' / 12000 honored';
 	if (qty > 21000) label = (qty-21000) + ' / 21000 revered';
 	if (qty > 42000) label = (qty-42000) + ' / 999 exalted';
-	if (qty == -1) label = 'Not started';
+	if (qty < 0    ) label = (qty+3000 ) + ' / 3000 unfriendly';
+	if (qty < -3000) label = (qty+6000 ) + ' / 3000 hostile';
+	if (qty < -6000) label = (qty+42000) + ' / 36000 hated';
+
+	if (qty == NO_VAL) label = 'Not started';
 
 	$('#got-'+name).text(label).css({
 		'background-color' : qty >= needed ? '#cfc' : '#fcc'
@@ -255,11 +285,15 @@ function update_criteria(criteria, name, needed){
 		<td>Exalted</td>
 		<td id="got-dmf">...</td>
 	</tr>
+
+	<tr>
+		<td>Shen'dralar</td>
+		<td><i>Exalted*</i></td>
+		<td id="got-shn">...</td>
+	</tr>
 </table>
 
 <p>
-	Progress is pulled in real-time from the battle.net API, but is pretty buggy - it doesn't update correctly.
-	To see current reputations for this character, <a href="<?=$armory?>reputation/">click here</a>.
 	* Shen'dralar reputation was removed as a requirement in patch 4.0.3 (Nov 3010).
 </p>
 
