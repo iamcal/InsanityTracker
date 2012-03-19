@@ -294,8 +294,12 @@ function update_criteria(criteria, rep, name, needed){
 </table>
 
 <p>
-	Progress is pulled in real-time from the battle.net API. Shen'dralar is no longer required.
-	The value shown here iseither the current reputation or the one recorded by the achievement - whichever is highest.
+	* Shen'dralar reputation was removed as a requirement in patch 4.0.3 (Nov 3010).
+</p>
+
+<p>
+	Progress is pulled in real-time from the battle.net API.
+	The value shown here is either the current reputation or the one recorded by the achievement - whichever is highest.
 </p>
 
 </div>
