@@ -1,7 +1,7 @@
 <?php
 	include('init.php');
 
-	$realm = check_realm("/insanity/guild/REGION/REALM/$_GET[name]/");
+	$realm = check_realm("/guild/REGION/REALM/$_GET[name]/");
 
 	$region_enc = AddSlashes($_GET['region']);
 	$realm_enc = AddSlashes($_GET['realm']);
@@ -44,9 +44,9 @@
 ?>
 
 <header class="contextual">
-	<a href="/insanity/">Insanity</a> /
-	<a href="/insanity/guilds/<?=$realm['region']?>/"><?=format_region($realm['region'])?></a> /
-	<a href="/insanity/guilds/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a> /
+	<a href="/">Insanity</a> /
+	<a href="/guilds/<?=$realm['region']?>/"><?=format_region($realm['region'])?></a> /
+	<a href="/guilds/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a> /
 	<h1><?=HtmlSpecialChars($name)?></h1>
 </header>
 
@@ -57,11 +57,11 @@
 	<table>
 		<tr>
 			<td>Realm rank:</td>
-			<td class="ar" style="padding-left: 20px"><a href="/insanity/guilds/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=format_rank($guild['rank_realm'])?></a></td>
+			<td class="ar" style="padding-left: 20px"><a href="/guilds/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=format_rank($guild['rank_realm'])?></a></td>
 		</tr>
 		<tr>
 			<td><?=StrToUpper($realm['region'])?> rank:</td>
-			<td class="ar" style="padding-left: 20px"><a href="/insanity/guilds/<?=$realm['region']?>/"><?=format_rank($guild['rank_region'])?></a></td>
+			<td class="ar" style="padding-left: 20px"><a href="/guilds/<?=$realm['region']?>/"><?=format_rank($guild['rank_region'])?></a></td>
 		</tr>
 		<tr>
 			<td>World rank:</td>

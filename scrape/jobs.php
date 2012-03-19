@@ -21,7 +21,7 @@
 
 	for ($i=0; $i<$launch; $i++){
 
-		echo shell_exec("screen -d -m /usr/bin/php -q /var/www/vhosts/hunterloot.com/httpdocs/insanity/fetch_characters.php $region");
+		echo shell_exec("screen -d -m /usr/bin/php -q /var/www/insanitytracker.com/scrape/fetch_characters.php $region");
 
 		echo '.';
 	}

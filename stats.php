@@ -10,14 +10,14 @@
 	function realm($n){
 		$row = $GLOBALS['realms'][$n];
 		$realm = urlencode($row['slug']);
-		return "<a href=\"/insanity/guilds/$row[region]/$realm/\">".realm_name($row)."</a>";
+		return "<a href=\"/guilds/$row[region]/$realm/\">".realm_name($row)."</a>";
 	}
 
 	function guild($r, $g){
 		$row = $GLOBALS['realms'][$r];
 		$realm = urlencode($row['slug']);
 		$guild = urlencode($g);
-		return "<a href=\"/insanity/guilds/$row[region]/$realm/$guild/\">".HtmlSpecialChars($g)."</a>";
+		return "<a href=\"/guilds/$row[region]/$realm/$guild/\">".HtmlSpecialChars($g)."</a>";
 	}
 
 
@@ -107,7 +107,7 @@
 
 <h2>Total scanned characters</h2>
 
-<p>The scanning method is <a href="/insanity/about/">explained here</a>.</p>
+<p>The scanning method is <a href="/about/">explained here</a>.</p>
 
 <table class="table table-striped table-bordered table-condensed">
 	<tr>
@@ -334,7 +334,7 @@
 
 <p>The relationship between active population and insanity.</p>
 
-<p><a href="https://docs.google.com/spreadsheet/ccc?key=0Avnk4ZitvwNEdFFhQmtyV1FDaWo2NWpmTktYbGdkOFE"><img src="/insanity/img/correlate.png" width="460" height="285" /></a></p>
+<p><a href="https://docs.google.com/spreadsheet/ccc?key=0Avnk4ZitvwNEdFFhQmtyV1FDaWo2NWpmTktYbGdkOFE"><img src="/img/correlate.png" width="460" height="285" /></a></p>
 
 <p>
 	There's a pretty strong relationship between active realm population and number of insane achievers.

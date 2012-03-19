@@ -64,7 +64,7 @@
 	Of those players, only 6,710,829 (89.5%) were active on the armory - the rest had not logged on lately.
 	Of those active players, only 22,414 players (0.33% of actives) have earned the insane achievment - that's about 1 in 300 actives.
 	These numbers are higher than I expectated, though more than half happened since the achievement was simplified.
-	There's more explanation on the <a href="/insanity/stats/">stats page</a>.
+	There's more explanation on the <a href="/stats/">stats page</a>.
 </p>
 
 <p>
@@ -80,8 +80,8 @@
 
 <div class="well">
 
-	This website was created by Cal Henderson, who can often be found playing <a href="/insanity/us/hyjal/Bees/">Bees</a>
-	on <a href="/insanity/us/hyjal/">Hyjal-US</a>.<br />
+	This website was created by Cal Henderson, who can often be found playing <a href="/us/hyjal/Bees/">Bees</a>
+	on <a href="/us/hyjal/">Hyjal-US</a>.<br />
 	<br />
 	Cal has also created a number of <a href="http://code.iamcal.com/wow/">WoW addons</a>,
 	created <a href="http://www.hunterloot.com">hunterloot.com</a>
@@ -94,7 +94,7 @@
 
 <div class="well">
 
-	Interested in how this all works? You can <a href="https://github.com/iamcal/Insanity">browse the source code on github</a>.
+	Interested in how this all works? You can <a href="https://github.com/iamcal/InsanityTracker">browse the source code on github</a>.
 </div>
 
 </div>

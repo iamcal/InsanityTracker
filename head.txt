@@ -5,8 +5,8 @@
 <html lang="en">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title><? if ($title){ echo "$title | "; } ?>Insanity</title>
-<link href="/insanity/css/bootstrap.min.css" rel="stylesheet">
+<title><? if ($title){ echo "$title | "; } ?>Insanity Tracker</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -72,12 +72,12 @@ header.contextual h1 {
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
-			<a class="brand" href="/insanity/">Insanity</a>
+			<a class="brand" href="/">Insanity Tracker</a>
 			<ul class="nav">
-				<li class="<? if ($current=='home' ) echo 'active'; ?>"><a href="/insanity/">Overview</a></li>
-				<li class="<? if ($current=='add' ) echo 'active'; ?>"><a href="/insanity/add/">Add Character</a></li>
-				<li class="<? if ($current=='stats') echo 'active'; ?>"><a href="/insanity/stats/">Statistics</a></li>
-				<li class="<? if ($current=='about') echo 'active'; ?>"><a href="/insanity/about/">About</a></li>
+				<li class="<? if ($current=='home' ) echo 'active'; ?>"><a href="/">Overview</a></li>
+				<li class="<? if ($current=='add' ) echo 'active'; ?>"><a href="/add/">Add Character</a></li>
+				<li class="<? if ($current=='stats') echo 'active'; ?>"><a href="/stats/">Statistics</a></li>
+				<li class="<? if ($current=='about') echo 'active'; ?>"><a href="/about/">About</a></li>
 			</ul>
 		</div>
 	</div>

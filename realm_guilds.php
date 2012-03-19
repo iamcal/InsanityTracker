@@ -1,7 +1,7 @@
 <?php
 	include('init.php');
 
-	$realm = check_realm('/insanity/guilds/REGION/REALM/');
+	$realm = check_realm('/guilds/REGION/REALM/');
 
 	$region_enc = AddSlashes($_GET['region']);
 	$realm_enc = AddSlashes($_GET['realm']);
@@ -14,13 +14,13 @@
 ?>
 
 <header class="contextual">
-	<a href="/insanity/">Insanity</a> /
-	<a href="/insanity/guilds/<?=$_GET['region']?>/"><?=format_region($_GET['region'])?></a> /
+	<a href="/">Insanity</a> /
+	<a href="/guilds/<?=$_GET['region']?>/"><?=format_region($_GET['region'])?></a> /
 	<h1><?=HtmlSpecialChars(realm_name($realm))?></h1>
 </header>
 
 <ul class="nav nav-tabs">
-	<li><a href="/insanity/<?=$_GET['region']?>/<?=HtmlSpecialChars($_GET['realm'])?>/">Players</a></li>
+	<li><a href="/<?=$_GET['region']?>/<?=HtmlSpecialChars($_GET['realm'])?>/">Players</a></li>
 	<li class="active"><a href="#">Guilds</a></li>
 </ul>
 
@@ -45,7 +45,7 @@
 	$host = $GLOBALS['cfg']['bnet_region_hosts'][$realm['region']];
 	$name_url = rawurlencode($row['name']);
 
-	$guild = "/insanity/guilds/{$realm['region']}/{$realm['slug']}/{$name_url}/"
+	$guild = "/guilds/{$realm['region']}/{$realm['slug']}/{$name_url}/"
 ?>
 	<tr>
 		<td><a href="<?=$guild?>"><?=HtmlSpecialChars($row['name'])?></a></td>

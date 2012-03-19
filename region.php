@@ -15,13 +15,13 @@
 ?>
 
 <header class="contextual">
-	<a href="/insanity/">Insanity</a> /
+	<a href="/">Insanity</a> /
 	<h1><?=format_region($_GET['region'])?></h1>
 </header>
 
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#">Players</a></li>
-	<li><a href="/insanity/guilds/<?=$_GET['region']?>/">Guilds</a></li>
+	<li><a href="/guilds/<?=$_GET['region']?>/">Guilds</a></li>
 </ul>
 
 <div class="row">
@@ -34,7 +34,7 @@
 	</tr>
 <? foreach ($ret['rows'] as $row){ ?>
 	<tr>
-		<td><a href="/insanity/<?=$row['region']?>/<?=urlencode($row['slug'])?>/"><?=HtmlSpecialChars(realm_name($row))?></a></td>
+		<td><a href="/<?=$row['region']?>/<?=urlencode($row['slug'])?>/"><?=HtmlSpecialChars(realm_name($row))?></a></td>
 		<td class="ac"><?=$row['total_insane']?></td>
 	</tr>
 <? } ?>

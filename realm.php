@@ -1,7 +1,7 @@
 <?php
 	include('init.php');
 
-	$realm = check_realm('/insanity/REGION/REALM/');
+	$realm = check_realm('/REGION/REALM/');
 
 	$region_enc = AddSlashes($_GET['region']);
 	$realm_enc = AddSlashes($_GET['realm']);
@@ -25,14 +25,14 @@
 ?>
 
 <header class="contextual">
-	<a href="/insanity/">Insanity</a> /
-	<a href="/insanity/<?=$_GET['region']?>/"><?=format_region($_GET['region'])?></a> /
+	<a href="/">Insanity</a> /
+	<a href="/<?=$_GET['region']?>/"><?=format_region($_GET['region'])?></a> /
 	<h1><?=HtmlSpecialChars(realm_name($realm))?></h1>
 </header>
 
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#">Players</a></li>
-	<li><a href="/insanity/guilds/<?=$_GET['region']?>/<?=HtmlSpecialChars($_GET['realm'])?>/">Guilds</a></li>
+	<li><a href="/guilds/<?=$_GET['region']?>/<?=HtmlSpecialChars($_GET['realm'])?>/">Guilds</a></li>
 </ul>
 
 <?
@@ -109,7 +109,7 @@
 	$per = 100 * $num / max($totals['patches']);
 ?>
 	<tr>
-		<td class="ac"><img src="/insanity/img/<?=$patch[1]?>" width="<?=$patch[2]?>" height="<?=$patch[3]?>" alt="<?=$patch[0]?>" title="<?=$patch[0]?>" /></td>
+		<td class="ac"><img src="/img/<?=$patch[1]?>" width="<?=$patch[2]?>" height="<?=$patch[3]?>" alt="<?=$patch[0]?>" title="<?=$patch[0]?>" /></td>
 		<td align="right"><?=$num?></td>
 		<td><div class="progress" style="width: 180px; margin-bottom:0"><div class="bar" style="width: <?=$per?>%"></div></div></td>
 	</tr>

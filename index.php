@@ -22,7 +22,7 @@
 
 		$realm_url = urlencode($row['realm']['slug']);
 		$guild_url = urlencode($row['name']);
-		$row['url'] = "/insanity/guilds/$row[region]/$realm_url/$guild_url/";
+		$row['url'] = "/guilds/$row[region]/$realm_url/$guild_url/";
 
 		$guilds[] = $row;
 	}
@@ -32,7 +32,7 @@
 ?>
 
 <header class="jumbotron subhead">
-	<h1>Insanity</h1>
+	<h1>Insanity Tracker</h1>
 	<p class="lead">Tracking worldwide insanity levels since 2012</p>
 </header>
 
@@ -49,8 +49,8 @@
 		<br />
 
 		<div class="ac">
-			<a href="/insanity/add/" class="btn btn-large btn-info">Add your own character</a>
-			<a href="/insanity/stats/" class="btn btn-large btn-info">View the stats</a>
+			<a href="/add/" class="btn btn-large btn-info">Add your own character</a>
+			<a href="/stats/" class="btn btn-large btn-info">View the stats</a>
 		</div>
 
 	</div>
@@ -60,7 +60,7 @@
 	<table class="table table-striped">
 <? foreach ($realms as $k => $v){?>
 		<tr>
-			<td><a href="/insanity/<?=$k?>/"><?=format_region($k)?></a></td>
+			<td><a href="/<?=$k?>/"><?=format_region($k)?></a></td>
 			<td class="ar" style="padding-right: 100px"><?=$v?> realms</td>
 		</tr>
 <? } ?>
@@ -75,7 +75,7 @@
 <? foreach ($top as $row){ ?>
 		<tr>
 			<td width="18%"><?=format_region($row['region'])?></td>
-			<td><a href="/insanity/<?=$row['region']?>/<?=urlencode($row['slug'])?>/"><?=HtmlSpecialChars(realm_name($row))?></a></td>
+			<td><a href="/<?=$row['region']?>/<?=urlencode($row['slug'])?>/"><?=HtmlSpecialChars(realm_name($row))?></a></td>
 			<td width="25%"><?=$row['total_insane']?></td>
 		</tr>
 <? } ?>

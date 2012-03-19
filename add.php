@@ -22,7 +22,7 @@
 			$realm_url = urlencode($realm);
 			$name_url = urlencode($name);
 
-			header("location: /insanity/$region_url/$realm_url/$name_url/?added=1");
+			header("location: /$region_url/$realm_url/$name_url/?added=1");
 			exit;
 		}
 
@@ -82,7 +82,7 @@
 <? } ?>
 
 
-<form action="/insanity/add/" method="post" class="form-horizontal" style="margin-top: 50px">
+<form action="/add/" method="post" class="form-horizontal" style="margin-top: 50px">
 <fieldset>
 
 <div class="control-group">

@@ -2,7 +2,7 @@
 
 	include('init.php');
 
-	$realm = check_realm("/insanity/character/REGION/REALM/$_GET[name]/");
+	$realm = check_realm("/character/REGION/REALM/$_GET[name]/");
 
 	$region_enc = AddSlashes($_GET['region']);
 	$realm_enc = AddSlashes($_GET['realm']);
@@ -11,7 +11,7 @@
 	$character = db_single(db_fetch("SELECT * FROM characters WHERE region='$region_enc' AND realm='$realm_enc' AND name='$name_enc'"));
 	if (!$character['region']){
 
-		$add_url = "/insanity/add/";
+		$add_url = "/add/";
 		$add_url .= "?r=".urlencode($_GET['region'])."-".urlencode($_GET['realm']);
 		$add_url .= "&n=".urlencode($_GET['name']);
 		$add_url .= "&auto=1";
@@ -27,7 +27,7 @@
 		$realm_url = rawurlencode($guild['realm']);
 		$name_url = rawurlencode($guild['name']);
 
-		$guild['url'] = "/insanity/guilds/$guild[region]/$realm_url/$name_url/";
+		$guild['url'] = "/guilds/$guild[region]/$realm_url/$name_url/";
 	}
 
 
@@ -43,7 +43,7 @@
 
 	$add_r = urlencode($_GET['region']).'-'.urlencode($_GET['realm']);
 	$add_n = urlencode($_GET['name']);
-	$refresh_url = "/insanity/add/?r={$add_r}&n={$add_n}";
+	$refresh_url = "/add/?r={$add_r}&n={$add_n}";
 
 
 	$class = $classes[$character['class_id']][0];
@@ -55,12 +55,12 @@
 ?>
 
 <header class="contextual">
-	<a href="/insanity/">Insanity</a> /
-	<a href="/insanity/<?=$realm['region']?>/"><?=format_region($realm['region'])?></a> /
-	<a href="/insanity/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a> /
+	<a href="/">Insanity</a> /
+	<a href="/<?=$realm['region']?>/"><?=format_region($realm['region'])?></a> /
+	<a href="/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a> /
 
 	<div style="margin-top: 10px; margin-bottom: 40px">
-		<div style="float: left; width: 84px; height: 84px; background-image: url(/insanity/img/placeholder.gif); margin-right: 10px;">
+		<div style="float: left; width: 84px; height: 84px; background-image: url(/img/placeholder.gif); margin-right: 10px;">
 			<img src="" id="thumbnail" width="84" height="84" />
 		</div>
 	
@@ -165,8 +165,8 @@ function update_criteria(criteria, name, needed){
 	<table><tr><td>
 
 	<div style="width: 68px; height: 68px; position: relative;">
-		<div style="position: absolute; padding: 6px;"><img src="/insanity/img/ability_mage_brainfreeze.jpg" width="56" height="56" /></div>
-		<div style="position: absolute; background-image: url(/insanity/img/default.png); width: 68px; height: 68px;"></div>
+		<div style="position: absolute; padding: 6px;"><img src="/img/ability_mage_brainfreeze.jpg" width="56" height="56" /></div>
+		<div style="position: absolute; background-image: url(/img/default.png); width: 68px; height: 68px;"></div>
 	</div>
 
 	</td><td style="padding-left: 20px">

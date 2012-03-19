@@ -1,6 +1,6 @@
 </div>
 
-<script src="/insanity/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <? if ($_GET['debugsql']) dumper($GLOBALS['timings']); ?>
 

@@ -1,5 +1,5 @@
 <?
-	$add_url = "/insanity/add/";
+	$add_url = "/add/";
 
 	if ($_GET['region'] && $_GET['realm']){
 		$add_url .= "?r=".urlencode($_GET['region'])."-".urlencode($_GET['realm']);

@@ -26,12 +26,12 @@
 ?>
 
 <header class="contextual">
-	<a href="/insanity/">Insanity</a> /
+	<a href="/">Insanity</a> /
 	<h1><?=format_region($_GET['region'])?></h1>
 </header>
 
 <ul class="nav nav-tabs">
-	<li><a href="/insanity/<?=$_GET['region']?>/">Players</a></li>
+	<li><a href="/<?=$_GET['region']?>/">Players</a></li>
 	<li class="active"><a href="#">Guilds</a></li>
 </ul>
 
@@ -51,8 +51,8 @@
 	$realm_url = urlencode($row['realm']['slug']);
 	$guild_url = urlencode($row['name']);
 
-	$realm = "/insanity/guilds/{$region_url}/{$realm_url}/";
-	$guild = "/insanity/guilds/{$region_url}/{$realm_url}/{$guild_url}/";
+	$realm = "/guilds/{$region_url}/{$realm_url}/";
+	$guild = "/guilds/{$region_url}/{$realm_url}/{$guild_url}/";
 ?>
 	<tr>
 		<td><a href="<?=$realm?>"><?=HtmlSpecialChars(realm_name($row['realm']))?></a></td>
