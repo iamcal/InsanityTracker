@@ -26,7 +26,7 @@
 ?>
 
 <header class="contextual">
-	<a href="/">Insanity</a> /
+	<a href="/">Insanity Tracker</a> /
 	<h1><?=format_region($_GET['region'])?></h1>
 </header>
 

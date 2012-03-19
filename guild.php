@@ -44,7 +44,7 @@
 ?>
 
 <header class="contextual">
-	<a href="/">Insanity</a> /
+	<a href="/">Insanity Tracker</a> /
 	<a href="/guilds/<?=$realm['region']?>/"><?=format_region($realm['region'])?></a> /
 	<a href="/guilds/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a> /
 	<h1><?=HtmlSpecialChars($name)?></h1>

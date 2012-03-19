@@ -14,7 +14,7 @@
 ?>
 
 <header class="contextual">
-	<a href="/">Insanity</a> /
+	<a href="/">Insanity Tracker</a> /
 	<a href="/guilds/<?=$_GET['region']?>/"><?=format_region($_GET['region'])?></a> /
 	<h1><?=HtmlSpecialChars(realm_name($realm))?></h1>
 </header>
