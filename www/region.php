@@ -44,7 +44,8 @@
 <div class="span4">
 
 	<div class="well">
-		Most realms have at least a few players with The Insane title. You tend to see them quite often, since they're generally very active players.<br />
+		Most realms have at least a few players with The Insane title.
+	You tend to run into them in-game quite often, since they're generally very active players.<br />
 		<br />
 		Pick your own realm from this list to find out which of your realm-mates have completed the grind.
 	</div>
