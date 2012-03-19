@@ -258,17 +258,14 @@ function update_criteria(criteria, name, needed){
 </table>
 
 <p>
-<<<<<<< HEAD:www/character.php
 	Progress is pulled in real-time from the battle.net API, but is pretty buggy - it doesn't update correctly.
 	To see current reputations for this character, <a href="<?=$armory?>reputation/">click here</a>.
-=======
 	* Shen'dralar reputation was removed as a requirement in patch 4.0.3 (Nov 3010).
 </p>
 
 <p>
 	Progress is pulled in real-time from the battle.net API.
 	The value shown here is either the current reputation or the one recorded by the achievement - whichever is highest.
->>>>>>> 2f4175a... Shen'dralar clarification and small typo fix:character.php
 </p>
 
 </div>
