@@ -52,6 +52,15 @@ header.contextual h1 {
 	line-height: 1;	
 }
 
+.navbar .nav > li > a > i {
+	opacity: 0.4;
+}
+
+.navbar .nav .active > a > i,
+.navbar .nav > li > a:hover > i {
+	opacity: 1;
+}
+
 </style>
 <script type="text/javascript">
 
@@ -72,12 +81,12 @@ header.contextual h1 {
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
-			<a class="brand" href="/">Insanity Tracker</a>
+			<!-- <a class="brand" href="/">Insanity Tracker</a> -->
 			<ul class="nav">
-				<li class="<? if ($current=='home' ) echo 'active'; ?>"><a href="/">Overview</a></li>
-				<li class="<? if ($current=='add' ) echo 'active'; ?>"><a href="/add/">Add Character</a></li>
-				<li class="<? if ($current=='stats') echo 'active'; ?>"><a href="/stats/">Statistics</a></li>
-				<li class="<? if ($current=='about') echo 'active'; ?>"><a href="/about/">About</a></li>
+				<li class="<? if ($current=='home' ) echo 'active'; ?>"><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
+				<li class="<? if ($current=='add' ) echo 'active'; ?>"><a href="/add/"><i class="icon-plus icon-white"></i>Add Character</a></li>
+				<li class="<? if ($current=='stats') echo 'active'; ?>"><a href="/stats/"><i class="icon-signal icon-white"></i> Statistics</a></li>
+				<li class="<? if ($current=='about') echo 'active'; ?>"><a href="/about/"><i class="icon-info-sign icon-white"></i> About</a></li>
 			</ul>
 		</div>
 	</div>
