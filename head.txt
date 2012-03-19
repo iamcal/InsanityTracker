@@ -54,11 +54,13 @@ header.contextual h1 {
 
 .navbar .nav > li > a > i {
 	opacity: 0.4;
+	filter:alpha(opacity=40);
 }
 
 .navbar .nav .active > a > i,
 .navbar .nav > li > a:hover > i {
 	opacity: 1;
+	filter:alpha(opacity=100);
 }
 
 </style>
