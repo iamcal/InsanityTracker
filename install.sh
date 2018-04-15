@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mv /var/www/html/InsanityTracker /var/www/html/insanitytracker.com
+
 ln -s /var/www/html/insanitytracker.com/site.conf /etc/apache2/sites-available/insanitytracker.com.conf
 a2ensite hunterloot.com
 service apache2 reload
