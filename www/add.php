@@ -1,6 +1,6 @@
 <?
-	include('init.php');
-	include('include/fetch.php');
+	include('../include/init.php');
+	include('../include/fetch.php');
 
 
 	#
@@ -52,7 +52,7 @@
 
 	$current = 'add';
 	$title = 'Add a Character';
-	include('head.txt');
+	include('../templates/head.txt');
 ?>
 
 <header class="jumbotron subhead">
@@ -158,5 +158,5 @@ function escapeXML(x){
 </script>
 
 <?
-	include('foot.txt');
+	include('../templates/foot.txt');
 ?>

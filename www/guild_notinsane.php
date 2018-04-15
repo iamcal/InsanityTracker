@@ -1,6 +1,6 @@
 <?php
 	$title = HtmlSpecialChars($_GET['name']);
-	include('head.txt');
+	include('../templates/head.txt');
 ?>
 
 <header class="contextual">
@@ -13,6 +13,6 @@
 <p>We've scanned <?=$num_total?> players in this guild, but none of them have the achievement.</p>
 
 <?
-	include('add.txt');
-	include('foot.txt');
+	include('../templates/add.txt');
+	include('../templates/foot.txt');
 ?>

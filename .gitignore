@@ -1,2 +1,3 @@
-config.php
-
+secrets/bnet_private
+secrets/bnet_public
+secrets/mysql_password

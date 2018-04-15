@@ -1,6 +1,6 @@
 <?php
 
-	include('init.php');
+	include('../include/init.php');
 
 	$realms = array();
 	$ret = db_fetch("SELECT region, COUNT(slug) AS num FROM realms GROUP BY region");
@@ -28,7 +28,7 @@
 	}
 
 	$current = 'home';
-	include('head.txt');
+	include('../templates/head.txt');
 ?>
 
 <header class="jumbotron subhead">
@@ -98,5 +98,5 @@
 </div>
 
 <?
-	include('foot.txt');
+	include('../templates/foot.txt');
 ?>

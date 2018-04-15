@@ -1,5 +1,5 @@
 <?php
-	include('init.php');
+	include('../include/init.php');
 
 	$realm = check_realm("/guild/REGION/REALM/$_GET[name]/");
 
@@ -40,7 +40,7 @@
 	}
 
 	$title = HtmlSpecialChars($name);
-	include('head.txt');
+	include('../templates/head.txt');
 ?>
 
 <header class="contextual">
@@ -93,10 +93,10 @@
 <?
 	$characters = $chars;
 	$hide_guild = 1;
-	include('inc_list.php')
+	include('../templates/inc_list.php')
 ?>
 
 <?
-	include('add.txt');
-	include('foot.txt');
+	include('../templates/add.txt');
+	include('../templates/foot.txt');
 ?>

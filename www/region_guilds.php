@@ -1,5 +1,5 @@
 <?php
-	include('init.php');
+	include('../include/init.php');
 
 
 	$region_enc = AddSlashes($_GET['region']);
@@ -22,7 +22,7 @@
 	}
 
 	$title = format_region($_GET['region']);
-	include('head.txt');
+	include('../templates/head.txt');
 ?>
 
 <header class="contextual">
@@ -77,5 +77,5 @@
 </div>
 
 <?
-	include('foot.txt');
+	include('../templates/foot.txt');
 ?>

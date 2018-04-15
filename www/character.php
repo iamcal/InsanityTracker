@@ -1,6 +1,6 @@
 <?php
 
-	include('init.php');
+	include('../include/init.php');
 
 	$realm = check_realm("/character/REGION/REALM/$_GET[name]/");
 
@@ -51,7 +51,7 @@
 	assign_patch($character);
 
 	$title = HtmlSpecialChars($character['name']);
-	include('head.txt');
+	include('../templates/head.txt');
 ?>
 
 <header class="contextual">
@@ -308,5 +308,5 @@ $(function(){
 
 
 <?
-	include('foot.txt');
+	include('../templates/foot.txt');
 ?>

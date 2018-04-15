@@ -1,5 +1,5 @@
 <?
-	include('init.php');
+	include('../include/init.php');
 
 
 
@@ -95,7 +95,7 @@
 
 	$current = 'stats';
 	$title = 'Stats';
-	include('head.txt');
+	include('../templates/head.txt');
 ?>
 
 <header class="jumbotron subhead">
@@ -354,5 +354,5 @@
 
 
 <?
-	include('foot.txt');
+	include('../templates/foot.txt');
 ?>

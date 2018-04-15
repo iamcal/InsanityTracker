@@ -1,5 +1,5 @@
 <?php
-	include('init.php');
+	include('../include/init.php');
 
 	die('disabled');
 
@@ -11,7 +11,7 @@
 		$total += $row['num'];
 	}
 
-	include('head.txt');
+	include('../templates/head.txt');
 ?>
 
 <h1>
@@ -25,5 +25,5 @@
 </ul>
 
 <?
-	include('foot.txt');
+	include('../templates/foot.txt');
 ?>

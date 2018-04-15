@@ -1,5 +1,5 @@
 <?php
-	include('init.php');
+	include('../include/init.php');
 
 	$realm = check_realm('/guilds/REGION/REALM/');
 
@@ -10,7 +10,7 @@
 	$guilds = $ret['rows'];
 
 	$title = HtmlSpecialChars(realm_name($realm));
-	include('head.txt');
+	include('../templates/head.txt');
 ?>
 
 <header class="contextual">
@@ -81,5 +81,5 @@
 ?>
 
 <?
-	include('foot.txt');
+	include('../templates/foot.txt');
 ?>
