@@ -11,5 +11,5 @@ for table in $(mysql -B -s -u${DB_USER} -p${DB_PASS} -D${DB_NAME} -e 'show table
 do
   # dump each table in a separate file
   echo "dumping $table"
-  $(mysqldump -u${DB_USER} -p${DB_PASS} --single-transaction --skip-dump-date --skip-extended-insert ${DB_NAME} ${table} > ./${table}.sql)
+  $(mysqldump -u${DB_USER} -p${DB_PASS} --single-transaction --skip-dump-date --quick ${DB_NAME} ${table} > ./${table}.sql)
 done
