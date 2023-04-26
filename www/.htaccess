@@ -3,13 +3,13 @@ RewriteEngine on
 RewriteCond %{HTTP_HOST}	^www\.insanitytracker\.com$		[NC]
 RewriteRule ^(.*)$		http://insanitytracker.com/$1	[L,R=permanent]
 
-RewriteRule ^(us|eu|tw|kr|cn)/$				/region.php?region=$1	[L,QSA]
-RewriteRule ^(us|eu|tw|kr|cn)/([^/]+)/$			/realm.php?region=$1&realm=$2	[L,QSA]
-RewriteRule ^(us|eu|tw|kr|cn)/([^/]+)/([^/]+)/$		/character.php?region=$1&realm=$2&name=$3	[L,QSA]
+RewriteRule ^(us|eu|tw|kr|cn)/$				/region.php?region=$1				[L,B,QSA]
+RewriteRule ^(us|eu|tw|kr|cn)/([^/]+)/$			/realm.php?region=$1&realm=$2			[L,B,QSA]
+RewriteRule ^(us|eu|tw|kr|cn)/([^/]+)/([^/]+)/$		/character.php?region=$1&realm=$2&name=$3	[L,B,QSA]
 
-RewriteRule ^guilds/(us|eu|tw|kr|cn)/$			/region_guilds.php?region=$1		[L,QSA]
-RewriteRule ^guilds/(us|eu|tw|kr|cn)/([^/]+)/$		/realm_guilds.php?region=$1&realm=$2	[L,QSA]
-RewriteRule ^guilds/(us|eu|tw|kr|cn)/([^/]+)/([^/]+)/$	/guild.php?region=$1&realm=$2&name=$3	[L,QSA]
+RewriteRule ^guilds/(us|eu|tw|kr|cn)/$			/region_guilds.php?region=$1			[L,B,QSA]
+RewriteRule ^guilds/(us|eu|tw|kr|cn)/([^/]+)/$		/realm_guilds.php?region=$1&realm=$2		[L,B,QSA]
+RewriteRule ^guilds/(us|eu|tw|kr|cn)/([^/]+)/([^/]+)/$	/guild.php?region=$1&realm=$2&name=$3		[L,B,QSA]
 
 RewriteRule ^stats/$	/stats.php [L]
 RewriteRule ^about/$	/about.php [L]
