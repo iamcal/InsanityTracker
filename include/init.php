@@ -30,7 +30,11 @@
 			$names = array();
 			$names[$row['name']] = 1;
 			foreach ($more as $row2){
-				$names[$row2['name']]++;
+				if (isset($names[$row2['name']])){
+					$names[$row2['name']]++;
+				}else{
+					$names[$row2['name']] = 1;
+				}
 			}
 			$names = array_keys($names);
 			if (count($names) > 1){

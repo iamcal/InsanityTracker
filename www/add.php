@@ -9,7 +9,7 @@
 
 	$show_error = 0;
 
-	if ($_REQUEST['r'] && $_REQUEST['n']){
+	if (isset($_REQUEST['r']) && isset($_REQUEST['n'])){
 
 		list($region, $realm) = explode('-', $_REQUEST['r'], 2);
 		$name = $_REQUEST['n'];
@@ -62,13 +62,13 @@
 
 <? if ($show_error){ ?>
 <div class="alert alert-error">
-<? if ($show_error['error'] = 'not_found' && $_GET['auto']){ ?>
+<? if (($show_error['error'] ?? null) == 'not_found' && $_GET['auto'] ?? null){ ?>
 	<i class="icon-exclamation-sign"></i>
 	Character not found.<br />
 	<br />
 	<i class="icon-calendar"></i>
 	Characters must be active on the armory to be imported - that means they must have logged in during the last 90 days.
-<? }elseif ($show_error['error'] = 'not_found'){ ?>
+<? }elseif (($show_error['error'] ?? null) == 'not_found'){ ?>
 	<i class="icon-exclamation-sign"></i>
 	Character not found - perhaps you typed it wrong?<br />
 	<br />
@@ -76,7 +76,7 @@
 	Characters must be active on the armory to be imported - that means they must have logged in during the last 90 days.
 <? }else{ ?>
 	<i class="icon-exclamation-sign"></i>
-	Unknown error: <?=$show_error['error']?>
+	Unknown error: <?=$show_error['error']??null?>
 <? } ?>
 </div>
 <? } ?>
@@ -98,7 +98,7 @@
 		<select id="sel-realm" name="r">
 <? foreach ($realms as $region => $list){ ?>
 <? foreach ($list as $k => $v){ ?>
-			<option value="<?=$k?>"<? if ($_POST['r'] == $k){ echo " selected"; } ?>><?=HtmlSpecialChars($v)?> (<?=StrToUpper($region)?>)</option>
+			<option value="<?=$k?>"<? if (($_POST['r'] ?? null) == $k){ echo " selected"; } ?>><?=HtmlSpecialChars($v)?> (<?=StrToUpper($region)?>)</option>
 <? } ?>
 <? } ?>
 		</select>
@@ -108,7 +108,7 @@
 <div class="control-group">
 	<label class="control-label" for="in-name">Character Name</label>
 	<div class="controls">
-		<input type="text" name="n" value="<?=HtmlSpecialChars($_REQUEST['n'])?>" class="span4" />
+		<input type="text" name="n" value="<?=HtmlSpecialChars($_REQUEST['n'] ?? null)?>" class="span4" />
 	</div>
 </div>
 
