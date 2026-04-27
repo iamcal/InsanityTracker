@@ -8,15 +8,42 @@
 
 	$ret = db_fetch("SELECT * FROM characters WHERE region='$region_enc' AND realm='$realm_enc' AND got_it=1 ORDER BY date_got ASC");
 
-	$totals = array();
+	$totals = array(
+		'classes'	=> [],
+		'races'		=> [],
+		'factions'	=> [],
+		'patches'	=> [],
+	);
 	foreach ($ret['rows'] as &$row){
 
 		assign_patch($row);
 
-		$totals['classes'][$row['class_id']]++;
-		$totals['races'][$row['race_id']]++;
-		$totals['factions'][$races[$row['race_id']][1]]++;
-		$totals['patches'][$row['patch']]++;
+		if (isset($totals['classes'][$row['class_id']])){
+			$totals['classes'][$row['class_id']]++;
+		}else{
+			$totals['classes'][$row['class_id']] = 1;
+		}
+
+		if (isset($totals['races'][$row['race_id']])){
+			$totals['races'][$row['race_id']]++;
+		}else{
+			$totals['races'][$row['race_id']] = 1;
+		}
+
+		$race_id = $row['race_id'];
+		$race = $races[$race_id][1] ?? 'unknown';
+
+		if (isset($totals['factions'][$race])){
+			$totals['factions'][$race]++;
+		}else{
+			$totals['factions'][$race] = 1;
+		}
+
+		if (isset($totals['patches'][$row['patch']])){
+			$totals['patches'][$row['patch']]++;
+		}else{
+			$totals['patches'][$row['patch']] = 1;
+		}
 	}
 	unset($row);
 
@@ -52,7 +79,7 @@
 
 <table>
 <? foreach ($classes as $id => $class){
-	$num = intval($totals['classes'][$id]);
+	$num = intval($totals['classes'][$id] ?? 0);
 	$width = 180 * $num / max($totals['classes']);
 	$per = 100 * $num / max($totals['classes']);
 ?>
@@ -71,7 +98,7 @@
 
 <table>
 <? foreach ($races as $id => $race){
-	$num = intval($totals['races'][$id]);
+	$num = intval($totals['races'][$id] ?? 0);
 	$width = 180 * $num / max($totals['races']);
 	$per = 100 * $num / max($totals['races']);
 ?>

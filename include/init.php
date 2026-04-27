@@ -114,7 +114,10 @@
 		7 => array('Shaman'),
 		8 => array('Mage'),
 		9 => array('Warlock'),
+		10 => array('Monk'),
 		11 => array('Druid'),
+		12 => array('Demon Hunter'),
+		13 => array('Evoker'),
 	);
 
 	$races = array(
@@ -124,6 +127,8 @@
 		7 => array('Gnome', 1),
 		11 => array('Draenei', 1),
 		22 => array('Worgen', 1),
+		25 => array('Pandaren', 1),
+		52 => array('Dracthyr', 1),
 
 		2 => array('Orc', 2),
 		5 => array('Undead', 2),
@@ -131,6 +136,8 @@
 		8 => array('Troll', 2),
 		10 => array('Blood Elf', 2),
 		9 => array('Goblin', 2),
+		26 => array('Pandaren', 2),
+		70 => array('Dracthyr', 2),
 	);
 
 	$factions = array(

@@ -69,7 +69,7 @@
 	</div>
 </header>
 
-<? if ($_GET['added']){ ?>
+<? if ($_GET['added'] ?? null){ ?>
 
 <div class="alert alert-success">
 	<i class="icon-ok"></i>
@@ -312,7 +312,7 @@ function update_criteria(criteria, rep, name, needed){
 	<a href="<?=$armory?>">View on Armory</a><br />
 </div>
 
-<? if (!$_GET['added']){ ?>
+<? if (!($_GET['added'] ?? null)){ ?>
 <div class="well ac">
 	<a href="<?=$refresh_url?>" class="btn" id="refresh">Refresh from Armory</a><br />
 	<span style="color: #999">Last refreshed <?=date('Y-m-d', $character['last_fetched'])?></span>
