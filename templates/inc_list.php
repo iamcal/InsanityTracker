@@ -38,7 +38,7 @@
 		<td class="ar">
 <? if ($row['date_got'] > 10){ ?>
 			<?=date('Y-m-d', $row['date_got'])?>
-			(<?=$patches[$row['patch']][0] ?? ''?>)
+			(<?=$patches[$row['patch'] ?? null][0] ?? ''?>)
 <? }else{ ?>
 			(Unknown)
 <? } ?>
