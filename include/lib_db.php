@@ -12,6 +12,10 @@
 
 		$dbh = db_connect();
 
+		if (isset($_GET['debugsql'])){
+			dumper($sql);
+		}
+
 		$stmt = $dbh->prepare($sql);
 		if (!$stmt){
 			$info = $dbh->errorInfo();
