@@ -15,13 +15,13 @@
 
 		$ret = bnet_make_request($region, "/character/{$realm_slug}/{$name_stub}?fields=achievements");
 
-		if ($ret['ok']){
+		if ($ret['ok'] ?? null){
 
-			foreach ($ret['data']['achievements']['achievementsCompleted'] as $k => $v){
+			foreach (($ret['data']['achievements']['achievementsCompleted'] ?? []) as $k => $v){
 
 				if ($v == 2336){
 
-					$when = $ret['data']['achievements']['achievementsCompletedTimestamp'][$k];
+					$when = $ret['data']['achievements']['achievementsCompletedTimestamp'][$k] ?? null;
 					$date = date('Y-m-d H:i:s', substr($when, 0, -3));
 
 					update_db($region, $realm_slug, $name, 1, $date);

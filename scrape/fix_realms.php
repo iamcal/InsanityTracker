@@ -12,12 +12,12 @@
 	$map = array();
 
 	$ret = db_fetch("SELECT * FROM realms");
-	foreach ($ret['rows'] as $row){
-		$more = unserialize($row['locales']);
+	foreach (($ret['rows'] ?? []) as $row){
+		$more = unserialize($row['locales'] ?? '');
 		if (is_array($more)){
 			foreach ($more as $loc){
-				if ($loc['slug'] != $row['slug']){
-					$map[$loc['slug']] = array($row['region'], $row['slug']);
+				if (($loc['slug'] ?? null) != $row['slug']){
+					$map[$loc['slug'] ?? ''] = array($row['region'], $row['slug']);
 				}
 			}
 		}

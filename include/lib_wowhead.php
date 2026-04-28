@@ -8,7 +8,7 @@
 	function wowhead_achievement($id){
 
 		$ret = wowhead_request("http://www.wowhead.com/achievement=$id");
-		if (!$ret['ok']) return $ret;
+		if (!($ret['ok'] ?? null)) return $ret;
 
 		$body = $ret['body'];
 
@@ -30,7 +30,7 @@
 
 		if (preg_match("!_\[$id\]=(\{.*?\});!", $body, $m)){
 			$obj = json_decode_loose($m[1]);
-			$out['icon'] = $obj['icon'];
+			$out['icon'] = $obj['icon'] ?? '';
 		}
 
 		return $out;
@@ -40,7 +40,7 @@
 	function wowhead_quest_cats(){
 
 		$ret = wowhead_request('http://wowjs.zamimg.com/js/locale_enus.js');
-		if (!$ret['ok']) return $ret;
+		if (!($ret['ok'] ?? null)) return $ret;
 
 		$body = $ret['body'];
 
@@ -64,24 +64,24 @@
 		# get quest data
 		#
 
-		$obj = json_decode_loose($all['mn_quests']);
+		$obj = json_decode_loose($all['mn_quests'] ?? '');
 
 		$out = array();
-		foreach ($obj as $cat){
+		foreach (($obj ?? []) as $cat){
 			$subs = array();
 
 			if (isset($cat[3]) && is_array($cat[3])){
 				foreach ($cat[3] as $sub){
-					$subs[$sub[0]] = array(
-						'id'	=> $sub[0],
-						'title'	=> $sub[1],
+					$subs[$sub[0] ?? ''] = array(
+						'id'	=> $sub[0] ?? null,
+						'title'	=> $sub[1] ?? null,
 					);
 				}
 			}
 
-			$out[$cat[0]] = array(
-				'id'	=> $cat[0],
-				'title'	=> $cat[1],
+			$out[$cat[0] ?? ''] = array(
+				'id'	=> $cat[0] ?? null,
+				'title'	=> $cat[1] ?? null,
 				'subcats' => $subs,
 			);
 		}
@@ -98,7 +98,7 @@
 	function wowhead_recipes($profession_id){
 
 		$ret = wowhead_request("http://www.wowhead.com/skill=$profession_id");
-		if (!$ret['ok']) return $ret;
+		if (!($ret['ok'] ?? null)) return $ret;
 
 		$body = $ret['body'];
 #	echo $body;
@@ -116,24 +116,24 @@ echo "blob: $json\n";
 
 			$obj = json_decode_loose($json);
 
-			$map[$obj['id']] = $obj;
+			$map[$obj['id'] ?? ''] = $obj;
 		}
 print_r($map);
 		$rs = array();
-		foreach ($map['recipes']['data'] as $row){
+		foreach (($map['recipes']['data'] ?? []) as $row){
 
 			$r = array(
-				'name'	=> substr($row['name'], 1),
-				'qual'	=> substr($row['name'], 0, 1),
+				'name'	=> substr($row['name'] ?? '', 1),
+				'qual'	=> substr($row['name'] ?? '', 0, 1),
 			);
 
-			if (preg_match("!_\[$row[id]\]=(.*?);!", $body, $m)){
+			if (preg_match("!_\[".($row['id'] ?? '')."\]=(.*?);!", $body, $m)){
 				$obj = json_decode_loose($m[1]);
 
-				$r['icon'] = $obj['icon'];
+				$r['icon'] = $obj['icon'] ?? '';
 			}
 
-			$rs[$row['id']] = $r;
+			$rs[$row['id'] ?? ''] = $r;
 
 		}
 

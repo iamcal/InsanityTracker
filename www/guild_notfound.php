@@ -1,5 +1,5 @@
 <?php
-	$title = HtmlSpecialChars($_GET['name']);
+	$title = HtmlSpecialChars($_GET['name'] ?? '');
 	include('../templates/head.txt');
 ?>
 
@@ -7,7 +7,7 @@
 	<a href="/">Insanity Tracker</a> /
 	<a href="/<?=$realm['region']?>/"><?=format_region($realm['region'])?></a> /
 	<a href="/<?=$realm['region']?>/<?=$realm['slug']?>/"><?=HtmlSpecialChars(realm_name($realm))?></a> /
-	<h1><?=HtmlSpecialChars($_GET['name'])?></h1>
+	<h1><?=HtmlSpecialChars($_GET['name'] ?? '')?></h1>
 </header>
 
 <p>We've never scanned any players from this guild.</p>

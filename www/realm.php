@@ -3,8 +3,8 @@
 
 	$realm = check_realm('/REGION/REALM/');
 
-	$region_enc = AddSlashes($_GET['region']);
-	$realm_enc = AddSlashes($_GET['realm']);
+	$region_enc = AddSlashes($_GET['region'] ?? '');
+	$realm_enc = AddSlashes($_GET['realm'] ?? '');
 
 	$ret = db_fetch("SELECT * FROM characters WHERE region='$region_enc' AND realm='$realm_enc' AND got_it=1 ORDER BY date_got ASC");
 
@@ -14,7 +14,7 @@
 		'factions'	=> [],
 		'patches'	=> [],
 	);
-	foreach ($ret['rows'] as &$row){
+	foreach (($ret['rows'] ?? []) as &$row){
 
 		assign_patch($row);
 
@@ -53,22 +53,22 @@
 
 <header class="contextual">
 	<a href="/">Insanity Tracker</a> /
-	<a href="/<?=$_GET['region']?>/"><?=format_region($_GET['region'])?></a> /
+	<a href="/<?=$_GET['region'] ?? ''?>/"><?=format_region($_GET['region'] ?? '')?></a> /
 	<h1><?=HtmlSpecialChars(realm_name($realm))?></h1>
 </header>
 
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#">Players</a></li>
-	<li><a href="/guilds/<?=$_GET['region']?>/<?=HtmlSpecialChars($_GET['realm'])?>/">Guilds</a></li>
+	<li><a href="/guilds/<?=$_GET['region'] ?? ''?>/<?=HtmlSpecialChars($_GET['realm'] ?? '')?>/">Guilds</a></li>
 </ul>
 
 <?
 	# **************************** THIS REALM HAS PLAYERS  ****************************
-	if (count($ret['rows'])){
+	if (count($ret['rows'] ?? [])){
 ?>
 
 <p>
-	On this realm, <?=count($ret['rows'])?> players have earned <a href="http://www.wowhead.com/achievement=2336">Insane in the Membrane</a>.
+	On this realm, <?=count($ret['rows'] ?? [])?> players have earned <a href="http://www.wowhead.com/achievement=2336">Insane in the Membrane</a>.
 </p>
 
 <div class="well">
@@ -117,7 +117,7 @@
 
 <table>
 <? foreach ($factions as $id => $faction){
-	$num = intval($totals['factions'][$id]);
+	$num = intval($totals['factions'][$id] ?? 0);
 	$width = 180 * $num / max($totals['factions']);
 	$per = 100 * $num / max($totals['factions']);
 ?>
@@ -131,7 +131,7 @@
 		<td colspan="3">&nbsp;</td>
 	</tr>
 <? foreach ($patches as $id => $patch){
-	$num = intval($totals['patches'][$id]);
+	$num = intval($totals['patches'][$id] ?? 0);
 	$width = 180 * $num / max($totals['patches']);
 	$per = 100 * $num / max($totals['patches']);
 ?>
@@ -148,7 +148,7 @@
 </div>
 
 <?
-	$characters = $ret['rows'];
+	$characters = $ret['rows'] ?? [];
 	include('../templates/inc_list.php');
 ?>
 

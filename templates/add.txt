@@ -1,7 +1,7 @@
 <?
 	$add_url = "/add/";
 
-	if ($_GET['region'] && $_GET['realm']){
+	if (($_GET['region'] ?? null) && ($_GET['realm'] ?? null)){
 		$add_url .= "?r=".urlencode($_GET['region'])."-".urlencode($_GET['realm']);
 	}
 ?>

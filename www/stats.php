@@ -5,19 +5,21 @@
 
 	$realms = array();
 	$ret = db_fetch("SELECT * FROM realms");
-	foreach ($ret['rows'] as $row) $realms[$row['region'].'-'.$row['slug']] = $row;
+	foreach (($ret['rows'] ?? []) as $row) $realms[$row['region'].'-'.$row['slug']] = $row;
 
 	function realm($n){
-		$row = $GLOBALS['realms'][$n];
-		$realm = urlencode($row['slug']);
-		return "<a href=\"/guilds/$row[region]/$realm/\">".realm_name($row)."</a>";
+		$row = $GLOBALS['realms'][$n] ?? [];
+		$realm = urlencode($row['slug'] ?? '');
+		$region = $row['region'] ?? '';
+		return "<a href=\"/guilds/$region/$realm/\">".realm_name($row)."</a>";
 	}
 
 	function guild($r, $g){
-		$row = $GLOBALS['realms'][$r];
-		$realm = urlencode($row['slug']);
+		$row = $GLOBALS['realms'][$r] ?? [];
+		$realm = urlencode($row['slug'] ?? '');
+		$region = $row['region'] ?? '';
 		$guild = urlencode($g);
-		return "<a href=\"/guilds/$row[region]/$realm/$guild/\">".HtmlSpecialChars($g)."</a>";
+		return "<a href=\"/guilds/$region/$realm/$guild/\">".HtmlSpecialChars($g)."</a>";
 	}
 
 

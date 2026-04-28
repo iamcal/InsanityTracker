@@ -9,8 +9,8 @@
 	# 3) it doesn't already have a slash at the end
 	#
 
-	$url  = $_SERVER['REQUEST_URI'];
-	$orig = $_SERVER['REDIRECT_URL'];
+	$url  = $_SERVER['REQUEST_URI'] ?? '';
+	$orig = $_SERVER['REDIRECT_URL'] ?? '';
 
 	if ($url == $orig){
 		$last_part = array_pop((explode('/', $url)));

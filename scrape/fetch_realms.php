@@ -14,12 +14,12 @@
 		#
 
 		$ret = bnet_make_request($r, "/realm/status?locale=$def");
-		if (!$ret['ok']){
+		if (!($ret['ok'] ?? null)){
 			print_r($ret);
 			exit;
 		}
 
-		foreach ($ret['data']['realms'] as $row){
+		foreach (($ret['data']['realms'] ?? []) as $row){
 
 			$map[$r.'-'.$row['slug']] = array(
 				'region'	=> $r,
@@ -40,13 +40,13 @@
 				echo '.';
 
 				$ret2 = bnet_make_request($r, "/realm/status?locale=$l&realms=".rawurlencode($row['slug']));
-				if (!$ret2['ok']){
+				if (!($ret2['ok'] ?? null)){
 					print_r($ret2);
 					exit;
 				}
-				$row2 = $ret2['data']['realms'][0];
+				$row2 = $ret2['data']['realms'][0] ?? [];
 
-				if ($row2['slug'] != $row['slug'] || $row2['name'] != $row['name']){
+				if (($row2['slug'] ?? null) != $row['slug'] || ($row2['name'] ?? null) != $row['name']){
 
 					$map[$k]['locales'][$l] = array(
 						'slug' => $row2['slug'],
@@ -70,10 +70,10 @@
 				'region'	=> AddSlashes($row['region']),
 				'slug'		=> AddSlashes($row['slug']),
 				'name'		=> AddSlashes($row['name']),
-				'locales'	=> AddSlashes(serialize($row['locales'])),
+				'locales'	=> AddSlashes(serialize($row['locales'] ?? null)),
 			), array(
 				'name'		=> AddSlashes($row['name']),
-				'locales'	=> AddSlashes(serialize($row['locales'])),
+				'locales'	=> AddSlashes(serialize($row['locales'] ?? null)),
 			));
 		}
 

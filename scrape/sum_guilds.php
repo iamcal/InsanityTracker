@@ -24,9 +24,9 @@
 		while ($row = mysql_fetch_array($ret['result'], MYSQL_ASSOC)){
 			if (!$row['guild']) continue;
 			$key = $row['realm'].'|'.$row['guild'];
-			$sums[$key]['total']++;
-			if ($row['last_found']) $sums[$key]['found']++;
-			if ($row['got_it']) $sums[$key]['got']++;
+			$sums[$key]['total'] = ($sums[$key]['total'] ?? 0) + 1;
+			if ($row['last_found']) $sums[$key]['found'] = ($sums[$key]['found'] ?? 0) + 1;
+			if ($row['got_it']) $sums[$key]['got'] = ($sums[$key]['got'] ?? 0) + 1;
 		}
 
 		$num = count($sums);
@@ -40,13 +40,13 @@
 				'region'	=> $region,
 				'realm'		=> AddSlashes($realm),
 				'name'		=> AddSlashes($guild),
-				'total_roster'	=> intval($nums['total']),
-				'total_found'	=> intval($nums['found']),
-				'total_got'	=> intval($nums['got']),
+				'total_roster'	=> intval($nums['total'] ?? 0),
+				'total_found'	=> intval($nums['found'] ?? 0),
+				'total_got'	=> intval($nums['got'] ?? 0),
 			), array(
-				'total_roster'	=> intval($nums['total']),
-				'total_found'	=> intval($nums['found']),
-				'total_got'	=> intval($nums['got']),
+				'total_roster'	=> intval($nums['total'] ?? 0),
+				'total_found'	=> intval($nums['found'] ?? 0),
+				'total_got'	=> intval($nums['got'] ?? 0),
 			));
 		}
 	

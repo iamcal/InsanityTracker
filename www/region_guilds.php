@@ -2,11 +2,11 @@
 	include('../include/init.php');
 
 
-	$region_enc = AddSlashes($_GET['region']);
+	$region_enc = AddSlashes($_GET['region'] ?? '');
 
 	$guilds = array();
 	$ret = db_fetch("SELECT * FROM guilds WHERE region='$region_enc' AND total_got>0 ORDER BY total_got DESC LIMIT 50");
-	foreach ($ret['rows'] as $row){
+	foreach (($ret['rows'] ?? []) as $row){
 		$row['realm'] = local_fetch_realm($row['region'], $row['realm']);
 		$guilds[] = $row;
 	}
@@ -21,17 +21,17 @@
 		include('notfound.php');
 	}
 
-	$title = format_region($_GET['region']);
+	$title = format_region($_GET['region'] ?? '');
 	include('../templates/head.txt');
 ?>
 
 <header class="contextual">
 	<a href="/">Insanity Tracker</a> /
-	<h1><?=format_region($_GET['region'])?></h1>
+	<h1><?=format_region($_GET['region'] ?? '')?></h1>
 </header>
 
 <ul class="nav nav-tabs">
-	<li><a href="/<?=$_GET['region']?>/">Players</a></li>
+	<li><a href="/<?=$_GET['region'] ?? ''?>/">Players</a></li>
 	<li class="active"><a href="#">Guilds</a></li>
 </ul>
 
@@ -43,12 +43,12 @@
 		<th>Realm</th>
 		<th>Guild</th>
 		<th class="ac">Insanes</th>
-		<th class="ac"><?=HtmlSpecialChars(StrToUpper($_GET['region']))?> Rank</th>
+		<th class="ac"><?=HtmlSpecialChars(StrToUpper($_GET['region'] ?? ''))?> Rank</th>
 		<th class="ac">World Rank</th>
 	</tr>
 <? foreach ($guilds as $row){
 	$region_url = $row['region'];
-	$realm_url = urlencode($row['realm']['slug']);
+	$realm_url = urlencode($row['realm']['slug'] ?? '');
 	$guild_url = urlencode($row['name']);
 
 	$realm = "/guilds/{$region_url}/{$realm_url}/";

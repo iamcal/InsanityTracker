@@ -5,7 +5,7 @@
 
 <header class="jumbotron">
 	<h1>Page not found</h1>
-	<p class="lead"><?=$error?></p>
+	<p class="lead"><?=$error ?? ''?></p>
 </header>
 
 <?

@@ -1,5 +1,5 @@
 <?
-	$region = $_SERVER['argv'][1];
+	$region = $_SERVER['argv'][1] ?? null;
 	$match = "SCREEN.*fetch_characters.php";
 	$match .= $region ? " $region" : '$';
 

@@ -9,10 +9,10 @@
 	# loop over each realm, gathering some stats
 	#
 
-	$region = $_SERVER['argv'][1];
+	$region = $_SERVER['argv'][1] ?? null;
 
 	$ret = db_fetch("SELECT * FROM realms");
-	foreach ($ret['rows'] as $row){
+	foreach (($ret['rows'] ?? []) as $row){
 
 		if ($region && $row['region'] != $region) continue;
 

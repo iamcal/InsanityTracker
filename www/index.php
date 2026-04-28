@@ -4,7 +4,7 @@
 
 	$realms = array();
 	$ret = db_fetch("SELECT region, COUNT(slug) AS num FROM realms GROUP BY region");
-	foreach ($ret['rows'] as $row){
+	foreach (($ret['rows'] ?? []) as $row){
 		$realms[$row['region']] = $row['num'];
 	}
 
@@ -13,14 +13,15 @@
 	$top[] = db_single(db_fetch("SELECT * FROM realms WHERE region='us' ORDER BY total_insane DESC LIMIT 1"));
 	$top[] = db_single(db_fetch("SELECT * FROM realms WHERE region='kr' ORDER BY total_insane DESC LIMIT 1"));
 	$top[] = db_single(db_fetch("SELECT * FROM realms WHERE region='tw' ORDER BY total_insane DESC LIMIT 1"));
+	$top = array_filter($top);
 
 	$guilds = array();
 	$ret = db_fetch("SELECT * FROM guilds WHERE rank_world>0 ORDER BY rank_world ASC LIMIT 5");
-	foreach ($ret['rows'] as $row){
+	foreach (($ret['rows'] ?? []) as $row){
 		$slug = AddSlashes($row['realm']);
 		$row['realm'] = db_single(db_fetch("SELECT * FROM realms WHERE region='$row[region]' AND slug='$slug'"));
 
-		$realm_url = urlencode($row['realm']['slug']);
+		$realm_url = urlencode($row['realm']['slug'] ?? '');
 		$guild_url = urlencode($row['name']);
 		$row['url'] = "/guilds/$row[region]/$realm_url/$guild_url/";
 

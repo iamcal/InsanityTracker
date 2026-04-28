@@ -11,12 +11,14 @@
 
 	if (isset($_REQUEST['r']) && isset($_REQUEST['n'])){
 
-		list($region, $realm) = explode('-', $_REQUEST['r'], 2);
+		$parts = explode('-', $_REQUEST['r'], 2);
+		$region = $parts[0] ?? '';
+		$realm = $parts[1] ?? '';
 		$name = $_REQUEST['n'];
 
 		$ret = fetch_character($region, $realm, $name, 1);
 
-		if ($ret['ok']){
+		if ($ret['ok'] ?? null){
 
 			$region_url = urlencode($region);
 			$realm_url = urlencode($realm);
@@ -37,7 +39,7 @@
 	$realms = array();
 
 	$ret = db_fetch("SELECT * FROM realms");
-	foreach ($ret['rows'] as $row){
+	foreach (($ret['rows'] ?? []) as $row){
 
 		$slug = $row['region'].'-'.$row['slug'];
 
@@ -62,7 +64,7 @@
 
 <? if ($show_error){ ?>
 <div class="alert alert-error">
-<? if (($show_error['error'] ?? null) == 'not_found' && $_GET['auto'] ?? null){ ?>
+<? if (($show_error['error'] ?? null) == 'not_found' && ($_GET['auto'] ?? null)){ ?>
 	<i class="icon-exclamation-sign"></i>
 	Character not found.<br />
 	<br />
@@ -123,7 +125,7 @@
 <script>
 
 var realms = <?=JSON_encode($realms)?>;
-var sel = '<?=HtmlSpecialChars($_REQUEST['r'])?>';
+var sel = '<?=HtmlSpecialChars($_REQUEST['r'] ?? '')?>';
 
 $(function(){
 	populate_realms();

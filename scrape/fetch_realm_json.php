@@ -6,10 +6,10 @@
 	$limit = time() - (60 * 60 * 24 * 7);
 	$ret = db_fetch("SELECT * FROM realm_rankings WHERE last_fetched<$limit");
 
-	$num = count($ret['rows']);
+	$num = count($ret['rows'] ?? []);
 	echo "fetching rankings for $num realms:\n";
 
-	foreach ($ret['rows'] as $row){
+	foreach (($ret['rows'] ?? []) as $row){
 
 		$n1 = fetch_ranks($row, $row['url'], 1);
 		$n2 = fetch_ranks($row, str_replace('tier13', 'tier12', $row['url']), 0);
@@ -36,11 +36,13 @@
 		$obj = JSON_decode($json, true);
 		$num = 0;
 
-		foreach ($obj as $grow){
-			list($junk, $path) = explode('wowprogress.com/guild/', $grow['url']);
+		foreach (($obj ?? []) as $grow){
+			$parts = explode('wowprogress.com/guild/', $grow['url'] ?? '');
+			$junk = $parts[0] ?? '';
+			$path = $parts[1] ?? '';
 			$bits = explode('/', $path);
-			$realm = urldecode($bits[1]);
-			$region = $bits[0];
+			$realm = urldecode($bits[1] ?? '');
+			$region = $bits[0] ?? '';
 
 if (strlen($region) != 2){
 	print_r($bits);
@@ -50,16 +52,16 @@ if (strlen($region) != 2){
 
 			$max_rank = 999999999;
 
-			$rank = intval($grow['world_rank']);
+			$rank = intval($grow['world_rank'] ?? 0);
 			if (!$rank) $rank = $max_rank;
 
 			$update = array( 'world_rank' => $rank );
-			if (!$use_rank) $update = array( 'name' => AddSlashes($grow['name']) );
+			if (!$use_rank) $update = array( 'name' => AddSlashes($grow['name'] ?? '') );
 
 			db_insert_dupe('guilds', array(
 				'region'	=> AddSlashes($region),
 				'realm'		=> AddSlashes($realm),
-				'name'		=> AddSlashes($grow['name']),
+				'name'		=> AddSlashes($grow['name'] ?? ''),
 				'world_rank'	=> $use_rank ? $rank : $max_rank,
 				'last_fetched'	=> 0,
 			), $update);

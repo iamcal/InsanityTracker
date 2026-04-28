@@ -50,7 +50,7 @@
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
 
-		if ($more['return_curl_handle']){
+		if ($more['return_curl_handle'] ?? null){
 			return $ch;
 		}
 
@@ -80,7 +80,7 @@
 		# curl_setopt($ch, CURLOPT_INFILE, $bytes);
 		# curl_setopt($ch, CURLOPT_INFILESIZE, strlen($bytes));
 
-		if ($more['return_curl_handle']){
+		if ($more['return_curl_handle'] ?? null){
 			return $ch;
 		}
 
@@ -96,12 +96,12 @@
 
 		foreach ($requests as $req){
 
-			$url = $req['url'];
+			$url = $req['url'] ?? null;
 
 			$method = (isset($req['method'])) ? strtoupper($req['method']) : 'GET';
-			$body = (is_array($req['body'])) ? $req['body'] : null;
-			$headers = (is_array($req['headers'])) ? $req['headers'] : array();
-			$more = (is_array($req['more'])) ? $req['more'] : array();
+			$body = (is_array($req['body'] ?? null)) ? $req['body'] : null;
+			$headers = (is_array($req['headers'] ?? null)) ? $req['headers'] : array();
+			$more = (is_array($req['more'] ?? null)) ? $req['more'] : array();
 
 			$more['return_curl_handle'] = 1;
 
@@ -183,7 +183,7 @@
 	function _http_curl_handle($url, $headers=array(), $more=array()){
 
 		$defaults = array(
-			'http_timeout' => $GLOBALS['cfg']['http_timeout'],
+			'http_timeout' => $GLOBALS['cfg']['http_timeout'] ?? 30,
 		);
 
 		$more = array_merge($defaults, $more);
@@ -243,7 +243,7 @@
 		$headers_out = http_parse_headers($head_out, '_request');
 
 		preg_match("/^([A-Z]+)\s/", $headers_out['_request'], $m);
-		$method = $m[1];
+		$method = $m[1] ?? null;
 
 		# log_notice("http", "{$method} {$url}", $end-$start);
 

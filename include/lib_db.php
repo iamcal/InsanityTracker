@@ -157,7 +157,7 @@
 	}
 
 	function db_single($ret){
-		return $ret['rows'][0];
+		return $ret['rows'][0] ?? array();
 	}
 
 	function db_list($ret){

@@ -11,7 +11,7 @@
 	</tr>
 <? foreach ($characters as $row){
 
-	$host = $GLOBALS['cfg']['bnet_region_hosts'][$realm['region']];
+	$host = $GLOBALS['cfg']['bnet_region_hosts'][$realm['region']] ?? '';
 	$name_url = rawurlencode($row['name']);
 	$guild_url = rawurlencode($row['guild']);
 
@@ -38,7 +38,7 @@
 		<td class="ar">
 <? if ($row['date_got'] > 10){ ?>
 			<?=date('Y-m-d', $row['date_got'])?>
-			(<?=$patches[$row['patch']][0]?>)
+			(<?=$patches[$row['patch']][0] ?? ''?>)
 <? }else{ ?>
 			(Unknown)
 <? } ?>

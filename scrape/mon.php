@@ -5,7 +5,8 @@
 	foreach ($text as $line){
 		if (preg_match('!SCREEN.*fetch_characters.php\s*(\w\w)?!', $line, $m)){
 
-			$counts[$m[1] ? $m[1] : 'default']++;
+			$key = ($m[1] ?? '') ? $m[1] : 'default';
+			$counts[$key] = ($counts[$key] ?? 0) + 1;
 		}
 	}
 

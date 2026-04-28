@@ -2,27 +2,27 @@
 
 	include('../include/init.php');
 
-	$realm = check_realm("/character/REGION/REALM/$_GET[name]/");
+	$realm = check_realm("/character/REGION/REALM/".($_GET['name'] ?? '')."/");
 
-	$region_enc = AddSlashes($_GET['region']);
-	$realm_enc = AddSlashes($_GET['realm']);
-	$name_enc = AddSlashes($_GET['name']);
+	$region_enc = AddSlashes($_GET['region'] ?? '');
+	$realm_enc = AddSlashes($_GET['realm'] ?? '');
+	$name_enc = AddSlashes($_GET['name'] ?? '');
 
 	$character = db_single(db_fetch("SELECT * FROM characters WHERE region='$region_enc' AND realm='$realm_enc' AND name='$name_enc'"));
-	if (!$character['region']){
+	if (!($character['region'] ?? null)){
 
 		$add_url = "/add/";
-		$add_url .= "?r=".urlencode($_GET['region'])."-".urlencode($_GET['realm']);
-		$add_url .= "&n=".urlencode($_GET['name']);
+		$add_url .= "?r=".urlencode($_GET['region'] ?? '')."-".urlencode($_GET['realm'] ?? '');
+		$add_url .= "&n=".urlencode($_GET['name'] ?? '');
 		$add_url .= "&auto=1";
 
 		header("location: $add_url");
 		exit;
 	}
 
-	$guild_enc = AddSlashes($character['guild']);
+	$guild_enc = AddSlashes($character['guild'] ?? '');
 	$guild = db_single(db_fetch("SELECT * FROM guilds WHERE region='$character[region]' AND realm='$realm_enc' AND name='$guild_enc'"));
-	if ($guild['region']){
+	if ($guild['region'] ?? null){
 
 		$realm_url = rawurlencode($guild['realm']);
 		$name_url = rawurlencode($guild['name']);
@@ -31,7 +31,7 @@
 	}
 
 
-	$host = $GLOBALS['cfg']['bnet_region_hosts'][$realm['region']];
+	$host = $GLOBALS['cfg']['bnet_region_hosts'][$realm['region']] ?? '';
 	$realm_url = rawurlencode($character['realm']);
 	$name_url = rawurlencode($character['name']);
 	$armory = "http://$host/wow/en/character/{$realm_url}/{$name_url}/";
@@ -41,13 +41,13 @@
 	$url_base = "http://{$host}/static-render/{$realm['region']}/";
 
 
-	$add_r = urlencode($_GET['region']).'-'.urlencode($_GET['realm']);
-	$add_n = urlencode($_GET['name']);
+	$add_r = urlencode($_GET['region'] ?? '').'-'.urlencode($_GET['realm'] ?? '');
+	$add_n = urlencode($_GET['name'] ?? '');
 	$refresh_url = "/add/?r={$add_r}&n={$add_n}";
 
 
-	$class = $classes[$character['class_id']][0];
-	$race = $races[$character['race_id']][0];
+	$class = $classes[$character['class_id']][0] ?? '';
+	$race = $races[$character['race_id']][0] ?? '';
 	assign_patch($character);
 
 	$title = HtmlSpecialChars($character['name']);
@@ -330,13 +330,13 @@ $(function(){
 
 <div class="well">
 
-<? if ($character['guild'] && $guild['total_got']){ ?>
-	This player is a member of <a href="<?=$guild['url']?>"><?=HtmlSpecialChars($character['guild'])?></a>.<br />
+<? if ($character['guild'] && ($guild['total_got'] ?? null)){ ?>
+	This player is a member of <a href="<?=$guild['url'] ?? ''?>"><?=HtmlSpecialChars($character['guild'])?></a>.<br />
 	<br />
-	Scanned members: <?=$guild['total_found']?><br />
-	Insane members: <?=$guild['total_got']?><br />
+	Scanned members: <?=$guild['total_found'] ?? 0?><br />
+	Insane members: <?=$guild['total_got'] ?? 0?><br />
 <? }elseif ($character['guild']){ ?>
-	This player is a member of <a href="<?=$guild['url']?>"><?=HtmlSpecialChars($character['guild'])?></a>.<br />
+	This player is a member of <a href="<?=$guild['url'] ?? ''?>"><?=HtmlSpecialChars($character['guild'])?></a>.<br />
 	This guild is currently unranked.
 <? }else{ ?>
 	This player is not currently in a guild.

@@ -27,8 +27,8 @@
 
 	if (0){
 		$ret = db_fetch("SELECT * FROM characters WHERE process_state=0 AND guild='' AND last_fetched<=1329255420");
-		echo "Processing ".count($ret['rows'])." characters ";
-		foreach ($ret['rows'] as $row){
+		echo "Processing ".count($ret['rows'] ?? [])." characters ";
+		foreach (($ret['rows'] ?? []) as $row){
 			process_character($row);
 		}
 		echo "\ndone\n";
@@ -40,7 +40,7 @@
 	# pick region
 	#
 
-	$region = $_SERVER['argv'][1];
+	$region = $_SERVER['argv'][1] ?? null;
 	$r = $region ? $region : 'us';
 
 	echo "$r: ";
@@ -59,7 +59,7 @@
 
 		$limit = time() -(60 * 10);
 		$ret = db_write("UPDATE characters USE INDEX(process_state_4) SET process_state=1 WHERE process_state=2 AND claimed_time<$limit");
-		if ($ret['affected_rows']){
+		if ($ret['affected_rows'] ?? null){
 			echo '|'.$ret['affected_rows'].'|';
 		}else{
 			echo '|';
@@ -75,7 +75,7 @@
 		$t = time();
 
 		$ret = db_fetch("SELECT * FROM characters USE INDEX(process_state_5) WHERE process_state=1 AND region='$r' ORDER BY guild_rank ASC LIMIT $batch_size");
-		foreach ($ret['rows'] as $row){
+		foreach (($ret['rows'] ?? []) as $row){
 
 			$realm_enc = AddSlashes($row['realm']);
 			$name_enc = AddSlashes($row['name']);
@@ -88,7 +88,7 @@
 				'process_state'	=> 2,
 			), $where);
 		}
-		if (!count($ret['rows'])) break;
+		if (!count($ret['rows'] ?? [])) break;
 
 
 		#
@@ -96,7 +96,7 @@
 		#
 
 		$ret = db_fetch("SELECT * FROM characters USE INDEX(process_state_3) WHERE process_state=2 AND claimed_group=$batch");
-		foreach ($ret['rows'] as $row){
+		foreach (($ret['rows'] ?? []) as $row){
 			process_character($row);
 		}
 	}
@@ -118,27 +118,27 @@
 		$ret = bnet_make_request($row['region'], "/character/$realm_url/$name_url?fields=achievements,guild");
 		#echo "ok\n"; flush();
 
-		if ($ret['ok']){
+		if ($ret['ok'] ?? null){
 
 			#echo $ret['data']['guild']['name']."\n";
 			#return;
 
 			$hash = array(
-				'guild'		=> AddSlashes($ret['data']['guild']['name']),
+				'guild'		=> AddSlashes($ret['data']['guild']['name'] ?? ''),
 				'last_fetched'	=> time(),
-				'fetch_count'	=> $row['fetch_count']+1,
+				'fetch_count'	=> ($row['fetch_count'] ?? 0)+1,
 				'process_state'	=> 0,
-				'level'		=> intval($ret['data']['level']),
-				'class_id'	=> intval($ret['data']['class']),
-				'race_id'	=> intval($ret['data']['race']),
-				'gender_id'	=> intval($ret['data']['gender']),
-				'achievement_points'	=> intval($ret['data']['achievementPoints']),
+				'level'		=> intval($ret['data']['level'] ?? 0),
+				'class_id'	=> intval($ret['data']['class'] ?? 0),
+				'race_id'	=> intval($ret['data']['race'] ?? 0),
+				'gender_id'	=> intval($ret['data']['gender'] ?? 0),
+				'achievement_points'	=> intval($ret['data']['achievementPoints'] ?? 0),
 				'got_it'	=> 0,
 				'date_got'	=> 0,
 				'last_found'	=> time(),
 			);
 
-			if (!is_array($ret['data']['achievements']['achievementsCompleted'])){
+			if (!is_array($ret['data']['achievements']['achievementsCompleted'] ?? null)){
 				print_r($ret);
 				exit;
 			}
@@ -147,7 +147,7 @@
 
 				if ($v == 2336){
 
-					$when = $ret['data']['achievements']['achievementsCompletedTimestamp'][$k];
+					$when = $ret['data']['achievements']['achievementsCompletedTimestamp'][$k] ?? null;
 
 					$hash['got_it'] = 1;
 					$hash['date_got'] = substr($when, 0, -3);
@@ -162,17 +162,17 @@
 				echo '.';
 			}
 
-		}else if ($ret['malformed']){
+		}else if ($ret['malformed'] ?? null){
 
-			echo "(BAD)";			
+			echo "(BAD)";
 
-		}elseif ($ret['req']['status'] == 500 &&
-			$ret['data']['status'] == 'nok' && 
-			$ret['data']['reason'] == 'Character unavailable'){
+		}elseif (($ret['req']['status'] ?? null) == 500 &&
+			($ret['data']['status'] ?? null) == 'nok' &&
+			($ret['data']['reason'] ?? null) == 'Character unavailable'){
 
 			echo '(un)';
 
-		}else if ($ret['req']['status'] == 404){
+		}else if (($ret['req']['status'] ?? null) == 404){
 
 			db_update('characters', array(
 
@@ -184,9 +184,9 @@
 
 			echo "-";
 
-		}elseif ($ret['req']['status'] == 500 &&
-			$ret['data']['status'] == 'nok' && 
-			$ret['data']['reason'] == 'Internal server error.'){
+		}elseif (($ret['req']['status'] ?? null) == 500 &&
+			($ret['data']['status'] ?? null) == 'nok' &&
+			($ret['data']['reason'] ?? null) == 'Internal server error.'){
 
 			echo "(ISE)";
 		}else{

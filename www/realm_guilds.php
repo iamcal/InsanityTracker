@@ -3,11 +3,11 @@
 
 	$realm = check_realm('/guilds/REGION/REALM/');
 
-	$region_enc = AddSlashes($_GET['region']);
-	$realm_enc = AddSlashes($_GET['realm']);
+	$region_enc = AddSlashes($_GET['region'] ?? '');
+	$realm_enc = AddSlashes($_GET['realm'] ?? '');
 
 	$ret = db_fetch("SELECT * FROM guilds WHERE region='$region_enc' AND realm='$realm_enc' AND total_got>0 ORDER BY rank_world ASC");
-	$guilds = $ret['rows'];
+	$guilds = $ret['rows'] ?? [];
 
 	$title = HtmlSpecialChars(realm_name($realm));
 	include('../templates/head.txt');
@@ -15,12 +15,12 @@
 
 <header class="contextual">
 	<a href="/">Insanity Tracker</a> /
-	<a href="/guilds/<?=$_GET['region']?>/"><?=format_region($_GET['region'])?></a> /
+	<a href="/guilds/<?=$_GET['region'] ?? ''?>/"><?=format_region($_GET['region'] ?? '')?></a> /
 	<h1><?=HtmlSpecialChars(realm_name($realm))?></h1>
 </header>
 
 <ul class="nav nav-tabs">
-	<li><a href="/<?=$_GET['region']?>/<?=HtmlSpecialChars($_GET['realm'])?>/">Players</a></li>
+	<li><a href="/<?=$_GET['region'] ?? ''?>/<?=HtmlSpecialChars($_GET['realm'] ?? '')?>/">Players</a></li>
 	<li class="active"><a href="#">Guilds</a></li>
 </ul>
 
@@ -37,12 +37,12 @@
 		<th>Guild</th>
 		<th class="ac">Insanes</th>
 		<th class="ac">Realm Rank</th>
-		<th class="ac"><?=StrToUpper($_GET['region'])?> Rank</th>
+		<th class="ac"><?=StrToUpper($_GET['region'] ?? '')?> Rank</th>
 		<th class="ac">World Rank</th>
 	</tr>
 <? foreach ($guilds as $row){
 
-	$host = $GLOBALS['cfg']['bnet_region_hosts'][$realm['region']];
+	$host = $GLOBALS['cfg']['bnet_region_hosts'][$realm['region']] ?? '';
 	$name_url = rawurlencode($row['name']);
 
 	$guild = "/guilds/{$realm['region']}/{$realm['slug']}/{$name_url}/"

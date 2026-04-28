@@ -16,7 +16,9 @@
 
 	function bnet_make_request($region, $url){
 
-		list($path, $qs) = explode('?', $url, 2);
+		$parts = explode('?', $url, 2);
+		$path = $parts[0] ?? '';
+		$qs = $parts[1] ?? '';
 
 
 		#
@@ -32,7 +34,7 @@
 		$base = str_replace('%3D', '=', $base);
 		$hash = pack("H*", hash_hmac("sha1", $base, $GLOBALS['cfg']['bnet_key_private']));
 
-		if ($GLOBALS['cfg']['bnet_key_public']){
+		if ($GLOBALS['cfg']['bnet_key_public'] ?? null){
 
 			$headers = array(
 				'Date'		=> $date,
@@ -47,7 +49,7 @@
 		# build the URL
 		#
 
-		$api_host = $GLOBALS['cfg']['bnet_region_hosts'][$region];
+		$api_host = $GLOBALS['cfg']['bnet_region_hosts'][$region] ?? '';
 
 		$url = "http://".$api_host."{$path}?{$qs}";
 
@@ -63,7 +65,7 @@
 		# build response
 		#
 
-		if ($ret['status'] == 200){
+		if (($ret['status'] ?? null) == 200){
 
 			$obj = json_decode($ret['body'], true);
 
@@ -93,7 +95,7 @@
 			'req'	=> $ret,
 		);
 
-		if ($ret['headers']['content-type'] == 'application/json;charset=utf-8'){
+		if (($ret['headers']['content-type'] ?? null) == 'application/json;charset=utf-8'){
 
 			$out['data'] = json_decode($ret['body'], true);
 		}
@@ -190,7 +192,7 @@
 
 			$ret = bnet_make_request($region, $url);
 
-			if ($ret['ok']) return $ret;
+			if ($ret['ok'] ?? null) return $ret;
 		}
 
 		return $ret;

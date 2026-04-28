@@ -8,7 +8,7 @@
 	# we need to realm mappings
 	$realm_map = array();
 	$ret = db_fetch("SELECT * FROM realms");
-	foreach ($ret['rows'] as $row){
+	foreach (($ret['rows'] ?? []) as $row){
 		$realm_map[mb_StrToLower($row['slug'])] = $row['slug'];
 		$realm_map[mb_StrToLower($row['name'])] = $row['slug'];
 
@@ -52,12 +52,12 @@
 
 	$failures = array();
 
-	$num = count($ret['rows']);
+	$num = count($ret['rows'] ?? []);
 	echo "fetching roster for $num guilds:\n";
-	foreach ($ret['rows'] as $row){
+	foreach (($ret['rows'] ?? []) as $row){
 
-		$slug = $realm_map[mb_strToLower($row['realm'])];
-		if (!strlen($slug)) $slug = $realm_map[mb_strToLower(str_replace('-', '', $row['realm']))];
+		$slug = $realm_map[mb_strToLower($row['realm'])] ?? '';
+		if (!strlen($slug)) $slug = $realm_map[mb_strToLower(str_replace('-', '', $row['realm']))] ?? '';
 
 		if (strlen($slug)){
 
@@ -69,7 +69,12 @@
 			print_r($row);
 			exit;
 
-			$failures[$row['region'].'-'.$row['realm']]++;
+			$key = $row['region'].'-'.$row['realm'];
+			if (isset($failures[$key])){
+				$failures[$key]++;
+			}else{
+				$failures[$key] = 1;
+			}
 
 			$realm_enc = AddSlashes($row['realm']);
 			$guild_enc = AddSlashes($row['name']);
@@ -100,16 +105,16 @@
 
 		#echo "\n/guild/$realm/$guild_url?fields=members ";
 
-		if ($ret['ok']){
+		if ($ret['ok'] ?? null){
 
 			$num = 0;
 
-			foreach ($ret['data']['members'] as $row){
+			foreach (($ret['data']['members'] ?? []) as $row){
 
-				$row = $row['character'];
+				$row = $row['character'] ?? [];
 
 				#if ($row['achievementPoint'] < 1000) continue;
-				if ($row['level'] < 85) continue;
+				if (($row['level'] ?? 0) < 85) continue;
 
 				db_insert_dupe('characters', array(
 					'region'	=> AddSlashes($region),
@@ -128,13 +133,13 @@
 			echo "($num)";
 		}else{
 			# guilds go missing pretty often
-			if ($ret['req']['status'] == 404){
+			if (($ret['req']['status'] ?? null) == 404){
 
 				echo "(-)";
 
-			}elseif ($ret['req']['status'] == 500 &&
-				$ret['data']['status'] == 'nok' && 
-				$ret['data']['reason'] == 'Internal server error.'){
+			}elseif (($ret['req']['status'] ?? null) == 500 &&
+				($ret['data']['status'] ?? null) == 'nok' &&
+				($ret['data']['reason'] ?? null) == 'Internal server error.'){
 
 				echo "(ISE)";
 				return;

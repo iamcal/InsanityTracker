@@ -9,7 +9,7 @@
 	$months = array();
 
 	$ret = db_fetch("SELECT date_got FROM characters WHERE got_it=1");
-	foreach ($ret['rows'] as $row){
+	foreach (($ret['rows'] ?? []) as $row){
 
 		$patch = 4;
 		if ($row['date_got'] < $d1) $patch = 3;
@@ -17,9 +17,11 @@
 		if ($row['date_got'] == 1) $patch = 4;
 
 		$m = date('Y-m', $row['date_got']);
-		if ($row['date_got'] > 1) $months[$m]++;
+		if ($row['date_got'] > 1){
+			$months[$m] = ($months[$m] ?? 0) + 1;
+		}
 
-		$counts[$patch]++;
+		$counts[$patch] = ($counts[$patch] ?? 0) + 1;
 	}
 
 	print_r($counts);

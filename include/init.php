@@ -25,15 +25,16 @@
 
 	function realm_name($row){
 
-		$more = unserialize($row['locales']);
+		$more = unserialize($row['locales'] ?? '');
 		if (is_array($more)){
 			$names = array();
-			$names[$row['name']] = 1;
+			$names[$row['name'] ?? ''] = 1;
 			foreach ($more as $row2){
-				if (isset($names[$row2['name']])){
-					$names[$row2['name']]++;
+				$key = $row2['name'] ?? '';
+				if (isset($names[$key])){
+					$names[$key]++;
 				}else{
-					$names[$row2['name']] = 1;
+					$names[$key] = 1;
 				}
 			}
 			$names = array_keys($names);
@@ -47,20 +48,21 @@
 			}
 		}
 
-		return $row['name'];
+		return $row['name'] ?? '';
 	}
 
 	function assign_patch(&$row){
 		$row['patch'] = 4;
-		if ($row['date_got'] < mktime(0,0,0,11,15,2010)) $row['patch'] = 3;
-		if ($row['date_got'] < mktime(0,0,0,4,14+7,2009)) $row['patch'] = 2; # within the first week
-		if ($row['date_got'] == 1) $row['patch'] = 4; # fucked
+		$date_got = $row['date_got'] ?? 0;
+		if ($date_got < mktime(0,0,0,11,15,2010)) $row['patch'] = 3;
+		if ($date_got < mktime(0,0,0,4,14+7,2009)) $row['patch'] = 2; # within the first week
+		if ($date_got == 1) $row['patch'] = 4; # fucked
 	}
 
 	function check_realm($url){
 
-		$region_enc = AddSlashes($_GET['region']);
-		$realm_enc = AddSlashes($_GET['realm']);
+		$region_enc = AddSlashes($_GET['region'] ?? '');
+		$realm_enc = AddSlashes($_GET['realm'] ?? '');
 
 
 		#
@@ -68,7 +70,7 @@
 		#
 
 		$realm = db_single(db_fetch("SELECT * FROM realms WHERE region='$region_enc' AND slug='$realm_enc'"));
-		if ($realm['region']) return $realm;
+		if ($realm['region'] ?? null) return $realm;
 
 
 		#
@@ -76,12 +78,12 @@
 		#
 
 		$ret = db_fetch("SELECT * FROM realms WHERE region='$region_enc'");
-		foreach ($ret['rows']as $row){
-			$more = unserialize($row['locales']);
+		foreach (($ret['rows'] ?? []) as $row){
+			$more = unserialize($row['locales'] ?? '');
 			if (!is_array($more)) continue;
 
 			foreach ($more as $loc){
-				if ($loc['slug'] == $_GET['realm']){
+				if (($loc['slug'] ?? null) == ($_GET['realm'] ?? null)){
 
 					$url = str_replace('REGION', $row['region'], $url);
 					$url = str_replace('REALM', $row['slug'], $url);
