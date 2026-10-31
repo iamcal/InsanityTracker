@@ -16,3 +16,8 @@ RewriteRule ^about/$	/about.php [L]
 RewriteRule ^add/$	/add.php [L]
 
 ErrorDocument 404 /404.php
+
+# Included by the pages here, not pages themselves
+<FilesMatch "^(guild_notfound|guild_notinsane|notfound)\.php$">
+	Require all denied
+</FilesMatch>
