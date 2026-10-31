@@ -62,7 +62,7 @@
 	<li><a href="/guilds/<?=$_GET['region'] ?? ''?>/<?=HtmlSpecialChars($_GET['realm'] ?? '')?>/">Guilds</a></li>
 </ul>
 
-<?
+<?php
 	# **************************** THIS REALM HAS PLAYERS  ****************************
 	if (count($ret['rows'] ?? [])){
 ?>
@@ -78,7 +78,7 @@
 <h4 style="margin-bottom: 10px;">By class</h4>
 
 <table>
-<? foreach ($classes as $id => $class){
+<?php foreach ($classes as $id => $class){
 	$num = intval($totals['classes'][$id] ?? 0);
 	$width = 180 * $num / max($totals['classes']);
 	$per = 100 * $num / max($totals['classes']);
@@ -88,7 +88,7 @@
 		<td align="right"><?=$num?></td>
 		<td><div class="progress" style="width: 180px; margin-bottom:0"><div class="bar" style="width: <?=$per?>%"></div></div></div>
 	</tr>
-<? } ?>
+<?php } ?>
 </table>
 
 </div>
@@ -97,7 +97,7 @@
 <h4 style="margin-bottom: 10px;">By race</h4>
 
 <table>
-<? foreach ($races as $id => $race){
+<?php foreach ($races as $id => $race){
 	$num = intval($totals['races'][$id] ?? 0);
 	$width = 180 * $num / max($totals['races']);
 	$per = 100 * $num / max($totals['races']);
@@ -107,7 +107,7 @@
 		<td align="right"><?=$num?></td>
 		<td><div class="progress" style="width: 180px; margin-bottom:0"><div class="bar" style="width: <?=$per?>%"></div></div></td>
 	</tr>
-<? } ?>
+<?php } ?>
 </table>
 
 </div>
@@ -116,7 +116,7 @@
 <h4 style="margin-bottom: 10px;">By faction &amp; expansion</h4>
 
 <table>
-<? foreach ($factions as $id => $faction){
+<?php foreach ($factions as $id => $faction){
 	$num = intval($totals['factions'][$id] ?? 0);
 	$width = 180 * $num / max($totals['factions']);
 	$per = 100 * $num / max($totals['factions']);
@@ -126,11 +126,11 @@
 		<td align="right"><?=$num?></td>
 		<td><div class="progress" style="width: 180px; margin-bottom:0"><div class="bar" style="width: <?=$per?>%"></div></div></td>
 	</tr>
-<? } ?>
+<?php } ?>
 	<tr>
 		<td colspan="3">&nbsp;</td>
 	</tr>
-<? foreach ($patches as $id => $patch){
+<?php foreach ($patches as $id => $patch){
 	$num = intval($totals['patches'][$id] ?? 0);
 	$width = 180 * $num / max($totals['patches']);
 	$per = 100 * $num / max($totals['patches']);
@@ -140,30 +140,30 @@
 		<td align="right"><?=$num?></td>
 		<td><div class="progress" style="width: 180px; margin-bottom:0"><div class="bar" style="width: <?=$per?>%"></div></div></td>
 	</tr>
-<? } ?>
+<?php } ?>
 </table>
 
 </div>
 </div>
 </div>
 
-<?
+<?php
 	$characters = $ret['rows'] ?? [];
 	include('../templates/inc_list.php');
 ?>
 
-<?
+<?php
 	# **************************** THIS REALM HAS NO PLAYERS  ****************************
 	}else{
 ?>
 
 <p>Oops, looks like nobody on this realm has earned <a href="http://www.wowhead.com/achievement=2336">Insane in the Membrane</a> yet.</p>
 
-<?
+<?php
 	}
 ?>
 
-<?
+<?php
 	include('../templates/add.txt');
 	include('../templates/foot.txt');
 ?>

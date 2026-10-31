@@ -1,4 +1,4 @@
-<?
+<?php
 	include('../init.php');
 
 	# for each realm, plot population and insane players

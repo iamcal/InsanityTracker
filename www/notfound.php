@@ -1,4 +1,4 @@
-<?
+<?php
 	$title = 'Page not found';
 	include('../templates/head.txt');
 ?>
@@ -8,7 +8,7 @@
 	<p class="lead"><?=$error ?? ''?></p>
 </header>
 
-<?
+<?php
 	include('../templates/foot.txt');
 
 	exit;

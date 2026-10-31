@@ -1,4 +1,4 @@
-<?
+<?php
 	include('../include/init.php');
 	include('../include/fetch.php');
 
@@ -62,26 +62,26 @@
 	<p class="lead">Earned the achievement? Known someone else that has? Update them here.</p>
 </header>
 
-<? if ($show_error){ ?>
+<?php if ($show_error){ ?>
 <div class="alert alert-error">
-<? if (($show_error['error'] ?? null) == 'not_found' && ($_GET['auto'] ?? null)){ ?>
+<?php if (($show_error['error'] ?? null) == 'not_found' && ($_GET['auto'] ?? null)){ ?>
 	<i class="icon-exclamation-sign"></i>
 	Character not found.<br />
 	<br />
 	<i class="icon-calendar"></i>
 	Characters must be active on the armory to be imported - that means they must have logged in during the last 90 days.
-<? }elseif (($show_error['error'] ?? null) == 'not_found'){ ?>
+<?php }elseif (($show_error['error'] ?? null) == 'not_found'){ ?>
 	<i class="icon-exclamation-sign"></i>
 	Character not found - perhaps you typed it wrong?<br />
 	<br />
 	<i class="icon-calendar"></i>
 	Characters must be active on the armory to be imported - that means they must have logged in during the last 90 days.
-<? }else{ ?>
+<?php }else{ ?>
 	<i class="icon-exclamation-sign"></i>
 	Unknown error: <?=$show_error['error']??null?>
-<? } ?>
+<?php } ?>
 </div>
-<? } ?>
+<?php } ?>
 
 
 <form action="/add/" method="post" class="form-horizontal" style="margin-top: 50px">
@@ -98,11 +98,11 @@
 		</select>
 
 		<select id="sel-realm" name="r">
-<? foreach ($realms as $region => $list){ ?>
-<? foreach ($list as $k => $v){ ?>
-			<option value="<?=$k?>"<? if (($_POST['r'] ?? null) == $k){ echo " selected"; } ?>><?=HtmlSpecialChars($v)?> (<?=StrToUpper($region)?>)</option>
-<? } ?>
-<? } ?>
+<?php foreach ($realms as $region => $list){ ?>
+<?php foreach ($list as $k => $v){ ?>
+			<option value="<?=$k?>"<?php if (($_POST['r'] ?? null) == $k){ echo " selected"; } ?>><?=HtmlSpecialChars($v)?> (<?=StrToUpper($region)?>)</option>
+<?php } ?>
+<?php } ?>
 		</select>
 	</div>
 </div>
@@ -159,6 +159,6 @@ function escapeXML(x){
 
 </script>
 
-<?
+<?php
 	include('../templates/foot.txt');
 ?>

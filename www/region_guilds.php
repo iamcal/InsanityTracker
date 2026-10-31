@@ -46,7 +46,7 @@
 		<th class="ac"><?=HtmlSpecialChars(StrToUpper($_GET['region'] ?? ''))?> Rank</th>
 		<th class="ac">World Rank</th>
 	</tr>
-<? foreach ($guilds as $row){
+<?php foreach ($guilds as $row){
 	$region_url = $row['region'];
 	$realm_url = urlencode($row['realm']['slug'] ?? '');
 	$guild_url = urlencode($row['name']);
@@ -61,7 +61,7 @@
 		<td class="ac"><?=$row['rank_region']?></td>
 		<td class="ac"><?=$row['rank_world']?></td>
 	</tr>
-<? } ?>
+<?php } ?>
 </table>
 
 </div>
@@ -76,6 +76,6 @@
 </div>
 </div>
 
-<?
+<?php
 	include('../templates/foot.txt');
 ?>

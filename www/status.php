@@ -24,6 +24,6 @@
 	<li> Complete: <?=number_format($map[0])?> (<?=round(1000 * $map[0] / $total)/10?>%) </li>
 </ul>
 
-<?
+<?php
 	include('../templates/foot.txt');
 ?>

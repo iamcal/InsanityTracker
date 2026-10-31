@@ -1,4 +1,4 @@
-<?
+<?php
 	#
 	# this is a 'loose' JSON decoder. the built-in PHP JSON decoder
 	# is very strict, and will not accept things which are fairly

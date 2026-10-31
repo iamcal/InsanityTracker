@@ -1,4 +1,4 @@
-<?
+<?php
 	#
 	# a library for turning wowhead pages into useful data.
 	# don't abuse wowhead - we love them.

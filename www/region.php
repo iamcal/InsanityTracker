@@ -32,12 +32,12 @@
 		<th>Realm</th>
 		<th class="ac">Insanes</th>
 	</tr>
-<? foreach (($ret['rows'] ?? []) as $row){ ?>
+<?php foreach (($ret['rows'] ?? []) as $row){ ?>
 	<tr>
 		<td><a href="/<?=$row['region']?>/<?=urlencode($row['slug'])?>/"><?=HtmlSpecialChars(realm_name($row))?></a></td>
 		<td class="ac"><?=$row['total_insane']?></td>
 	</tr>
-<? } ?>
+<?php } ?>
 </table>
 
 </div>
@@ -53,6 +53,6 @@
 </div>
 </div>
 
-<?
+<?php
 	include('../templates/foot.txt');
 ?>

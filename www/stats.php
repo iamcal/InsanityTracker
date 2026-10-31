@@ -1,4 +1,4 @@
-<?
+<?php
 	include('../include/init.php');
 
 
@@ -355,6 +355,6 @@
 </div>
 
 
-<?
+<?php
 	include('../templates/foot.txt');
 ?>

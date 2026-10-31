@@ -1,11 +1,11 @@
-<?
+<?php
 	header("content-type: text/html; charset=UTF-8");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title><? if ($title ?? null){ echo "$title | "; } ?>Insanity Tracker</title>
+<title><?php if ($title ?? null){ echo "$title | "; } ?>Insanity Tracker</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -85,10 +85,10 @@ header.contextual h1 {
 		<div class="container">
 			<!-- <a class="brand" href="/">Insanity Tracker</a> -->
 			<ul class="nav">
-				<li class="<? if (($current ?? null)=='home' ) echo 'active'; ?>"><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
-				<li class="<? if (($current ?? null)=='add' ) echo 'active'; ?>"><a href="/add/"><i class="icon-plus icon-white"></i>Add Character</a></li>
-				<li class="<? if (($current ?? null)=='stats') echo 'active'; ?>"><a href="/stats/"><i class="icon-signal icon-white"></i> Statistics</a></li>
-				<li class="<? if (($current ?? null)=='about') echo 'active'; ?>"><a href="/about/"><i class="icon-info-sign icon-white"></i> About</a></li>
+				<li class="<?php if (($current ?? null)=='home' ) echo 'active'; ?>"><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
+				<li class="<?php if (($current ?? null)=='add' ) echo 'active'; ?>"><a href="/add/"><i class="icon-plus icon-white"></i>Add Character</a></li>
+				<li class="<?php if (($current ?? null)=='stats') echo 'active'; ?>"><a href="/stats/"><i class="icon-signal icon-white"></i> Statistics</a></li>
+				<li class="<?php if (($current ?? null)=='about') echo 'active'; ?>"><a href="/about/"><i class="icon-info-sign icon-white"></i> About</a></li>
 			</ul>
 		</div>
 	</div>

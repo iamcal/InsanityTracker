@@ -7,7 +7,7 @@
 
 <script src="/js/bootstrap.min.js"></script>
 
-<? if (isset($_GET['debugsql'])) dumper($GLOBALS['timings']); ?>
+<?php if (isset($_GET['debugsql'])) dumper($GLOBALS['timings']); ?>
 
 </body>
 </html>

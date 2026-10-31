@@ -1,4 +1,4 @@
-<?
+<?php
 	include('lib_json.php');
 	include('lib_http.php');
 	include('lib_wowhead.php');

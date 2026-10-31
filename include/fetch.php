@@ -1,4 +1,4 @@
-<?
+<?php
 
 
 	function fetch_character($region, $realm, $name, $update_guild=0){

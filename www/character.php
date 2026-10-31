@@ -69,14 +69,14 @@
 	</div>
 </header>
 
-<? if ($_GET['added'] ?? null){ ?>
+<?php if ($_GET['added'] ?? null){ ?>
 
 <div class="alert alert-success">
 	<i class="icon-ok"></i>
 	This character has been updated from the armory.
 </div>
 
-<? } ?>
+<?php } ?>
 
 <script>
 $(function(){
@@ -190,7 +190,7 @@ function update_criteria(criteria, rep, name, needed){
 <div class="span7">
 <div class="well">
 
-<? if ($character['got_it']){ ?>
+<?php if ($character['got_it']){ ?>
 
 	<table><tr><td>
 
@@ -202,36 +202,36 @@ function update_criteria(criteria, rep, name, needed){
 	</td><td style="padding-left: 20px">
 
 		<b><?=HtmlSpecialChars($character['name'])?>
-<? if ($character['date_got'] > 1){ ?>
+<?php if ($character['date_got'] > 1){ ?>
 		earned the achievement
 		on <?=date('F jS, Y', $character['date_got'])?>
 		at <?=date('g:i a', $character['date_got'])?>
 		</b>
-	<? if ($character['patch'] == 2){ ?>
+	<?php if ($character['patch'] == 2){ ?>
 		<br /><br />
 		That was when the achievement first came out - hardcore!
-	<? } ?>
-	<? if ($character['patch'] == 3){ ?>
+	<?php } ?>
+	<?php if ($character['patch'] == 3){ ?>
 		<br /><br />
 		That was during Wrath of the Lich King, when the achievement was harder.
-	<? } ?>
-	<? if ($character['patch'] == 4){ ?>
+	<?php } ?>
+	<?php if ($character['patch'] == 4){ ?>
 		<br /><br />
 		That was earned during the Cataclysm expansion.
-	<? } ?>
-<? }else{ ?>
+	<?php } ?>
+<?php }else{ ?>
 		earned the achievement, but we don't know when.</b><br />
 		(The battle.net API has some bugs)
-<? } ?>
+<?php } ?>
 		
 
 	</td></tr></table>
 
-<? }else{ ?>
+<?php }else{ ?>
 
 	<?=HtmlSpecialChars($character['name'])?> is still working on the achievement.
 
-<? } ?>
+<?php } ?>
 
 </div>
 
@@ -312,7 +312,7 @@ function update_criteria(criteria, rep, name, needed){
 	<a href="<?=$armory?>">View on Armory</a><br />
 </div>
 
-<? if (!($_GET['added'] ?? null)){ ?>
+<?php if (!($_GET['added'] ?? null)){ ?>
 <div class="well ac">
 	<a href="<?=$refresh_url?>" class="btn" id="refresh">Refresh from Armory</a><br />
 	<span style="color: #999">Last refreshed <?=date('Y-m-d', $character['last_fetched'])?></span>
@@ -326,27 +326,27 @@ $(function(){
 </script>
 
 </div>
-<? } ?>
+<?php } ?>
 
 <div class="well">
 
-<? if ($character['guild'] && ($guild['total_got'] ?? null)){ ?>
+<?php if ($character['guild'] && ($guild['total_got'] ?? null)){ ?>
 	This player is a member of <a href="<?=$guild['url'] ?? ''?>"><?=HtmlSpecialChars($character['guild'])?></a>.<br />
 	<br />
 	Scanned members: <?=$guild['total_found'] ?? 0?><br />
 	Insane members: <?=$guild['total_got'] ?? 0?><br />
-<? }elseif ($character['guild']){ ?>
+<?php }elseif ($character['guild']){ ?>
 	This player is a member of <a href="<?=$guild['url'] ?? ''?>"><?=HtmlSpecialChars($character['guild'])?></a>.<br />
 	This guild is currently unranked.
-<? }else{ ?>
+<?php }else{ ?>
 	This player is not currently in a guild.
-<? } ?>
+<?php } ?>
 
 </div>
 </div>
 </div>
 
 
-<?
+<?php
 	include('../templates/foot.txt');
 ?>

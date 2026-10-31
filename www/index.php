@@ -59,12 +59,12 @@
 	<h3>Browse by Realm</h3>
 
 	<table class="table table-striped">
-<? foreach ($realms as $k => $v){?>
+<?php foreach ($realms as $k => $v){?>
 		<tr>
 			<td><a href="/<?=$k?>/"><?=format_region($k)?></a></td>
 			<td class="ar" style="padding-right: 100px"><?=$v?> realms</td>
 		</tr>
-<? } ?>
+<?php } ?>
 	</table>
 
 </div>
@@ -73,31 +73,31 @@
 	<h3>Top Realms</h3>
 
 	<table class="table table-striped">
-<? foreach ($top as $row){ ?>
+<?php foreach ($top as $row){ ?>
 		<tr>
 			<td width="18%"><?=format_region($row['region'])?></td>
 			<td><a href="/<?=$row['region']?>/<?=urlencode($row['slug'])?>/"><?=HtmlSpecialChars(realm_name($row))?></a></td>
 			<td width="25%"><?=$row['total_insane']?></td>
 		</tr>
-<? } ?>
+<?php } ?>
 	</table>
 
 	<h3>Top Guilds</h3>
 
 	<table class="table table-striped">
-<? foreach ($guilds as $row){ ?>
+<?php foreach ($guilds as $row){ ?>
 		<tr>
 			<td width="18%"><?=format_region($row['region'])?></td>
 			<td><a href="<?=$row['url']?>"><?=HtmlSpecialChars($row['name'])?></a></td>
 			<td width="25%"><?=$row['total_got']?></td>
 		</tr>
-<? } ?>
+<?php } ?>
 	</table>
 
 
 </div>
 </div>
 
-<?
+<?php
 	include('../templates/foot.txt');
 ?>

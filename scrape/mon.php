@@ -1,4 +1,4 @@
-<?
+<?php
 	$counts = array();
 
 	$text = explode("\n", shell_exec("ps ax"));

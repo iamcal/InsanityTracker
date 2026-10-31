@@ -12,7 +12,7 @@
 
 <p>We've never scanned any players from this guild.</p>
 
-<?
+<?php
 	include('../templates/add.txt');
 	include('../templates/foot.txt');
 ?>

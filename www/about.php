@@ -1,4 +1,4 @@
-<?
+<?php
 	include('../include/init.php');
 
 	$current = 'about';
@@ -101,6 +101,6 @@
 </div>
 
 
-<?
+<?php
 	include('../templates/foot.txt');
 ?>

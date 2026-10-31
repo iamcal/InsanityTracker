@@ -24,7 +24,7 @@
 	<li class="active"><a href="#">Guilds</a></li>
 </ul>
 
-<?
+<?php
 	# **************************** THIS REALM HAS GUILDS ****************************
 	if (count($guilds)){
 ?>
@@ -40,7 +40,7 @@
 		<th class="ac"><?=StrToUpper($_GET['region'] ?? '')?> Rank</th>
 		<th class="ac">World Rank</th>
 	</tr>
-<? foreach ($guilds as $row){
+<?php foreach ($guilds as $row){
 
 	$host = $GLOBALS['cfg']['bnet_region_hosts'][$realm['region']] ?? '';
 	$name_url = rawurlencode($row['name']);
@@ -55,7 +55,7 @@
 		<td class="ac"><?=$row['rank_region']?></td>
 		<td class="ac"><?=$row['rank_world']?></td>
 	</tr>
-<? } ?>
+<?php } ?>
 </table>
 
 </div>
@@ -69,17 +69,17 @@
 </div>
 
 
-<?
+<?php
 	# **************************** THIS REALM HAS NO GUILDS ****************************
 	}else{
 ?>
 
 <p>Oops, looks like no guilds on this realm has earned <a href="http://www.wowhead.com/achievement=2336">Insane in the Membrane</a> yet.</p>
 
-<?
+<?php
 	}
 ?>
 
-<?
+<?php
 	include('../templates/foot.txt');
 ?>

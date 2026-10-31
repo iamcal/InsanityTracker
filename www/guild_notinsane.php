@@ -12,7 +12,7 @@
 
 <p>We've scanned <?=$num_total?> players in this guild, but none of them have the achievement.</p>
 
-<?
+<?php
 	include('../templates/add.txt');
 	include('../templates/foot.txt');
 ?>

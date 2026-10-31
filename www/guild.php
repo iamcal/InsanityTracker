@@ -90,13 +90,13 @@
 </div>
 </div>
 
-<?
+<?php
 	$characters = $chars;
 	$hide_guild = 1;
 	include('../templates/inc_list.php')
 ?>
 
-<?
+<?php
 	include('../templates/add.txt');
 	include('../templates/foot.txt');
 ?>

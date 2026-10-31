@@ -1,4 +1,4 @@
-<?
+<?php
 	$add_url = "/add/";
 
 	if (($_GET['region'] ?? null) && ($_GET['realm'] ?? null)){
