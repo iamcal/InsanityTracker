@@ -1,5 +1,5 @@
 <?php
-	include('../init.php');
+	include(__DIR__.'/../include/init.php');
 
 
 	$d1 = mktime(0,0,0,11,23,2010);

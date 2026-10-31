@@ -6,21 +6,21 @@
 		$realm_url = str_replace("%27", "'", rawurlencode($realm));
 		$name_url = str_replace("%27", "'", rawurlencode($name));
 
-		$region_enc = AddSlashes($region);
-		$realm_enc = AddSlashes($realm);
-		$name_enc = AddSlashes($name);
-		$where = "region='$region_enc' AND realm='$realm_enc' AND name='$name_enc'";
-		$row = db_single(db_fetch("SELECT * FROM characters WHERE $where"));
+		$row = db_single(db_fetch("SELECT * FROM characters WHERE region=:region AND realm=:realm AND name=:name", array(
+			'region'	=> $region,
+			'realm'		=> $realm,
+			'name'		=> $name,
+		)));
 
 		$ret = bnet_make_request($region, "/character/$realm_url/$name_url?fields=achievements,guild");
 
 		if ($ret['ok'] ?? null){
 
 			$hash = array(
-				'region'		=> AddSlashes($region),
-				'realm'			=> AddSlashes($realm),
-				'name'			=> AddSlashes($name),
-				'guild'			=> AddSlashes($ret['data']['guild']['name'] ?? ''),
+				'region'		=> $region,
+				'realm'			=> $realm,
+				'name'			=> $name,
+				'guild'			=> $ret['data']['guild']['name'] ?? '',
 				'last_fetched'		=> time(),
 				'fetch_count'		=> ($row['fetch_count'] ?? 0)+1,
 				'process_state'		=> 0,
@@ -49,7 +49,7 @@
 					$when = $ret['data']['achievements']['achievementsCompletedTimestamp'][$k] ?? null;
 
 					$hash['got_it'] = 1;
-					$hash['date_got'] = substr($when, 0, -3);
+					$hash['date_got'] = intval(substr((string)$when, 0, -3));
 				}
 			}
 
@@ -101,9 +101,9 @@
 		if (($ret['req']['status'] ?? null) == 404){
 
 			$hash = array(
-				'region'	=> AddSlashes($region),
-				'realm'		=> AddSlashes($realm),
-				'name'		=> AddSlashes($name),
+				'region'	=> $region,
+				'realm'		=> $realm,
+				'name'		=> $name,
 				'last_fetched'	=> time(),
 				'last_missing'	=> time(),
 				'process_state'	=> 0,
@@ -148,15 +148,19 @@
 	function fetch_update_guild($region, $realm, $name){
 
 		$hash = array(
-			'region'	=> AddSlashes($region),
-			'realm'		=> AddSlashes($realm),
-			'name'		=> AddSlashes($name),
+			'region'	=> $region,
+			'realm'		=> $realm,
+			'name'		=> $name,
 			'total_roster'	=> 0,
 			'total_found'	=> 0,
 			'total_got'	=> 0,
 		);
 
-		$ret = db_fetch("SELECT * FROM characters WHERE region='$hash[region]' AND realm='$hash[realm]' AND guild='$hash[name]'");
+		$ret = db_fetch("SELECT * FROM characters WHERE region=:region AND realm=:realm AND guild=:guild", array(
+			'region'	=> $region,
+			'realm'		=> $realm,
+			'guild'		=> $name,
+		));
 		foreach (($ret['rows'] ?? []) as $row){
 
 			$hash['total_roster']++;

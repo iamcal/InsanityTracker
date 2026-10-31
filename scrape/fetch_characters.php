@@ -1,5 +1,5 @@
 <?php
-	include('init.php');
+	include(__DIR__.'/../include/init.php');
 
 	mb_internal_encoding("UTF-8");
 	ini_set('memory_limit', '128M');
@@ -13,7 +13,7 @@
 		echo "finding unsynced characters... ";
 
 		$limit = time() - (60 * 60 * 24 * 30);
-		$ret = db_write("UPDATE characters SET process_state=1 WHERE process_state=0 AND last_fetched<$limit");
+		$ret = db_query("UPDATE characters SET process_state=1 WHERE process_state=0 AND last_fetched<$limit");
 
 		echo "ok ($ret[affected_rows])\n";
 		exit;
@@ -58,7 +58,7 @@
 		#
 
 		$limit = time() -(60 * 10);
-		$ret = db_write("UPDATE characters USE INDEX(process_state_4) SET process_state=1 WHERE process_state=2 AND claimed_time<$limit");
+		$ret = db_query("UPDATE characters USE INDEX(process_state_4) SET process_state=1 WHERE process_state=2 AND claimed_time<$limit");
 		if ($ret['affected_rows'] ?? null){
 			echo '|'.$ret['affected_rows'].'|';
 		}else{
@@ -74,19 +74,18 @@
 		$batch = rand(0, 999999999);
 		$t = time();
 
-		$ret = db_fetch("SELECT * FROM characters USE INDEX(process_state_5) WHERE process_state=1 AND region='$r' ORDER BY guild_rank ASC LIMIT $batch_size");
+		$ret = db_fetch("SELECT * FROM characters USE INDEX(process_state_5) WHERE process_state=1 AND region=:region ORDER BY guild_rank ASC LIMIT $batch_size", array('region' => $r));
 		foreach (($ret['rows'] ?? []) as $row){
-
-			$realm_enc = AddSlashes($row['realm']);
-			$name_enc = AddSlashes($row['name']);
-
-			$where = "process_state=1 AND region='$row[region]' AND realm='$realm_enc' AND name='$name_enc'";
 
 			db_update('characters', array(
 				'claimed_group' => $batch,
 				'claimed_time'	=> $t,
 				'process_state'	=> 2,
-			), $where);
+			), "process_state=1 AND region=:region AND realm=:realm AND name=:name", array(
+				'region'	=> $row['region'],
+				'realm'		=> $row['realm'],
+				'name'		=> $row['name'],
+			));
 		}
 		if (!count($ret['rows'] ?? [])) break;
 
@@ -110,9 +109,12 @@
 		$realm_url = str_replace("%27", "'", rawurlencode($row['realm']));
 		$name_url = str_replace("%27", "'", rawurlencode($row['name']));
 
-		$realm_enc = AddSlashes($row['realm']);
-		$name_enc = AddSlashes($row['name']);
-		$where = "region='$row[region]' AND realm='$realm_enc' AND name='$name_enc'";
+		$where = "region=:region AND realm=:realm AND name=:name";
+		$bind = array(
+			'region'	=> $row['region'],
+			'realm'		=> $row['realm'],
+			'name'		=> $row['name'],
+		);
 
 		#echo "making bnet request...";
 		$ret = bnet_make_request($row['region'], "/character/$realm_url/$name_url?fields=achievements,guild");
@@ -124,7 +126,7 @@
 			#return;
 
 			$hash = array(
-				'guild'		=> AddSlashes($ret['data']['guild']['name'] ?? ''),
+				'guild'		=> $ret['data']['guild']['name'] ?? '',
 				'last_fetched'	=> time(),
 				'fetch_count'	=> ($row['fetch_count'] ?? 0)+1,
 				'process_state'	=> 0,
@@ -150,11 +152,11 @@
 					$when = $ret['data']['achievements']['achievementsCompletedTimestamp'][$k] ?? null;
 
 					$hash['got_it'] = 1;
-					$hash['date_got'] = substr($when, 0, -3);
+					$hash['date_got'] = intval(substr((string)$when, 0, -3));
 				}
 			}
 
-			db_update('characters', $hash, $where);
+			db_update('characters', $hash, $where, $bind);
 
 			if ($hash['got_it']){
 				echo 'x';
@@ -180,7 +182,7 @@
 				'last_missing'	=> time(),
 				'process_state'	=> 0,
 
-			), $where);
+			), $where, $bind);
 
 			echo "-";
 

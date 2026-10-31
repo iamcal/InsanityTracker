@@ -1,5 +1,5 @@
 <?php
-	include('init.php');
+	include(__DIR__.'/../include/init.php');
 
 	mb_internal_encoding("UTF-8");
 
@@ -36,7 +36,7 @@
 	echo "finding unsynced guilds... ";
 
 	$limit = time() - (60 * 60 * 24 * 7);
-	$ret = db_write("UPDATE guilds SET needs_fetch=1 WHERE last_fetched<$limit"); #  AND last_failed<$limit");
+	$ret = db_query("UPDATE guilds SET needs_fetch=1 WHERE last_fetched<$limit"); #  AND last_failed<$limit");
 
 	echo "ok ($ret[affected_rows])\n";
 	flush();
@@ -76,13 +76,14 @@
 				$failures[$key] = 1;
 			}
 
-			$realm_enc = AddSlashes($row['realm']);
-			$guild_enc = AddSlashes($row['name']);
-
 			db_update("guilds", array(
 				'last_failed' => time(),
 				'needs_fetch' => 0,
-			), "region='$row[region]' AND realm='$realm_enc' AND name='$guild_enc'");
+			), "region=:region AND realm=:realm AND name=:name", array(
+				'region'	=> $row['region'],
+				'realm'		=> $row['realm'],
+				'name'		=> $row['name'],
+			));
 
 			echo 'x';
 		}
@@ -117,9 +118,9 @@
 				if (($row['level'] ?? 0) < 85) continue;
 
 				db_insert_dupe('characters', array(
-					'region'	=> AddSlashes($region),
-					'realm'		=> AddSlashes($realm), # stub
-					'name'		=> AddSlashes($row['name']),
+					'region'	=> $region,
+					'realm'		=> $realm, # stub
+					'name'		=> $row['name'] ?? '',
 					'guild_rank'	=> $g_row['world_rank'],
 					'last_fetched'	=> 0,
 				), array(
@@ -151,13 +152,14 @@
 			}
 		}
 
-		$realm_enc = AddSlashes($g_row['realm']);
-		$guild_enc = AddSlashes($g_row['name']);
-
 		db_update("guilds", array(
 			'last_fetched'	=> time(),
 			'needs_fetch' => 0,
-		), "region='$region' AND realm='$realm_enc' AND name='$guild_enc'");
+		), "region=:region AND realm=:realm AND name=:name", array(
+			'region'	=> $region,
+			'realm'		=> $g_row['realm'],
+			'name'		=> $g_row['name'],
+		));
 
 #exit;
 	}

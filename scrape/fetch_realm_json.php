@@ -1,5 +1,5 @@
 <?php
-	include('init.php');
+	include(__DIR__.'/../include/init.php');
 
 
 	# only reload realm rankings once per week
@@ -18,10 +18,9 @@
 		#$n5 = fetch_ranks($row, str_replace('tier13', 'tier9_10', $row['url']), 0);
 		#$n6 = fetch_ranks($row, str_replace('tier13', 'tier8', $row['url']), 0);
 
-		$url_enc = AddSlashes($row['url']);
 		db_update('realm_rankings', array(
 			'last_fetched' => time(),
-		), "url='$url_enc'");
+		), "url=:url", array('url' => $row['url']));
 
 		echo "($n1/$n2)";
 	}
@@ -56,12 +55,12 @@ if (strlen($region) != 2){
 			if (!$rank) $rank = $max_rank;
 
 			$update = array( 'world_rank' => $rank );
-			if (!$use_rank) $update = array( 'name' => AddSlashes($grow['name'] ?? '') );
+			if (!$use_rank) $update = array( 'name' => $grow['name'] ?? '' );
 
 			db_insert_dupe('guilds', array(
-				'region'	=> AddSlashes($region),
-				'realm'		=> AddSlashes($realm),
-				'name'		=> AddSlashes($grow['name'] ?? ''),
+				'region'	=> $region,
+				'realm'		=> $realm,
+				'name'		=> $grow['name'] ?? '',
 				'world_rank'	=> $use_rank ? $rank : $max_rank,
 				'last_fetched'	=> 0,
 			), $update);

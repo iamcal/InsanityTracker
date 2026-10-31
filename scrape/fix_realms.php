@@ -1,5 +1,5 @@
 <?php
-	include('init.php');
+	include(__DIR__.'/../include/init.php');
 
 	mb_internal_encoding("UTF-8");
 	ini_set('memory_limit', '128M');
@@ -34,10 +34,7 @@
 
 	foreach ($map as $from => $to){
 
-		$from_enc = AddSlashes($from);
-		$to_enc = AddSlashes($to[1]);
-
-		db_write("UPDATE guilds SET realm='$to_enc' WHERE region='$to[0]' AND realm='$from_enc'");
+		db_query("UPDATE guilds SET realm=:to WHERE region=:region AND realm=:from", array('to' => $to[1], 'region' => $to[0], 'from' => $from));
 		echo '.'; flush();
 	}
 	echo " done\n";
@@ -51,10 +48,7 @@
 
 	foreach ($map as $from => $to){
 
-		$from_enc = AddSlashes($from);
-		$to_enc = AddSlashes($to[1]);
-
-		db_write("UPDATE characters SET realm='$to_enc' WHERE region='$to[0]' AND realm='$from_enc'");
+		db_query("UPDATE characters SET realm=:to WHERE region=:region AND realm=:from", array('to' => $to[1], 'region' => $to[0], 'from' => $from));
 		echo '.'; flush();
 	}
 	echo " done\n";

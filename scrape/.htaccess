@@ -1,4 +1,2 @@
-Order Allow,Deny
-Allow from none
-Deny from all
-
+# Command-line scripts, run from cron or by hand: never served (and outside the docroot anyway)
+Require all denied

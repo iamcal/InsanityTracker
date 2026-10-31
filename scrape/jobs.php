@@ -15,13 +15,13 @@
 
 	$max = 10;
 	$launch = $max - min($max, $num);
-	if (!launch) exit;
+	if (!$launch) exit;
 
 	echo "launch $launch more to keep jobs at $max ";
 
 	for ($i=0; $i<$launch; $i++){
 
-		echo shell_exec("screen -d -m /usr/bin/php -q /var/www/insanitytracker.com/scrape/fetch_characters.php $region");
+		echo shell_exec("screen -d -m /usr/bin/php -q ".__DIR__."/fetch_characters.php $region");
 
 		echo '.';
 	}

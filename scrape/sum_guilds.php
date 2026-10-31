@@ -1,5 +1,5 @@
 <?php
-	include('../init.php');
+	include(__DIR__.'/../include/init.php');
 
 	ini_set('memory_limit', '256M');
 
@@ -14,20 +14,27 @@
 		echo "$region: "; flush();
 		echo "fetching characters ... "; flush();
 
-		$ret = _db_query("SELECT realm, guild, got_it, last_found FROM characters WHERE region='$region'", 'main');
-		$num = mysql_num_rows($ret['result']);
+		# millions of rows: stream them rather than buffer them all, which also means no other
+		# query can run until they've all been read
+		db_connect()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
+		$ret = db_query("SELECT realm, guild, got_it, last_found FROM characters WHERE region=:region", array('region' => $region));
 
-		echo "$num players ... "; flush();
-
+		$num = 0;
 		$sums = array();
 
-		while ($row = mysql_fetch_array($ret['result'], MYSQL_ASSOC)){
+		while ($row = $ret['stmt']->fetch(PDO::FETCH_ASSOC)){
+			$num++;
 			if (!$row['guild']) continue;
 			$key = $row['realm'].'|'.$row['guild'];
 			$sums[$key]['total'] = ($sums[$key]['total'] ?? 0) + 1;
 			if ($row['last_found']) $sums[$key]['found'] = ($sums[$key]['found'] ?? 0) + 1;
 			if ($row['got_it']) $sums[$key]['got'] = ($sums[$key]['got'] ?? 0) + 1;
 		}
+
+		$ret['stmt']->closeCursor();
+		db_connect()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+
+		echo "$num players ... "; flush();
 
 		$num = count($sums);
 		echo "$num guilds ... "; flush();
@@ -38,8 +45,8 @@
 
 			db_insert_dupe('guilds', array(
 				'region'	=> $region,
-				'realm'		=> AddSlashes($realm),
-				'name'		=> AddSlashes($guild),
+				'realm'		=> $realm,
+				'name'		=> $guild,
 				'total_roster'	=> intval($nums['total'] ?? 0),
 				'total_found'	=> intval($nums['found'] ?? 0),
 				'total_got'	=> intval($nums['got'] ?? 0),

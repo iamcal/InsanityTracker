@@ -1,5 +1,5 @@
 <?php
-	include('init.php');
+	include(__DIR__.'/../include/init.php');
 
 
 	function fetch_region($r, $langs, $def='en_US'){
@@ -67,13 +67,13 @@
 		foreach ($map as $row){
 
 			db_insert_dupe('realms', array(
-				'region'	=> AddSlashes($row['region']),
-				'slug'		=> AddSlashes($row['slug']),
-				'name'		=> AddSlashes($row['name']),
-				'locales'	=> AddSlashes(serialize($row['locales'] ?? null)),
+				'region'	=> $row['region'],
+				'slug'		=> $row['slug'],
+				'name'		=> $row['name'],
+				'locales'	=> serialize($row['locales'] ?? null),
 			), array(
-				'name'		=> AddSlashes($row['name']),
-				'locales'	=> AddSlashes(serialize($row['locales'] ?? null)),
+				'name'		=> $row['name'],
+				'locales'	=> serialize($row['locales'] ?? null),
 			));
 		}
 

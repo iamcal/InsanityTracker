@@ -124,6 +124,9 @@
 			$i++;
 		}
 
+		# the inserted values only, before the update's are added
+		$values = ':'.implode(',:', array_keys($bind));
+
 		foreach ($fields2 as $k => $v){
 			$bind["f$i"] = $v;
 			$bits[] = "{$k}=:f{$i}";
@@ -131,7 +134,7 @@
 		}
 
 		$k = '`'.implode('`,`', array_keys($fields)).'`';
-		$v = ':'.implode(',:', array_keys($bind));
+		$v = $values;
 
 		$set = implode(', ', $bits);
 

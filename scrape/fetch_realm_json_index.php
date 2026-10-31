@@ -1,5 +1,5 @@
 <?php
-	include('init.php');
+	include(__DIR__.'/../include/init.php');
 
 
 	#
@@ -14,11 +14,11 @@
 	# insert into DB
 	#
 
-	db_write("UPDATE realm_rankings SET in_last_run=0");
+	db_query("UPDATE realm_rankings SET in_last_run=0");
 	foreach ($m[1] as $url){
 
 		db_insert_dupe('realm_rankings', array(
-			'url'		=> AddSlashes($url),
+			'url'		=> $url,
 			'last_fetched'	=> 0,
 			'in_last_run'	=> 1,
 		), array(
