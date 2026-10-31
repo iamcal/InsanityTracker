@@ -74,7 +74,6 @@
 		}
 
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $bytes);
-		curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
 
 		# TODO: sort out PUT-ing files
 		# curl_setopt($ch, CURLOPT_INFILE, $bytes);
@@ -223,7 +222,6 @@
 
 		#$end = microtime_ms();
 
-		curl_close($ch);
 
 		#$GLOBALS['timings']['http_count']++;
 		#$GLOBALS['timings']['http_time'] += $end-$start;
