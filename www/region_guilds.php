@@ -22,7 +22,7 @@
 	}
 
 	$title = format_region($_GET['region'] ?? '');
-	include('../templates/head.txt');
+	include('../templates/head.php');
 ?>
 
 <header class="contextual">
@@ -77,5 +77,5 @@
 </div>
 
 <?php
-	include('../templates/foot.txt');
+	include('../templates/foot.php');
 ?>

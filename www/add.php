@@ -54,7 +54,7 @@
 
 	$current = 'add';
 	$title = 'Add a Character';
-	include('../templates/head.txt');
+	include('../templates/head.php');
 ?>
 
 <header class="jumbotron subhead">
@@ -160,5 +160,5 @@ function escapeXML(x){
 </script>
 
 <?php
-	include('../templates/foot.txt');
+	include('../templates/foot.php');
 ?>

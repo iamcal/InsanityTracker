@@ -51,7 +51,7 @@
 	assign_patch($character);
 
 	$title = HtmlSpecialChars($character['name']);
-	include('../templates/head.txt');
+	include('../templates/head.php');
 ?>
 
 <header class="contextual">
@@ -348,5 +348,5 @@ $(function(){
 
 
 <?php
-	include('../templates/foot.txt');
+	include('../templates/foot.php');
 ?>

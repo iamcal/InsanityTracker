@@ -40,7 +40,7 @@
 	}
 
 	$title = HtmlSpecialChars($name);
-	include('../templates/head.txt');
+	include('../templates/head.php');
 ?>
 
 <header class="contextual">
@@ -97,6 +97,6 @@
 ?>
 
 <?php
-	include('../templates/add.txt');
-	include('../templates/foot.txt');
+	include('../templates/add.php');
+	include('../templates/foot.php');
 ?>

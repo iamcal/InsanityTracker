@@ -97,7 +97,7 @@
 
 	$current = 'stats';
 	$title = 'Stats';
-	include('../templates/head.txt');
+	include('../templates/head.php');
 ?>
 
 <header class="jumbotron subhead">
@@ -356,5 +356,5 @@
 
 
 <?php
-	include('../templates/foot.txt');
+	include('../templates/foot.php');
 ?>

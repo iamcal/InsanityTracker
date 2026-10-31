@@ -11,7 +11,7 @@
 		$total += $row['num'];
 	}
 
-	include('../templates/head.txt');
+	include('../templates/head.php');
 ?>
 
 <h1>
@@ -25,5 +25,5 @@
 </ul>
 
 <?php
-	include('../templates/foot.txt');
+	include('../templates/foot.php');
 ?>

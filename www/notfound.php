@@ -1,6 +1,6 @@
 <?php
 	$title = 'Page not found';
-	include('../templates/head.txt');
+	include('../templates/head.php');
 ?>
 
 <header class="jumbotron">
@@ -9,7 +9,7 @@
 </header>
 
 <?php
-	include('../templates/foot.txt');
+	include('../templates/foot.php');
 
 	exit;
 ?>

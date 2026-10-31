@@ -10,7 +10,7 @@
 	$guilds = $ret['rows'] ?? [];
 
 	$title = HtmlSpecialChars(realm_name($realm));
-	include('../templates/head.txt');
+	include('../templates/head.php');
 ?>
 
 <header class="contextual">
@@ -81,5 +81,5 @@
 ?>
 
 <?php
-	include('../templates/foot.txt');
+	include('../templates/foot.php');
 ?>
