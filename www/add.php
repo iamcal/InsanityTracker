@@ -110,7 +110,7 @@
 <div class="control-group">
 	<label class="control-label" for="in-name">Character Name</label>
 	<div class="controls">
-		<input type="text" name="n" value="<?=HtmlSpecialChars($_REQUEST['n'] ?? null)?>" class="span4" />
+		<input type="text" name="n" value="<?=HtmlSpecialChars($_REQUEST['n'] ?? '')?>" class="span4" />
 	</div>
 </div>
 
